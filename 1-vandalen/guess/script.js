@@ -3,15 +3,15 @@
 window.onload = function(){
 	
 	var secret = Math.floor( Math.random() * 100)+1; 
-
-	
+	var count =0;
 	// I denna funktion ska du skriva koden för att hantera "spelet"
     var guess = function(number){
 		console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
 		console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
 
-		var count =1;
+		
 		count +=1;
+	
 		
 		if (number < 1 || number > 100){
 			return  [false, "Talet är utanför intervallet 1 - 100"];
