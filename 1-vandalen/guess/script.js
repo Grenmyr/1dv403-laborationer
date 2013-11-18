@@ -9,17 +9,22 @@ window.onload = function(){
     var guess = function(number){
 		console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
 		console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
+
+		var count = count +=1;
 			
 		if (number > secret) {
 			return [false, "Det hemliga talet är lägre!"];
 		}
-		if (number > secret) {
+		else if (number > secret) {
 			return [false, "Det hemliga talet är högre!"];
 		}
-
-		if (number == secret) {
-			return [true, "Grattis du vann! Det hemliga talet var X och du behövde Y gissningar för att hitta det."];
+		else if (number == secret) {
+			return [true, "Grattis du vann! Det hemliga talet var" +secret  +" och du behövde Y gissningar för att hitta det."];
 		}
+		else{
+			return  [false, "Talet är utanför intervallet 0 - 100"];
+		}
+
 
 
 		// Returnera exempelvis: 
