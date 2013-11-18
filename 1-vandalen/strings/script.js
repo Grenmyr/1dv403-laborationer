@@ -8,14 +8,20 @@ window.onload = function(){
 		
 		// Sålänge strängen ej är slut!
 		var newArray = [];
-		var n;
-		for(n = 0; n < str.length; n++){
+		
+		for(var n = 0; n < str.length; n++){
 		
 			if(str[n].match(/[A-ZÅÄÖ]/g)){
-				newArray[n] = str[n].replace(/g, str[n].toLowerCase());
+				newArray[n] = str[n].replace(/[A-ZÅÄÖ]/g, str[n].toLowerCase());
 			}
 			else{
 				newArray[n] = str[n].replace(/[a-zåäö]/g, str[n].toUpperCase());
+			}
+
+			for (var i = 0;  i < newArray.length; i++) {
+				if (newArray[n].match(/A/gi)) {
+					newArray[n] = newArray[n].replace(/A/gi, "#");
+				}
 			}
 
 		}
