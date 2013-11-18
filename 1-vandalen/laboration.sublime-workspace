@@ -8,14 +8,27 @@
 	"buffers":
 	[
 		{
-			"contents": "{\n	\"folders\":\n	[\n		{\n			\"path\": \"guess\"\n		},\n		\n	]\n}\n",
 			"file": "laboration.sublime-project",
-			"file_size": 49,
-			"file_write_time": 130292520528606105,
 			"settings":
 			{
-				"buffer_size": 53,
+				"buffer_size": 80,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "guess/index.html",
+			"settings":
+			{
+				"buffer_size": 429,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "guess/script.js",
+			"settings":
+			{
+				"buffer_size": 1872,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -60,6 +73,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"gygygyg",
+			"answer"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -77,7 +92,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -85,20 +100,73 @@
 					"file": "laboration.sublime-project",
 					"settings":
 					{
-						"buffer_size": 53,
+						"buffer_size": 80,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								47,
-								47
+								79,
+								79
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "guess/index.html",
+					"settings":
+					{
+						"buffer_size": 429,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								408,
+								408
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "guess/script.js",
+					"settings":
+					{
+						"buffer_size": 1872,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								568,
+								568
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -187,8 +255,8 @@
 	},
 	"show_minimap": true,
 	"show_open_files": false,
-	"show_tabs": false,
+	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 220.0,
 	"status_bar_visible": true
 }

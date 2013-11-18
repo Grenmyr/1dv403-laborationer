@@ -17,7 +17,7 @@ window.onload = function(){
 			return [false, "Det hemliga talet är högre!"];
 		}
 
-		if (number === secret) {
+		if (number == secret) {
 			return [true, "Grattis du vann! Det hemliga talet var X och du behövde Y gissningar för att hitta det."];
 		}
 
