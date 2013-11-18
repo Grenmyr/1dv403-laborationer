@@ -3,8 +3,26 @@
 window.onload = function(){
 
 	// I denna funktion ska du skriva koden för att hantera "spelet"
+
 	var convertString = function(str){
+		
+		// Sålänge strängen ej är slut!
+		var newArray = [];
+		var n;
+		for(n = 0; n < str.length; n++){
+		
+			if(str[n].match(/[A-ZÅÄÖ]/g)){
+				newArray[n] = str[n].replace(/g, str[n].toLowerCase());
+			}
+			else{
+				newArray[n] = str[n].replace(/[a-zåäö]/g, str[n].toUpperCase());
+			}
+
+		}
+
+		console.log(newArray);
 		// Plats för förändring.		
+		//toLowerCase() toUpperCase()
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 	
