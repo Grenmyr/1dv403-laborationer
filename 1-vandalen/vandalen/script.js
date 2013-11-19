@@ -27,11 +27,14 @@ var makePerson = function(persArr){
         return Math.max(previousValue, currentValue);
     });
     
+    /* Testade att använda bara 2 argument och funkade */
     averageAge  = personArray.reduce(function(age, index){
         
         return (age+index);
     });
-    myPersonObject.averageAge = 5;
+    
+    /* Var tvungen att dela upp beräkningen av snittålder i två steg av någon kosntig anledning */
+    myPersonObject.averageAge = Math.round(averageAge/personNamesArray.length);
     
 	return myPersonObject;
 	// Din kod här..retun person.
