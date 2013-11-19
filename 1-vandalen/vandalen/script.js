@@ -6,15 +6,12 @@ var makePerson = function(persArr){
 	var myPersonObject = {};
 	var averageAge;
     
-    /* Array som skapas och hämtar ut alla  "age" element från vandalen.js 
-    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map */
+    // HÄREFTER HANTERAS EGENSKAPERNA AV TYP "age"
     
+    /* Array skapas/hämtas från testet för att kunna hantera alla  "age" element från vandalen.js 
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map */
     personArray = persArr.map(function(person){
         return  person.age;
-    });
-     /* Array array som skapas för att kunna hantera alla "name element"*/
-     personNamesArray = persArr.map(function(person){
-        return  person.name;
     });
     
     /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce */
@@ -34,10 +31,19 @@ var makePerson = function(persArr){
     });
     
     /* Var tvungen att dela upp beräkningen av snittålder i två steg av någon kosntig anledning */
-    myPersonObject.averageAge = Math.round(averageAge/personNamesArray.length);
+    myPersonObject.averageAge = Math.round(averageAge/personArray.length);
+    
+     // HÄREFTER HANTERAS EGENSKAPERNA AV TYP "name"
+     
+     /* Array skapas/hämtas från testet för att kunna hantera alla "name element"*/
+     personNamesArray = persArr.map(function(person){
+        return  person.name;
+    });
+    
+    
     
 	return myPersonObject;
 	// Din kod här..retun person.
 
-}
+};
 
