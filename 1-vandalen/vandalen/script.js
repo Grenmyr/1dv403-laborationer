@@ -14,20 +14,20 @@ var makePerson = function(persArr){
         return  person.age;
     });
     
-    /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce */
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce 
     
     myPersonObject.minAge = personArray.reduce(function(previousValue, currentValue, index, personArray){
         return Math.min(previousValue, currentValue);
     });
-    
+     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce 
     myPersonObject.maxAge = personArray.reduce(function(previousValue, currentValue, index, personArray){
         return Math.max(previousValue, currentValue);
     });
     
-    /* Testade att använda bara 2 argument och funkade */
-    averageAge  = personArray.reduce(function(age, index){
+     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce 
+    averageAge  = personArray.reduce(function(previousAge, age, index, personArray){
         
-        return (age+index);
+        return (previousAge+age);
     });
     
     /* Var tvungen att dela upp beräkningen av snittålder i två steg av någon kosntig anledning */
@@ -45,6 +45,7 @@ var makePerson = function(persArr){
         return a.localeCompare(b);
     });
     
+     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce 
     myPersonObject.names = personNamesArray.reduce(function(previousName, name, index, personNamesArray){
         return previousName + ", " + name;
     });
