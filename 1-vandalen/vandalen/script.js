@@ -18,7 +18,7 @@ var makePerson = function(persArr){
     });
     
     /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce */
-    console.log(personArray); 
+    console.log(personNamesArray); 
     myPersonObject.minAge = personArray.reduce(function(previousValue, currentValue, index, personArray){
         return Math.min(previousValue, currentValue);
     });
