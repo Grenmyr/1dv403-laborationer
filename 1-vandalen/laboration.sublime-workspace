@@ -3,6 +3,10 @@
 	{
 		"selected_items":
 		[
+			[
+				"n",
+				"newArray"
+			]
 		]
 	},
 	"buffers":
@@ -11,15 +15,23 @@
 			"file": "laboration.sublime-project",
 			"settings":
 			{
-				"buffer_size": 80,
+				"buffer_size": 110,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "guess/index.html",
+			"file": "strings/index.html",
 			"settings":
 			{
-				"buffer_size": 429,
+				"buffer_size": 481,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "strings/script.js",
+			"settings":
+			{
+				"buffer_size": 1768,
 				"line_ending": "Windows"
 			}
 		},
@@ -27,7 +39,7 @@
 			"file": "guess/script.js",
 			"settings":
 			{
-				"buffer_size": 1872,
+				"buffer_size": 2116,
 				"line_ending": "Windows"
 			}
 		}
@@ -56,6 +68,8 @@
 	},
 	"file_history":
 	[
+		"/C/Users/dg222cs/Documents/GitHub/1dv403-laborationer/1-vandalen/guess/script.js",
+		"/C/Users/dg222cs/Documents/GitHub/1dv403-laborationer/1-vandalen/guess/index.html"
 	],
 	"find":
 	{
@@ -92,7 +106,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -100,15 +114,15 @@
 					"file": "laboration.sublime-project",
 					"settings":
 					{
-						"buffer_size": 80,
+						"buffer_size": 110,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								79,
-								79
+								99,
+								99
 							]
 						],
 						"settings":
@@ -123,18 +137,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "guess/index.html",
+					"file": "strings/index.html",
 					"settings":
 					{
-						"buffer_size": 429,
+						"buffer_size": 481,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								408,
-								408
+								0,
+								0
 							]
 						],
 						"settings":
@@ -149,18 +163,45 @@
 				},
 				{
 					"buffer": 2,
-					"file": "guess/script.js",
+					"file": "strings/script.js",
 					"settings":
 					{
-						"buffer_size": 1872,
+						"buffer_size": 1768,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								568,
-								568
+								577,
+								577
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "guess/script.js",
+					"settings":
+					{
+						"buffer_size": 2116,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -226,8 +267,8 @@
 		"rows":
 		[
 			0.0,
-			0.783080260304,
-			0.891540130152,
+			0.894625922023,
+			0.947312961012,
 			1.0
 		]
 	},
