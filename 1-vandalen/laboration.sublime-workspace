@@ -15,31 +15,34 @@
 			"file": "laboration.sublime-project",
 			"settings":
 			{
-				"buffer_size": 110,
+				"buffer_size": 169,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "strings/index.html",
+			"file": "vandalen/index.html",
 			"settings":
 			{
-				"buffer_size": 481,
+				"buffer_size": 565,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "strings/script.js",
+			"contents": "\"use strict\";\n\nvar makePerson = function(persArr){\n\n\n	// Din kod här..retun person.\n\n}\n\n",
+			"file": "vandalen/script.js",
+			"file_size": 86,
+			"file_write_time": 130292510445417887,
 			"settings":
 			{
-				"buffer_size": 1768,
+				"buffer_size": 88,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "guess/script.js",
+			"file": "tests/vandalen.js",
 			"settings":
 			{
-				"buffer_size": 2116,
+				"buffer_size": 2131,
 				"line_ending": "Windows"
 			}
 		}
@@ -47,11 +50,11 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 416.0
 	},
 	"console":
 	{
@@ -69,6 +72,8 @@
 	"file_history":
 	[
 		"/C/Users/dg222cs/Documents/GitHub/1dv403-laborationer/1-vandalen/guess/script.js",
+		"/C/Users/dg222cs/Documents/GitHub/1dv403-laborationer/1-vandalen/strings/script.js",
+		"/C/Users/dg222cs/Documents/GitHub/1dv403-laborationer/1-vandalen/strings/index.html",
 		"/C/Users/dg222cs/Documents/GitHub/1dv403-laborationer/1-vandalen/guess/index.html"
 	],
 	"find":
@@ -106,7 +111,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -114,20 +119,21 @@
 					"file": "laboration.sublime-project",
 					"settings":
 					{
-						"buffer_size": 110,
+						"buffer_size": 169,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								99,
-								99
+								158,
+								158
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -137,23 +143,25 @@
 				},
 				{
 					"buffer": 1,
-					"file": "strings/index.html",
+					"file": "vandalen/index.html",
 					"settings":
 					{
-						"buffer_size": 481,
+						"buffer_size": 565,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								352,
+								352
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -163,24 +171,23 @@
 				},
 				{
 					"buffer": 2,
-					"file": "strings/script.js",
+					"file": "vandalen/script.js",
 					"settings":
 					{
-						"buffer_size": 1768,
+						"buffer_size": 88,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								577,
-								577
+								82,
+								82
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -190,24 +197,25 @@
 				},
 				{
 					"buffer": 3,
-					"file": "guess/script.js",
+					"file": "tests/vandalen.js",
 					"settings":
 					{
-						"buffer_size": 2116,
+						"buffer_size": 2131,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1152,
+								1152
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
