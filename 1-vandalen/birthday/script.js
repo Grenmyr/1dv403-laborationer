@@ -4,14 +4,20 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
-	    var birthDate;
-	    var currentDate;
-	    var counter;
+    var birthDate;
+    var currentDate;
+    var counter;
+    var regEx =/\d{4}\-\d{2}\-\d{2}/;
+        if (!regEx.test(date)) {
+            throw {message:"Här gavs fel datum"};
+        }
         date = date.split("-");
         
+        
         currentDate = new Date();
+        
         birthDate = new Date(currentDate.getFullYear(),(date[1]-1),date[2]);
-        if (currentDate.getTime() > birthDate.getTime() ) {
+        if (currentDate.getTime() > birthDate.getTime() && currentDate.getDate() !== birthDate.getDate() ) {
             birthDate.setFullYear(currentDate.getFullYear()+1);
         }
         
