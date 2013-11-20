@@ -2,41 +2,32 @@
 
 window.onload = function(){
 
-	
 	var birthday = function(date){
     var birthDate;
     var currentDate;
     var counter;
     var regEx =/\d{4}\-\d{2}\-\d{2}/;
+    
+    //Regex som jämför indata att den har 4,2,2 decimaltyp med - imellan.
         if (!regEx.test(date)) {
             throw {message:"Här gavs fel datum"};
         }
+        // tar bort bindestreck
         date = date.split("-");
-        
-        
         currentDate = new Date();
-        
+        // Tilldelar mitt födelsedatum current dates år, och dumpar in element 2([1]-1) eftersom det är månad.
         birthDate = new Date(currentDate.getFullYear(),(date[1]-1),date[2]);
+        // Jämför dels tiden i milisecunder mellan objecten och om det skilt ifrån samma år(getdate)så lägger
+        // jag till 1 år till currentdate så den räknar ner om månaden för currentdate passerats. 
         if (currentDate.getTime() > birthDate.getTime() && currentDate.getDate() !== birthDate.getDate() ) {
             birthDate.setFullYear(currentDate.getFullYear()+1);
         }
-        
+        // Jämför föredelsedag med dagens datum i milisekunder (getTime)
         console.log(birthDate.getTime()-currentDate.getTime());
-        
-        
-        
-			
-			
-		
+        // Räknar om milisekunderna till dagar.
 		counter = Math.ceil( ( birthDate.getTime() - currentDate.getTime() ) / (1000*60*60*24));
 		
-		
-			
-			
 			return counter;
-
-
-    
 	};
 	
 	// ------------------------------------------------------------------------------
