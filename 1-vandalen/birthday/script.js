@@ -4,10 +4,18 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
-		
-
-
-			// Din kod här.
+	    var date;	
+        var birthdayDavid;
+        var dateDiffererance;
+			date = new Date();
+			birthdayDavid = new Date(2014,6,9);
+			
+			console.log(date);
+			console.log(birthdayDavid);
+		dateDiffererance = birthdayDavid - date;	
+			
+			
+			return date-birthdayDavid;
 
 
 
