@@ -9,10 +9,8 @@ window.onload = function(){
 		console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
 		console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
 
-		
 		count +=1;
-	
-		
+
 		if (number < 1 || number > 100){
 			return  [false, "Talet är utanför intervallet 1 - 100"];
 		}	
@@ -28,9 +26,6 @@ window.onload = function(){
 		else{
 			return [false, "Felaktigt inmatat värde, ange siffror"];
 		}
-
-
-
 		// Returnera exempelvis: 
 		// [true, "Grattis du vann! Det hemliga talet var X och du behövde Y gissningar för att hitta det."]
 		// [false, "Det hemliga talet är högre!"]
@@ -39,8 +34,6 @@ window.onload = function(){
 	};
 	
 	// ------------------------------------------------------------------------------
-
-
 
 	// Kod för att hantera utskrift och inmatning. Denna ska du inte behöva förändra
 	var p = document.querySelector("#value"); // Referens till DOM-noden med id="#value"
