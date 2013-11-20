@@ -4,32 +4,35 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
-	    var date;
 	    var birthDate;
+	    var currentDate;
+	    var counter;
+        date = date.split("-");
         
+        currentDate = new Date();
+        birthDate = new Date(currentDate.getFullYear(),(date[1]-1),date[2]);
+        if (currentDate.getTime() > birthDate.getTime() ) {
+            birthDate.setFullYear(currentDate.getFullYear()+1);
+        }
         
-        date = new Date(birthDate[0],birthDate[1], birthDate[2]);	
-        
-       
-        console.log(date[0]);
-        
+        console.log(birthDate.getTime()-currentDate.getTime());
         
         
         
 			
 			
 		
-		//differenceIndays = Math.round(miliSecondsDifferance/ (1000*60*60*24));
+		counter = Math.ceil( ( birthDate.getTime() - currentDate.getTime() ) / (1000*60*60*24));
 		
 		
 			
 			
-			//return differenceIndays;
+			return counter;
 
 
-
-
+    
 	};
+	
 	// ------------------------------------------------------------------------------
 
 
