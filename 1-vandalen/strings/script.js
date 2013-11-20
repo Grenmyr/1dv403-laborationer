@@ -21,27 +21,16 @@ window.onload = function(){
 			for (var i = 0;  i < newArray.length; i++) {
 				if (newArray[n].match(/A/gi)) {
 					newArray[n] = newArray[n].replace(/A/gi, "#");
-				}
-			}
-			
-			
-			
-			
-            
-		}
+				};
+			};
+
+		};
         
 		return newArray.toString();
 		// Plats för förändring.		
 		//toLowerCase() toUpperCase()
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
-	
-
-
-
-
-
-
 	};
 	// ------------------------------------------------------------------------------
 
