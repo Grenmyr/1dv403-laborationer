@@ -4,18 +4,27 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
-	    var date;	
-        var birthdayDavid;
-        var dateDiffererance;
-			date = new Date();
-			birthdayDavid = new Date(2014,6,9);
+	    var date;
+	    var birthDate;
+        
+        
+        date = new Date(birthDate[0],birthDate[1], birthDate[2]);	
+        
+       
+        console.log(date[0]);
+        
+        
+        
+        
 			
-			console.log(date);
-			console.log(birthdayDavid);
-		dateDiffererance = birthdayDavid - date;	
+			
+		
+		//differenceIndays = Math.round(miliSecondsDifferance/ (1000*60*60*24));
+		
+		
 			
 			
-			return date-birthdayDavid;
+			//return differenceIndays;
 
 
 
