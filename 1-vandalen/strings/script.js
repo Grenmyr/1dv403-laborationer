@@ -23,10 +23,14 @@ window.onload = function(){
 					newArray[n] = newArray[n].replace(/A/gi, "#");
 				}
 			}
-
+			
+			
+			
+			
+            
 		}
-
-		console.log(newArray);
+        
+		return newArray.toString();
 		// Plats för förändring.		
 		//toLowerCase() toUpperCase()
 		// Returnera den konverterade strängen.
