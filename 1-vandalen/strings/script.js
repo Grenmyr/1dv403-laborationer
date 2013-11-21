@@ -8,6 +8,7 @@ window.onload = function(){
 		
 		// Sålänge strängen ej är slut!
 		var newArray = [];
+		var resultString = "";
 
 		for(var n = 0; n < str.length; n++){
 		// Regex, konventerar alla stora bokstäver til små
@@ -21,13 +22,17 @@ window.onload = function(){
 			for (var i = 0;  i < newArray.length; i++) {
 				if (newArray[n].match(/A/gi)) {
 					newArray[n] = newArray[n].replace(/A/gi, "#");
-				};
-
+				}
 			};
-
 		};
+		
+		for(var index = 0; index<newArray.length; index++) {
+	        resultString += newArray[index];
+		}
+		
+		console.log(typeof resultString);
         
-		return newString.toString();
+		return resultString;
 		// Plats för förändring.		
 		//toLowerCase() toUpperCase()
 		// Returnera den konverterade strängen.
