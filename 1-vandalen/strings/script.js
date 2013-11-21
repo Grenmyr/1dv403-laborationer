@@ -10,14 +10,14 @@ window.onload = function(){
 		var newArray = [];
 		
 		for(var n = 0; n < str.length; n++){
-		
+		// Regex, konventerar alla stora bokstäver til små
 			if(str[n].match(/[A-ZÅÄÖ]/g)){
 				newArray[n] = str[n].replace(/[A-ZÅÄÖ]/g, str[n].toLowerCase());
 			}
 			else{
 				newArray[n] = str[n].replace(/[a-zåäö]/g, str[n].toUpperCase());
 			}
-
+            // Ersätter alla A,a till hastags.
 			for (var i = 0;  i < newArray.length; i++) {
 				if (newArray[n].match(/A/gi)) {
 					newArray[n] = newArray[n].replace(/A/gi, "#");
