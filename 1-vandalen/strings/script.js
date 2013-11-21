@@ -29,9 +29,6 @@ window.onload = function(){
 		for(var index = 0; index<newArray.length; index++) {
 	        resultString += newArray[index];
 		}
-		
-		console.log(typeof resultString);
-        
 		return resultString;
 		// Plats för förändring.		
 		//toLowerCase() toUpperCase()
