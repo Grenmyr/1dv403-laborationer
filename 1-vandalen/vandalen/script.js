@@ -39,7 +39,7 @@ var makePerson = function(persArr){
     
      // HÄREFTER HANTERAS EGENSKAPERNA AV TYP "name"
      
-     // Array skapas/hämtas från testet för att kunna hantera alla "name objekt"*/
+     // Array skapas/hämtas från testet för att kunna hantera alla "name objekten"*/
     personNamesArray = persArr.map(function(person){
         return person.name ;
     });
