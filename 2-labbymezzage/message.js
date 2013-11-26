@@ -30,3 +30,4 @@ Message.prototype.getHTMLtext = function(){
 Message.prototype.getDateText = function(){
     return this.getDate();
 };
+
