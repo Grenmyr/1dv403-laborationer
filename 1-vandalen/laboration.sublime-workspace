@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"m",
+				"minAge"
+			],
+			[
+				"per",
+				"persArr"
+			],
+			[
 				"n",
 				"newArray"
 			]
@@ -28,13 +36,10 @@
 			}
 		},
 		{
-			"contents": "\"use strict\";\n\nvar makePerson = function(persArr){\n\n\n	// Din kod här..retun person.\n\n}\n\n",
 			"file": "vandalen/script.js",
-			"file_size": 86,
-			"file_write_time": 130292510445417887,
 			"settings":
 			{
-				"buffer_size": 88,
+				"buffer_size": 249,
 				"line_ending": "Windows"
 			}
 		},
@@ -42,7 +47,7 @@
 			"file": "tests/vandalen.js",
 			"settings":
 			{
-				"buffer_size": 2131,
+				"buffer_size": 2098,
 				"line_ending": "Windows"
 			}
 		}
@@ -174,15 +179,15 @@
 					"file": "vandalen/script.js",
 					"settings":
 					{
-						"buffer_size": 88,
+						"buffer_size": 249,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								82,
-								82
+								146,
+								146
 							]
 						],
 						"settings":
@@ -200,15 +205,15 @@
 					"file": "tests/vandalen.js",
 					"settings":
 					{
-						"buffer_size": 2131,
+						"buffer_size": 2098,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1152,
-								1152
+								1775,
+								1775
 							]
 						],
 						"settings":
