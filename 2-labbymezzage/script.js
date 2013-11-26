@@ -1,2 +1,11 @@
-window.onload function (){
-    }
+window.onload = function (){
+    
+    
+   
+    alert("hejhopp");
+    
+    
+    
+    
+    
+    };
