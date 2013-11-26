@@ -16,7 +16,17 @@ function Message(message,date){
     this.setDate = function(_date){
     date = _date;
     };
-    
+}
+  
+// Funktioner för hämta ut och anpassa egenskaper ur vår konstruktor  
 Message.prototype.toString = function(){
     return this.getText()+" ("+this.getDate()+")";
+};
+
+Message.prototype.getHTMLtext = function(){
+    return this.getText();
+};
+
+Message.prototype.getDateText = function(){
+    return this.getDate();
 };
