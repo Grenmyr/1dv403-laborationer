@@ -1,20 +1,30 @@
 window.onload = function (){
     var Messageboard = {
-        messagesArray: []
-    };
+        messagesArray: [],
+        init: function(e){
+    
+       
+        }
+         
+        
+        };
+            
+    var link = document.getElementByid("send");
+    link.addEventListener("click", link,false);
+   
+    
+
+    
+            
+            
     
     
-    var strText = 'hej hej';
-    var mess1 = new Message(strText, new Date());
-    var mess2 = new Message("du e min tjej", new Date());
-    Messageboard.messagesArray.push(mess1);
-    Messageboard.messagesArray.push(mess2);
+   
     
     
-    var a = Messageboard.messagesArray;
-    for(var i = 0; i < a.length; i++){
-        console.log(a[i].getText());    
-    }
+    //var strText = "";
+            //var chatMsg = new Message(strText, new Date());
+            //var a = Messageboard.messagesArray.push(chatMsg);
     
     
     
