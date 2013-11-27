@@ -1,5 +1,5 @@
 function Message(_message, _date){
-    var _message = "Dasen";
+    
     this.getText = function(){
         return _message;
     };

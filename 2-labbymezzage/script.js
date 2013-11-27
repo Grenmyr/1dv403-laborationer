@@ -17,11 +17,18 @@ var Messageboard = {
     Send : function(e){
         e.preventDefault();
         var strText = document.getElementById("textArea").value;
-        this.RenderMessage(strText);
+        
+        var message = new Message(strText,Date());
+        this.messagesArray.push(message);
+        console.log(message.getText());
+        console.log( Messageboard.messagesArray.toString());
+        
+        //this.RenderMessage(strText);
+        
     },
     
     RenderMessage : function(strText){
-        alert(strText);
+        
     }
 };
 
