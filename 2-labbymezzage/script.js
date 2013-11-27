@@ -1,41 +1,30 @@
-window.onload = function (){
-    var Messageboard = {
-        messagesArray: [],
-        init: function(e){
+var Messageboard = {
     
-       
-        }
-         
+    messagesArray: [],
+    
+    init: function(){
+        var that = this;
         
-        };
-            
-    var link = document.getElementByid("send");
-    link.addEventListener("click", link,false);
-   
+        var sendButton = document.getElementById('send');
+        // That = this, som ger mig en referens till mitt Messageboard Object. Den anonyma funktionen,är 
+        // en referens till den funktionensom ska köra när eventet triggas.
+        sendButton.addEventListener("click", function(e){
+            that.Send(e);
+        }, false);
     
+    },
+    
+    Send : function(e){
+        e.preventDefault();
+        var strText = document.getElementById("textArea").value;
+        this.RenderMessage(strText);
+    },
+    
+    RenderMessage : function(strText){
+        alert(strText);
+    }
+};
 
-    
-            
-            
-    
-    
-   
-    
-    
-    //var strText = "";
-            //var chatMsg = new Message(strText, new Date());
-            //var a = Messageboard.messagesArray.push(chatMsg);
-    
-    
-    
-    //console.log(Messageboard.messagesArray);
-    //console.log(mess.getText(Messageboard.messagesArray[1]),mess.getDate(Messageboard.messagesArray[1]));
-    
-    /*var mess = new Message("olle hade en stor dase", new Date());
-    alert(mess);
-    alert(mess.getText());
-    mess.setText("Alla var väldigt imponerade");
-    alert(mess);*/
-    
-    };
-    
+window.onload = function(){
+    Messageboard.init();
+};
