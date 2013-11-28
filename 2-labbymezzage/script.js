@@ -23,20 +23,27 @@ var Messageboard = {
     
     Send : function(e){
         e.preventDefault();
+        // Sparar texten i chatfönster till variabel
         var strText = document.getElementById("textArea").value;
+        // Skickar min variabel och skickar tid till konstruktorn. och tilldelar variabeln message detta.
         var message = new Message(strText,new Date());
+        // Tömmer min chat
         document.getElementById("textArea").value = "";
+        
+        // trycker in message till mitt objectArray sen skickar med message till min Rendermessage object.
         this.messagesArray.push(message);
-        console.log(message.getText());
-        console.log( Messageboard.messagesArray.toString());
         this.RenderMessage(message);
+        
+        // Här Skapar jag counter och presenterar den.
         var counter =this.messagesArray.length;
         var counterDiv = document.getElementById("messageCount");
         counterDiv.innerHTML= "Antal meddelanden " + counter;
         
-        
     },
     
+    DeleteFunction : function(f) {
+            alert("hej");
+        },
     RenderMessage : function(Dase){
         var div = document.getElementById("chatBox");
         var box = document.createElement("div");
@@ -45,8 +52,14 @@ var Messageboard = {
         var pTag = document.createElement("p");
         var text = document.createTextNode(Dase);
         pTag.appendChild(text);
+        var deleteButton = document.createElement("a");
+        deleteButton.innerHTML= "ta bort";
+        box.appendChild(deleteButton);
         box.appendChild(pTag);
         div.appendChild(box);
+        deleteButton.addEventListener("click", this.DeleteFunction,false);
+        
+        
         
         
         
