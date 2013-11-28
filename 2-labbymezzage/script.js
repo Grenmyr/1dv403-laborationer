@@ -41,10 +41,14 @@ var Messageboard = {
         
     },
     
-    DeleteFunction : function(f) {
-            alert("hej");
+    DeleteFunction : function(f,boxid) {
+        
+            alert(boxid);
+            document.removeElement(f);
+            
         },
     RenderMessage : function(Dase){
+        var that1 = this;
         var div = document.getElementById("chatBox");
         var box = document.createElement("div");
         box.id = "messageBox"+ this.messagesArray.length;
@@ -57,13 +61,11 @@ var Messageboard = {
         box.appendChild(deleteButton);
         box.appendChild(pTag);
         div.appendChild(box);
-        deleteButton.addEventListener("click", this.DeleteFunction,false);
+        deleteButton.addEventListener("click", function(f){
+            that1.DeleteFunction(f, box.id)},false);
+            return false;
         
-        
-        
-        
-        
-        return false;
+
     }
 };
 
