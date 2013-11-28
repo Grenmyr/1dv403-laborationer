@@ -1,15 +1,7 @@
 var Messageboard = {
     
     messagesArray: [],
-    /*
-    messageBox: function(){
-     var div = document.createElement("div");
-        div.id = "messageBox";
-        div.class= "large-9 columns";
-        document.getElementById("chatClient").insertBefore(div, document.getElementById("textArea"));
-        document.getElementById('cont').appendChild(div);
-    },
-    */
+    
     init: function(){
         var that = this;
         var sendButton = document.getElementById('send');
@@ -18,7 +10,6 @@ var Messageboard = {
         sendButton.addEventListener("click", function(e){
             that.Send(e);
         }, false);
-    
     },
     
     Send : function(e){
@@ -26,18 +17,16 @@ var Messageboard = {
         // Sparar texten i chatfönster till variabel
         var strText = document.getElementById("textArea").value;
         // Skickar min variabel och skickar tid till konstruktorn. och tilldelar variabeln message detta.
-        var message = new Message(strText,new Date());
+        var objMessage = new Message(strText,new Date());
         // Tömmer min chat
         document.getElementById("textArea").value = "";
         
         // trycker in message till mitt objectArray sen skickar med message till min Rendermessage object.
-        this.messagesArray.push(message);
-        this.RenderMessage(message, (this.GetMessageCount()-1));
+        this.messagesArray.push(objMessage);
+        this.RenderMessage(objMessage, (this.GetMessageCount()-1));
         this.UppdateMessageCount();
 
     },
-    
-    
     UppdateMessageCount: function(){
         // Här Skapar jag counter och presenterar den.
          var counterDiv = document.getElementById("messageCount");
@@ -47,21 +36,12 @@ var Messageboard = {
         return this.messagesArray.length;
     },
     DeleteFunction : function(f,boxid) {
-        var deleteTag = document.getElementById(boxid);
         var id = boxid.replace('messageBox','');
-        //deleteTag.outerHTML= "";
         this.messagesArray.splice(id,1);
         this.UppdateMessageCount();
         var div2=document.getElementById('chatBox');
         div2.innerHTML="";
         this.RenderAllMessages();
-        /*
-        console.log(this.messagesArray);
-        for (var i =0; i< this.messagesArray.length; i++){
-            this.messagesArray[i];
-            console.log(this.messagesArray[i]);
-        } 
-        */
         return false;
     },
     
