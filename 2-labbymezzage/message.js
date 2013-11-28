@@ -26,10 +26,8 @@ Message.prototype.getHTMLtext = function(){
     return this.getText();
 };
 
-Message.prototype.getDateText = function(alert =false){
+Message.prototype.getTimeText = function(){
     var messTime = this.getDate();
-    if (alert === false){
-}
-        return messTime.getHours()+":"+messTime.getMinutes()+":"+messTime.getSeconds();
+    return messTime.getHours()+":"+messTime.getMinutes()+":"+messTime.getSeconds();
 };
 
