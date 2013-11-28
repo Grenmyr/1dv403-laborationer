@@ -24,19 +24,28 @@ var Messageboard = {
     Send : function(e){
         e.preventDefault();
         var strText = document.getElementById("textArea").value;
-        var message = new Message(strText,Date());
+        var message = new Message(strText,new Date());
+        document.getElementById("textArea").value = "";
         this.messagesArray.push(message);
         console.log(message.getText());
         console.log( Messageboard.messagesArray.toString());
         this.RenderMessage(message);
+        var counter =this.messagesArray.length;
+        var counterDiv = document.getElementById("messageCount");
+        counterDiv.innerHTML= "Antal meddelanden " + counter;
+        
         
     },
     
     RenderMessage : function(Dase){
         var div = document.getElementById("chatBox");
         var box = document.createElement("div");
+        box.id = "messageBox"+ this.messagesArray.length;
+        box.className = "messageBox";
+        var pTag = document.createElement("p");
         var text = document.createTextNode(Dase);
-        box.appendChild(text);
+        pTag.appendChild(text);
+        box.appendChild(pTag);
         div.appendChild(box);
         
         

@@ -19,14 +19,17 @@ function Message(_message, _date){
   
 // Funktioner för hämta ut och anpassa egenskaper ur vår konstruktor  
 Message.prototype.toString = function(){
-    return this.getText()+" ("+this.getDate()+")";
+    return this.getText()+" ("+this.getDateText()+")";
 };
 
 Message.prototype.getHTMLtext = function(){
     return this.getText();
 };
 
-Message.prototype.getDateText = function(){
-    return this.getDate();
+Message.prototype.getDateText = function(alert =false){
+    var messTime = this.getDate();
+    if (alert === false){
+}
+        return messTime.getHours()+":"+messTime.getMinutes()+":"+messTime.getSeconds();
 };
 

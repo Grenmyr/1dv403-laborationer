@@ -6,3 +6,9 @@ form{
 textarea{
     width:100%;
 }
+
+.messageBox{
+    border:1px solid black;
+    margin-top:-1px;
+    overflow:hidden;
+}
