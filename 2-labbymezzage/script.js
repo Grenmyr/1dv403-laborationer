@@ -64,31 +64,34 @@ var Messageboard = {
     },
     
     RenderMessage : function(message, id){
-        // Måste strukturer om skiten här.
         var that = this;
-        var messageWindow = document.getElementById("chatBox");
-        var chatBox = document.createElement("div");
-        //Skapar unikt id beroende på anropsnumret från Renderallmessages
-        chatBox.id = "messageBox" + id;
-        // sätter classname i HTML
-        chatBox.className = "messageBox";
-        // Skapar 2 Ptaggar 1 till textmeddelande och 1 till tiden o lägger ut dom.
+        // Här tilldelas variabler vilken typ av element de är i HTML koden.
+        var messageBox = document.createElement("div");
         var pTagText = document.createElement("p");
         var pTagTime = document.createElement("p");
+        var deleteButton = document.createElement("a");
         var text = document.createTextNode(message.getHTMLtext());
         var time = document.createTextNode(message.getTimeText());
+        // Alla andra elment skapar vi, men messagewindow variabel existerar o läses in från unikt id.
+        var chatBox = document.getElementById("chatBox");
+        
+        // Sätter klassnamn till min messagebox
+        messageBox.className = "messageBox";
+        // Sätter unika id till min messabox eftersom det behövs för hålla ordning på vilket meddellande.
+        messageBox.id = "messageBox" + id;
+        
+        // Här väljer jag var mina element ska ligga, ex messagebox ska läggas i min chatbox.
+        chatBox.appendChild(messageBox);
         pTagText.appendChild(text);
         pTagTime.appendChild(time);
-        // skapar vår deleteknapp
-        var deleteButton = document.createElement("a");
+        messageBox.appendChild(deleteButton);
+        messageBox.appendChild(pTagText);
+        messageBox.appendChild(pTagTime);
+        
+        // Sätter sätter listener på deletebutton och använder that= this för kunna använda den utanför vår function.
         deleteButton.innerHTML= "ta bort";
-        chatBox.appendChild(deleteButton);
-        chatBox.appendChild(pTagText);
-        chatBox.appendChild(pTagTime);
-        // Här läger jag min box i min chatbox
-        messageWindow.appendChild(chatBox);
         deleteButton.addEventListener("click", function(f){
-            that.DeleteFunction(f, chatBox.id);
+            that.DeleteFunction(f, messageBox.id);
         },false);
         return false;
     }
