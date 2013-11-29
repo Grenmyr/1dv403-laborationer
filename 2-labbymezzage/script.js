@@ -5,8 +5,8 @@ var Messageboard = {
     init: function(){
         var that = this;
         var sendButton = document.getElementById('send');
-        
-        
+
+        // Här kollar jag OM enter (13) trycks så kör vi istället send functionen genom den.
         document.addEventListener("keypress", function(e){
             var enterKey = e.keyCode;
             if (enterKey === 13){
@@ -16,7 +16,6 @@ var Messageboard = {
         
         // That = this, som ger mig en referens till mitt Messageboard Object. Den anonyma funktionen,är 
         // en referens till den funktionensom ska köra när eventet triggas.
-        
         sendButton.addEventListener("click", function(e){
             that.Send(e);
         }, false);
