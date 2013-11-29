@@ -21,7 +21,7 @@ var Messageboard = {
         // Tömmer min chat
         document.getElementById("textArea").value = "";
         
-        // trycker in mutt messageobjekt till mitt objectArray sen skickar med message till min Rendermessage object.
+        // trycker in mitt messageobjekt till mitt objectArray sen skickar med message till min Rendermessage object.
         this.messagesArray.push(objMessage);
         this.RenderMessage(objMessage, (this.GetMessageCount()-1));
         this.UppdateMessageCount();
@@ -43,16 +43,24 @@ var Messageboard = {
         this.messagesArray.splice(id,1);
         
         
-        // vi anropar vårt id i html koden "chatbox" --> sätter den till reloadChatBox.
         
-        
+
         // Sen anropar Messagecount så att vår antal meddelanden coutner sätts rätt efter arreyn slicats.
         this.UppdateMessageCount();
-        // --> tömmer innhållet HTML div taggen "chatBox"
+        
+        // vi anropar vårt id i html koden "chatbox" --> sätter den till reloadChatBox.
         var reloadChatBox=document.getElementById('chatBox');
+        // --> tömmer innhållet HTML div taggen "chatBox"
         reloadChatBox.innerHTML="";
         this.RenderAllMessages();
         return false;
+    },
+    
+    TimeStamp: function(d, id){
+           // Strippar av allt utom numret från vår messagebox och anropar vår array med alertfunktion o hämtar ut aktuell
+           // tid för just när den messadgeboxen skrevs.
+           var messageTimeStampId = id.replace('messageBox','');
+           alert(this.messagesArray[messageTimeStampId].getDate());
     },
     
     RenderAllMessages: function(){
@@ -70,6 +78,7 @@ var Messageboard = {
         var pTagText = document.createElement("p");
         var pTagTime = document.createElement("p");
         var deleteButton = document.createElement("a");
+        var checkTimeButton = document.createElement("a");
         var text = document.createTextNode(message.getHTMLtext());
         var time = document.createTextNode(message.getTimeText());
         // Alla andra elment skapar vi, men messagewindow variabel existerar o läses in från unikt id.
@@ -87,11 +96,17 @@ var Messageboard = {
         messageBox.appendChild(deleteButton);
         messageBox.appendChild(pTagText);
         messageBox.appendChild(pTagTime);
+        messageBox.appendChild(checkTimeButton);
         
         // Sätter sätter listener på deletebutton och använder that= this för kunna använda den utanför vår function.
+        checkTimeButton.innerHTML= "Klockan";
         deleteButton.innerHTML= "ta bort";
+        
         deleteButton.addEventListener("click", function(f){
             that.DeleteFunction(f, messageBox.id);
+        },false);
+        checkTimeButton.addEventListener("click", function(d){
+            that.TimeStamp(d,messageBox.id );
         },false);
         return false;
     }
