@@ -9,7 +9,7 @@ var Messageboard = {
         // Här kollar jag OM enter (13) trycks så kör vi istället send functionen genom den.
         document.addEventListener("keypress", function(e){
             var enterKey = e.keyCode;
-            if (enterKey === 13){
+            if (enterKey === 13 && !e.shiftKey){
                that.Send(e); 
             }
             },false);
@@ -114,6 +114,7 @@ var Messageboard = {
         checkTimeButton.addEventListener("click", function(d){
             that.TimeStamp(d,messageBox.id );
         },false);
+        console.log(this.messagesArray[0]);
         return false;
     }
 };
