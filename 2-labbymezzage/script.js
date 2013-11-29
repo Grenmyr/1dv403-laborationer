@@ -5,8 +5,18 @@ var Messageboard = {
     init: function(){
         var that = this;
         var sendButton = document.getElementById('send');
+        
+        
+        document.addEventListener("keypress", function(e){
+            var enterKey = e.keyCode;
+            if (enterKey === 13){
+               that.Send(e); 
+            }
+            },false);
+        
         // That = this, som ger mig en referens till mitt Messageboard Object. Den anonyma funktionen,är 
         // en referens till den funktionensom ska köra när eventet triggas.
+        
         sendButton.addEventListener("click", function(e){
             that.Send(e);
         }, false);
@@ -41,9 +51,6 @@ var Messageboard = {
         // För göra det tar jag bort messagebox u strängen från boxid.
         var id = boxid.replace('messageBox','');
         this.messagesArray.splice(id,1);
-        
-        
-        
 
         // Sen anropar Messagecount så att vår antal meddelanden coutner sätts rätt efter arreyn slicats.
         this.UppdateMessageCount();
