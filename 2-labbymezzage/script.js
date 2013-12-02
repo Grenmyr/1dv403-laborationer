@@ -85,7 +85,6 @@ var Messageboard = {
         var pTagTime = document.createElement("p");
         var deleteButton = document.createElement("a");
         var checkTimeButton = document.createElement("a");
-        var text = document.createTextNode(message.getHTMLtext());
         var time = document.createTextNode(message.getTimeText());
         // Alla andra elment skapar vi, men messagewindow variabel existerar o läses in från unikt id.
         var chatBox = document.getElementById("chatBox");
@@ -97,7 +96,7 @@ var Messageboard = {
         
         // Här väljer jag var mina element ska ligga, ex messagebox ska läggas i min chatbox.
         chatBox.appendChild(messageBox);
-        pTagText.appendChild(text);
+        pTagText.innerHTML=message.getHTMLtext();
         pTagTime.appendChild(time);
         messageBox.appendChild(deleteButton);
         messageBox.appendChild(pTagText);

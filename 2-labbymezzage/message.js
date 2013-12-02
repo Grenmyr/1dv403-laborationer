@@ -23,7 +23,8 @@ Message.prototype.toString = function(){
 };
 
 Message.prototype.getHTMLtext = function(){
-    return this.getText();
+    // Ersätter radbrytningar mot en br tag.
+    return this.getText().replace(/[\n\r]/g, "<br />");
 };
 
 Message.prototype.getTimeText = function(){
