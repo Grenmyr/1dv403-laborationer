@@ -1,3 +1,4 @@
+
 var Messageboard = {
     
     messagesArray: [],
