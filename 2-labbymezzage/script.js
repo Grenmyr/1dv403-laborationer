@@ -47,6 +47,9 @@ var Messageboard = {
     },
     DeleteFunction : function(f,boxid) {
         // Functionen anropas från Rendermessage, och här ska jag ta bort elementet ur arrayen.
+        // Confirm 'r en inbyggd function med ok eller avbryt knapp, om ok så görs det automatiskt.
+        if (!confirm("Vill du ta bort meddelandet?")){return;}
+
         // För göra det tar jag bort messagebox u strängen från boxid.
         var id = boxid.replace('messageBox','');
         this.messagesArray.splice(id,1);
@@ -59,9 +62,10 @@ var Messageboard = {
         // --> tömmer innhållet HTML div taggen "chatBox"
         reloadChatBox.innerHTML="";
         this.RenderAllMessages();
+
         return false;
     },
-    
+
     TimeStamp: function(d, id){
            // Strippar av allt utom numret från vår messagebox och anropar vår array med alertfunktion o hämtar ut aktuell
            // tid för just när den messadgeboxen skrevs.
