@@ -122,8 +122,13 @@ var Messageboard = {
         return false;
     }
 };
+function Construct(name){
+    
+    Messageboard.init();
+   
+}
 
 window.onload = function(){
-    Messageboard.init();
+   // Messageboard.init();
     //Messageboard.messageBox();
 };

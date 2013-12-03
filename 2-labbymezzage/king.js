@@ -1,10 +1,10 @@
 var King =  {
     
     initializer : function (){
-          var object = new script.Messageboard;
+          var object =new Construct(name);
         var olle = "em slot";
        console.log(olle);
-       alert();
+       
     },
     
     Startbutton : function () {
