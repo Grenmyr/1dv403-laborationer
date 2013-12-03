@@ -1,8 +1,8 @@
 
 var Messageboard = function(divId){
-    var div = document.createElement("div");
-    var form = document.createElement("form");
-    var h1 = document.createElement("h1").appendChild(document.createTextNode("chatBox"));
+    var divMainWindow = document.createElement("div");
+    
+    var h1 = document.createElement("h1").appendChild(document.createTextNode("Labby Message!"));
     var divChatbox = document.createElement("div");
     var divmessageCount = document.createElement("div");
     var textArea = document.createElement("textarea");
@@ -11,17 +11,18 @@ var Messageboard = function(divId){
     var messagesArray  = [];
     var that = this;
     this.init  = function(){
-        div.className="large-6 columns";
-       div.appendChild(form);
-       div.appendChild(h1);
-       div.appendChild(divChatbox);
-        div.appendChild(divmessageCount);
-         div.appendChild(textArea);
-          div.appendChild(sendButton);
-          document.querySelector("main").appendChild(div);
+    document.querySelector("main").appendChild(divMainWindow);
+    divMainWindow.className="large-6 columns";
+    
+    divMainWindow.appendChild(h1);
+    divMainWindow.appendChild(divChatbox);
+    divMainWindow.appendChild(divmessageCount);
+    divMainWindow.appendChild(textArea);
+    divMainWindow.appendChild(sendButton);
+    
 
         // Här kollar jag OM enter (13) trycks så kör vi istället send functionen genom den.
-        document.addEventListener("keypress", function(e){
+            textArea.addEventListener("keypress", function(e){
             var enterKey = e.keyCode;
             if (enterKey === 13 && !e.shiftKey){
                that.Send(e); 
@@ -118,9 +119,10 @@ var Messageboard = function(divId){
         divChatbox.appendChild(messageBox);
         pTagText.innerHTML=message.getHTMLtext(); 
         pTagTime.appendChild(time);
-        messageBox.appendChild(deleteButton);
+      
         messageBox.appendChild(pTagText);
         messageBox.appendChild(pTagTime);
+        messageBox.appendChild(deleteButton);
         messageBox.appendChild(checkTimeButton);
         
         // Sätter sätter listener på deletebutton och använder that= this för kunna använda den utanför vår function.
