@@ -1,11 +1,24 @@
 
-var Messageboard = {
+var Messageboard = function(divId){
+    var div = document.createElement("div");
+    var form = document.createElement("form");
+    var h1 = document.createElement("h1").appendChild(document.createTextNode("chatBox"));
+    var divChatbox = document.createElement("div");
+    var divmessageCount = document.createElement("div");
+    var textArea = document.createElement("textarea");
+    var sendButton = document.createElement('button');
     
-    messagesArray: [],
-    
-    init: function(){
-        var that = this;
-        var sendButton = document.getElementById('send');
+    var messagesArray  = [];
+    var that = this;
+    this.init  = function(){
+        div.className="large-6 columns";
+       div.appendChild(form);
+       div.appendChild(h1);
+       div.appendChild(divChatbox);
+        div.appendChild(divmessageCount);
+         div.appendChild(textArea);
+          div.appendChild(sendButton);
+          document.querySelector("main").appendChild(div);
 
         // Här kollar jag OM enter (13) trycks så kör vi istället send functionen genom den.
         document.addEventListener("keypress", function(e){
@@ -20,70 +33,72 @@ var Messageboard = {
         sendButton.addEventListener("click", function(e){
             that.Send(e);
         }, false);
-    },
+    };
     
-    Send : function(e){
+    this.Send = function(e){
         e.preventDefault();
         // Sparar texten i chatfönster till variabel
-        var strText = document.getElementById("textArea").value;
+
         // Skickar min strängvariabel och skickar tid till konstruktorn med tid. och tilldelar variabeln objmessage detta.
-        var objMessage = new Message(strText,new Date());
+        var objMessage = new Message(textArea.value,new Date());
         // Tömmer min chat
-        document.getElementById("textArea").value = "";
+        textArea.value="";
         
         // trycker in mitt messageobjekt till mitt objectArray sen skickar med message till min Rendermessage object.
-        this.messagesArray.push(objMessage);
-        this.RenderMessage(objMessage, (this.GetMessageCount()-1));
-        this.UppdateMessageCount();
+        messagesArray.push(objMessage);
+        that.RenderMessage(objMessage, (that.GetMessageCount()-1));
+        that.UppdateMessageCount();
+        console.log(messagesArray.length);
 
-    },
-    UppdateMessageCount: function(){
+    };
+    
+    this.UppdateMessageCount = function(){
         // Här Skapar jag en function som anropar GetMessagecoutn och namnger mina div taggar.
-         var counterDiv = document.getElementById("messageCount");
-        counterDiv.innerHTML= "Antal meddelanden " + this.GetMessageCount();
-    },
-    GetMessageCount: function(){
+         
+        divmessageCount.innerHTML= "Antal meddelanden " + that.GetMessageCount();
+    };
+    this.GetMessageCount = function(){
         // Function som bara presenterar längden på arrayen.
-        return this.messagesArray.length;
-    },
-    DeleteFunction : function(f,boxid) {
+        return messagesArray.length;
+    };
+    this.DeleteFunction = function(f,boxid) {
         // Functionen anropas från Rendermessage, och här ska jag ta bort elementet ur arrayen.
         // Confirm 'r en inbyggd function med ok eller avbryt knapp, om ok så görs det automatiskt.
         if (!confirm("Vill du ta bort meddelandet?")){return;}
 
         // För göra det tar jag bort messagebox u strängen från boxid.
         var id = boxid.replace('messageBox','');
-        this.messagesArray.splice(id,1);
+        messagesArray.splice(id,1);
 
         // Sen anropar Messagecount så att vår antal meddelanden coutner sätts rätt efter arreyn slicats.
-        this.UppdateMessageCount();
+        that.UppdateMessageCount();
         
         // vi anropar vårt id i html koden "chatbox" --> sätter den till reloadChatBox.
-        var reloadChatBox=document.getElementById('chatBox');
+        var reloadChatBox=divChatbox;
         // --> tömmer innhållet HTML div taggen "chatBox"
         reloadChatBox.innerHTML="";
-        this.RenderAllMessages();
+        that.RenderAllMessages();
 
         return false;
-    },
+    };
 
-    TimeStamp: function(d, id){
+    this.TimeStamp = function(d, id){
            // Strippar av allt utom numret från vår messagebox och anropar vår array med alertfunktion o hämtar ut aktuell
            // tid för just när den messadgeboxen skrevs.
            var messageTimeStampId = id.replace('messageBox','');
-           alert(this.messagesArray[messageTimeStampId].getDate());
-    },
+           alert(messagesArray[messageTimeStampId].getDate());
+    };
     
-    RenderAllMessages: function(){
+     this.RenderAllMessages = function(){
         // Element för element, så anropar han vår RenderMessage, som bygger upp våra chatobjekt igen. 
         // Andra argumentet "i" är en siffra som är arraynumret.
-        for (var i =0; i< this.GetMessageCount(); i++){
-            this.RenderMessage(this.messagesArray[i], i);
+        for (var i =0; i< that.GetMessageCount(); i++){
+            that.RenderMessage(messagesArray[i], i);
         }
-    },
+    };
     
-    RenderMessage : function(message, id){
-        var that = this;
+    this.RenderMessage = function(message, id){
+        
         // Här tilldelas variabler vilken typ av element de är i HTML koden.
         var messageBox = document.createElement("div");
         var pTagText = document.createElement("p");
@@ -92,7 +107,7 @@ var Messageboard = {
         var checkTimeButton = document.createElement("a");
         var time = document.createTextNode(message.getTimeText());
         // Alla andra elment skapar vi, men messagewindow variabel existerar o läses in från unikt id.
-        var chatBox = document.getElementById("chatBox");
+        
         
         // Sätter klassnamn till min messagebox
         messageBox.className = "messageBox";
@@ -100,8 +115,8 @@ var Messageboard = {
         messageBox.id = "messageBox" + id;
         
         // Här väljer jag var mina element ska ligga, ex messagebox ska läggas i min chatbox.
-        chatBox.appendChild(messageBox);
-        pTagText.innerHTML=message.getHTMLtext();
+        divChatbox.appendChild(messageBox);
+        pTagText.innerHTML=message.getHTMLtext(); 
         pTagTime.appendChild(time);
         messageBox.appendChild(deleteButton);
         messageBox.appendChild(pTagText);
@@ -118,17 +133,17 @@ var Messageboard = {
         checkTimeButton.addEventListener("click", function(d){
             that.TimeStamp(d,messageBox.id );
         },false);
-        console.log(this.messagesArray[0]);
+        console.log(messagesArray[0]);
         return false;
-    }
+    };
 };
-function Construct(name){
-    
-    Messageboard.init();
-   
-}
+
+
 
 window.onload = function(){
-   // Messageboard.init();
-    //Messageboard.messageBox();
+    
+     var messBoard = new Messageboard("fdsafox");
+     messBoard.init();
+    var messBoard2 = new Messageboard("fdsafffox");
+     messBoard2.init();
 };

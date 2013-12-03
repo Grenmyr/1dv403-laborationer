@@ -1,9 +1,10 @@
 var King =  {
     
     initializer : function (){
-          var object =new Construct(name);
+        
+        var object =new Construct();
         var olle = "em slot";
-       console.log(olle);
+        console.log(olle);
        
     },
     
