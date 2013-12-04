@@ -17,6 +17,7 @@ h1{
 button{
     border-radius:10px 10px 10px 10px;
     float:right;
+    background-color:black;
 }
 #time{
     font-size:12px;
