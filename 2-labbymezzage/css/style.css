@@ -4,7 +4,7 @@ main{
     min-height:900px;
     }
 .large-6 columns{
-   
+   background-color:#4DE2CE;
 
 }
 p{
@@ -12,7 +12,7 @@ p{
     width:90%;
 }
 div{
-  background-color:white;
+ 
 }
 #deleteButton{
     background: url('../pics/delete.png') no-repeat 0 0;
@@ -22,19 +22,19 @@ div{
     width: 40px;
     margin:10px;
     float:left;
-    
-   
+    background-color:#4DE2CE;
+    border-radius:10px 10px 10px 10px;
 }
 #timeButton{
     background: url('../pics/time3.png') no-repeat 0 0;
-    display: block;
+    
     height: 40px;
     text-indent: -9999px;
     width: 40px;
     float:right;
     margin:10px;
-
-    
+    background-color:#4DE2CE;
+    border-radius:10px 10px 10px 10px;
 }
 
 
