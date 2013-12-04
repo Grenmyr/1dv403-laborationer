@@ -1,26 +1,29 @@
 
 var Messageboard = function(divId){
-    var divMainWindow = document.createElement("div");
+    var messagesArray  = [];
+    var that = this;
     
+    // binder variabler till HTML taggar.
+    var divMainWindow = document.createElement("div");
     var h1 = document.createElement("h1");
     var divChatbox = document.createElement("div");
     var divmessageCount = document.createElement("div");
     var textArea = document.createElement("textarea");
-    var sendButton = document.createElement('button');
+    var sendButton = document.createElement("button");
     
-    var messagesArray  = [];
-    var that = this;
     this.init  = function(){
+    // dunkar ut taggarnma i vilken ordning jag vill ha dem för varje unik chat.
+    // Sätter även lite html klasser och texter till dem.
     document.querySelector("main").appendChild(divMainWindow);
     divMainWindow.className="large-6 columns";
     h1.innerHTML= "Labby Message!";
+    sendButton.innerHTML="skicka";
     
     divMainWindow.appendChild(h1);
     divMainWindow.appendChild(divChatbox);
     divMainWindow.appendChild(divmessageCount);
     divMainWindow.appendChild(textArea);
     divMainWindow.appendChild(sendButton);
-    
 
         // Här kollar jag OM enter (13) trycks så kör vi istället send functionen genom den.
             textArea.addEventListener("keypress", function(e){
@@ -29,34 +32,32 @@ var Messageboard = function(divId){
                that.Send(e); 
             }
             },false);
-        
-        // That = this, som ger mig en referens till mitt Messageboard Object. Den anonyma funktionen,är 
-        // en referens till den funktionensom ska köra när eventet triggas.
+        // Sendknappen väntar på tyck
+        // That = this, som ger mig en referens till mitt Messageboard Object. 
         sendButton.addEventListener("click", function(e){
             that.Send(e);
         }, false);
     };
     
     this.Send = function(e){
-        e.preventDefault();
-        // Sparar texten i chatfönster till variabel
-
-        // Skickar min strängvariabel och skickar tid till konstruktorn med tid. och tilldelar variabeln objmessage detta.
+        
+        // Initierar min konstruktor och skickar in min chattext och tid som argument.
         var objMessage = new Message(textArea.value,new Date());
         // Tömmer min chat
         textArea.value="";
         
-        // trycker in mitt messageobjekt till mitt objectArray sen skickar med message till min Rendermessage object.
+        // trycker in mitt messageobjekt till mitt messagesarray
         messagesArray.push(objMessage);
+        //sen skickar till min RenderMessagefunction för generering av chattext.
+        //Som andra argument skickas en count på arrayen för hålla räkning.
         that.RenderMessage(objMessage, (that.GetMessageCount()-1));
+        // skriver om hur många meddelanden.
         that.UppdateMessageCount();
-        console.log(messagesArray.length);
-
     };
     
     this.UppdateMessageCount = function(){
-        // Här Skapar jag en function som anropar GetMessagecoutn och namnger mina div taggar.
-         
+        // Här Skapar jag en function som anropar GetMessagecount och skiver text till min div
+        // som håller räkningen på antalet meddelanden.
         divmessageCount.innerHTML= "Antal meddelanden " + that.GetMessageCount();
     };
     this.GetMessageCount = function(){
@@ -79,8 +80,8 @@ var Messageboard = function(divId){
         var reloadChatBox=divChatbox;
         // --> tömmer innhållet HTML div taggen "chatBox"
         reloadChatBox.innerHTML="";
+        // sen skriver vi om alla meddelanden igen.
         that.RenderAllMessages();
-
         return false;
     };
 
@@ -108,30 +109,29 @@ var Messageboard = function(divId){
         var deleteButton = document.createElement("a");
         var checkTimeButton = document.createElement("a");
         var time = document.createTextNode(message.getTimeText());
+        
         // Alla andra elment skapar vi, men messagewindow variabel existerar o läses in från unikt id.
-        
-        
         // Sätter klassnamn till min messagebox
         messageBox.className = "messageBox";
         // Sätter unika id till min messabox eftersom det behövs för hålla ordning på vilket meddellande.
         messageBox.id = "messageBox" + id;
         
         // Här väljer jag var mina element ska ligga, ex messagebox ska läggas i min chatbox.
-        divChatbox.appendChild(messageBox);
+        // skriver ut text och tid i chatten.
         pTagText.innerHTML=message.getHTMLtext(); 
         pTagTime.appendChild(time);
-      
-        messageBox.appendChild(pTagText);
+        divChatbox.appendChild(messageBox);
         messageBox.appendChild(pTagTime);
-        messageBox.appendChild(deleteButton);
+        messageBox.appendChild(pTagText);
         messageBox.appendChild(checkTimeButton);
+        messageBox.appendChild(deleteButton);
         
-        // Sätter sätter listener på deletebutton och använder that= this för kunna använda den utanför vår function.
-        checkTimeButton.innerHTML= "Klockan";
+        // skapar några id för css
         checkTimeButton.id="timeButton";
-        deleteButton.innerHTML= "ta bort";
+        pTagTime.id="time";
         deleteButton.id="deleteButton";
         
+        // 2 eventlistener, för kolla tid och ta bort meddelanden, läggs i chatten.
         deleteButton.addEventListener("click", function(f){
             that.DeleteFunction(f, messageBox.id);
         },false);
@@ -147,8 +147,8 @@ var Messageboard = function(divId){
 
 window.onload = function(){
     
-     var messBoard = new Messageboard("fdsafox");
+     var messBoard = new Messageboard("kalle");
      messBoard.init();
-    var messBoard2 = new Messageboard("fdsafffox");
+    var messBoard2 = new Messageboard("olle");
      messBoard2.init();
 };
