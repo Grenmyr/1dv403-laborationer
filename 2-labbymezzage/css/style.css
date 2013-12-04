@@ -12,10 +12,10 @@ p{
     width:90%;
 }
 div{
-  
+  background-color:white;
 }
 #timeButton{
-    background: url('../pics/time2.png') no-repeat 0 0;
+    background: url('../pics/time3.png') no-repeat 0 0;
     display: block;
     height: 40px;
     text-indent: -9999px;
