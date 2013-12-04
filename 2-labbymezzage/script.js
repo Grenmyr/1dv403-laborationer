@@ -130,6 +130,7 @@ var Messageboard = function(divId){
         checkTimeButton.innerHTML= "Klockan";
         checkTimeButton.id="timeButton";
         deleteButton.innerHTML= "ta bort";
+        deleteButton.id="deleteButton";
         
         deleteButton.addEventListener("click", function(f){
             that.DeleteFunction(f, messageBox.id);

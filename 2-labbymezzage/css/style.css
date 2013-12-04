@@ -14,15 +14,29 @@ p{
 div{
   background-color:white;
 }
+#deleteButton{
+    background: url('../pics/delete.png') no-repeat 0 0;
+    display: block;
+    height: 40px;
+    text-indent: -9999px;
+    width: 40px;
+    margin:10px;
+    float:left;
+    
+   
+}
 #timeButton{
     background: url('../pics/time3.png') no-repeat 0 0;
     display: block;
     height: 40px;
     text-indent: -9999px;
     width: 40px;
-    font-size:20px;
     float:right;
+    margin:10px;
+
+    
 }
+
 
 
 .messageBox{
