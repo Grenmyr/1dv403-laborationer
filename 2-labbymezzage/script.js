@@ -12,32 +12,32 @@ var Messageboard = function(divId){
     var sendButton = document.createElement("button");
     
     this.init  = function(){
-    // dunkar ut taggarnma i vilken ordning jag vill ha dem för varje unik chat.
-    // Sätter även lite html klasser och texter till dem.
-    document.querySelector("main").appendChild(divMainWindow);
-    divMainWindow.className="large-6 columns";
-    h1.innerHTML= "Labby Message!";
-    sendButton.innerHTML="skicka";
-    
-    divMainWindow.appendChild(h1);
-    divMainWindow.appendChild(divChatbox);
-    divMainWindow.appendChild(divmessageCount);
-    divMainWindow.appendChild(textArea);
-    divMainWindow.appendChild(sendButton);
+        // dunkar ut taggarnma i vilken ordning jag vill ha dem för varje unik chat.
+        // Sätter även lite html klasser och texter till dem.
+        document.querySelector("main").appendChild(divMainWindow);
+        divMainWindow.className="large-6 columns";
+        h1.innerHTML= "Labby Message!";
+        sendButton.innerHTML="skicka";
+        
+        divMainWindow.appendChild(h1);
+        divMainWindow.appendChild(divChatbox);
+        divMainWindow.appendChild(textArea);
+        divMainWindow.appendChild(divmessageCount);
+        divMainWindow.appendChild(sendButton);
 
         // Här kollar jag OM enter (13) trycks så kör vi istället send functionen genom den.
-            textArea.addEventListener("keypress", function(e){
+        textArea.addEventListener("keypress", function(e){
             var enterKey = e.keyCode;
             if (enterKey === 13 && !e.shiftKey){
                that.Send(e); 
             }
-            },false);
+        },false);
         // Sendknappen väntar på tyck
         // That = this, som ger mig en referens till mitt Messageboard Object. 
         sendButton.addEventListener("click", function(e){
             that.Send(e);
-        }, false);
-    };
+            }, false);
+        };
     
     this.Send = function(e){
         
@@ -86,10 +86,10 @@ var Messageboard = function(divId){
     };
 
     this.TimeStamp = function(d, id){
-           // Strippar av allt utom numret från vår messagebox och anropar vår array med alertfunktion o hämtar ut aktuell
-           // tid för just när den messadgeboxen skrevs.
-           var messageTimeStampId = id.replace('messageBox','');
-           alert(messagesArray[messageTimeStampId].getDate());
+        // Strippar av allt utom numret från vår messagebox och anropar vår array med alertfunktion o hämtar ut aktuell
+        // tid för just när den messadgeboxen skrevs.
+        var messageTimeStampId = id.replace('messageBox','');
+        alert(messagesArray[messageTimeStampId].getDate());
     };
     
      this.RenderAllMessages = function(){
@@ -143,12 +143,9 @@ var Messageboard = function(divId){
     };
 };
 
-
-
 window.onload = function(){
-    
-     var messBoard = new Messageboard("kalle");
-     messBoard.init();
+    var messBoard = new Messageboard("kalle");
+    messBoard.init();
     var messBoard2 = new Messageboard("olle");
-     messBoard2.init();
+    messBoard2.init();
 };

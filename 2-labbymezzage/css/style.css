@@ -1,34 +1,26 @@
 main{
     background-color:#4DE2CE;
-  
     min-height:900px;
-    
     }
 .large-6 columns{
    background-color:#4DE2CE;
-
 }
 p{
     margin-left:10px;
     margin-right:10px;
     text-align:center;
-    font-size:20px;
+    font-size:18px;
 }
 h1{
     text-align:center;
-}
-div{
-    
- 
 }
 button{
     border-radius:10px 10px 10px 10px;
     float:right;
 }
 #time{
-    font-size:10px;
+    font-size:12px;
     text-align:right;
-    
 }
 #deleteButton{
     background: url('../pics/delete.png') no-repeat 0 0;
@@ -43,7 +35,6 @@ button{
 }
 #timeButton{
     background: url('../pics/time3.png') no-repeat 0 0;
-    
     height: 40px;
     text-indent: -9999px;
     width: 40px;
@@ -52,9 +43,6 @@ button{
     background-color:#4DE2CE;
     border-radius:10px 10px 10px 10px;
 }
-
-
-
 .messageBox{
     border:1px solid black;
     margin-top:-1px;
