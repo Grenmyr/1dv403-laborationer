@@ -1,18 +1,26 @@
 main{
-    background-color:#4DE2CE;
+    background-color:white;
     min-height:900px;
     }
-.large-6 columns{
-   background-color:#4DE2CE;
-}
 p{
     margin-left:10px;
     margin-right:10px;
     text-align:center;
     font-size:18px;
 }
+
+#mainWindow{
+    background-color:white;
+    border-radius:10px 10px 10px 10px;
+    border:1px solid #E0E0E0 ;
+    padding:10px;
+    margin-top:20px;
+    
+}
 h1{
     text-align:center;
+    BACKGROUND-COLOR:#E0E0E0 ;
+    border-radius:10px 10px 10px 10px;
 }
 button{
     border-radius:10px 10px 10px 10px;
@@ -45,7 +53,11 @@ button{
     border-radius:10px 10px 10px 10px;
 }
 .messageBox{
-    border:1px solid black;
-    margin-top:-1px;
+    border:1px solid #E0E0E0 ;
+    margin-top:10px;
+    margin-bottom:10px;
     overflow:hidden;
+    background-color:white;
+    color:black ;
+    border-radius:10px 10px 10px 10px;
 }

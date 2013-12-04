@@ -15,7 +15,8 @@ var Messageboard = function(divId){
         // dunkar ut taggarnma i vilken ordning jag vill ha dem för varje unik chat.
         // Sätter även lite html klasser och texter till dem.
         document.querySelector("main").appendChild(divMainWindow);
-        divMainWindow.className="large-6 columns";
+        divMainWindow.className="large-5 columns";
+        divMainWindow.id="mainWindow";
         h1.innerHTML= "Labby Message!";
         sendButton.innerHTML="skicka";
         
