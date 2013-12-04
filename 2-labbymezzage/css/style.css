@@ -1,9 +1,23 @@
 main{
     background-color:#4DE2CE;
     border-radius:20px 20px 20px 20px;
+    min-height:900px;
     }
 .large-6 columns{
    
+
+}
+p{
+    margin:20px;
+    width:90%;
+}
+div{
+  
+}
+#timeButton{
+    background-image:url('../pics/time.png');
+    font-size:20px;
+    float:right;
 }
 
 

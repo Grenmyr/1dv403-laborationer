@@ -2,7 +2,7 @@
 var Messageboard = function(divId){
     var divMainWindow = document.createElement("div");
     
-    var h1 = document.createElement("h1").appendChild(document.createTextNode("Labby Message!"));
+    var h1 = document.createElement("h1");
     var divChatbox = document.createElement("div");
     var divmessageCount = document.createElement("div");
     var textArea = document.createElement("textarea");
@@ -13,6 +13,7 @@ var Messageboard = function(divId){
     this.init  = function(){
     document.querySelector("main").appendChild(divMainWindow);
     divMainWindow.className="large-6 columns";
+    h1.innerHTML= "Labby Message!";
     
     divMainWindow.appendChild(h1);
     divMainWindow.appendChild(divChatbox);
@@ -127,6 +128,7 @@ var Messageboard = function(divId){
         
         // Sätter sätter listener på deletebutton och använder that= this för kunna använda den utanför vår function.
         checkTimeButton.innerHTML= "Klockan";
+        checkTimeButton.id="timeButton";
         deleteButton.innerHTML= "ta bort";
         
         deleteButton.addEventListener("click", function(f){
