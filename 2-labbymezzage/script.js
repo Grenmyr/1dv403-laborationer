@@ -45,7 +45,7 @@ var Messageboard = function(divId){
         // Initierar min konstruktor och skickar in min chattext och tid som argument.
         var objMessage = new Message(textArea.value,new Date());
         // Tömmer min chat
-        textArea.value="";
+        
         
         // trycker in mitt messageobjekt till mitt messagesarray
         messagesArray.push(objMessage);
@@ -54,6 +54,7 @@ var Messageboard = function(divId){
         that.RenderMessage(objMessage, (that.GetMessageCount()-1));
         // skriver om hur många meddelanden.
         that.UppdateMessageCount();
+        textArea.value="";
     };
     
     this.UppdateMessageCount = function(){
