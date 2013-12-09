@@ -20,21 +20,26 @@ var MemoryApp = {
     generateMemoryBoard : function(rows,cols){
         var main = document.getElementById("main");
         var table = document.createElement("table");
-        var rowspan = document.createElement("tr");
-        var colSpan = document.createElement("td");
-        main.appendChild(table);
-        
-            
+        table.style.border = "1px solid";
       
         for (var i = 0; i < rows; i++) {
-            table.appendChild(rowspan);
-            console.log("CP ROWSPAN DIN IDIOT");
-            //console.log(rows);
+            var tr = document.createElement("tr");
+          
             for (var x = 0; x < cols; x++) {
-                table.appendChild(colSpan);
+                var img = document.createElement("img");
+                img.src= "memory/pics/0.png";
+                
+                var a = document.createElement("a");
+                a.href="olle";
+                var td = document.createElement("td");
+                a.appendChild(img);
+                td.appendChild(a);
+                tr.appendChild(td);
             }
+            table.appendChild(tr);
         }
         
+         main.appendChild(table);
     }
 };
 
