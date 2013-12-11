@@ -1,64 +1,75 @@
 "use strict";
 var MemoryApp = {
-    
+    cardArray : [],
+    clicks : 0,
+    prevCard :null,
+    curCard : null,
     init: function(rows,cols){
-        var randomResult = RandomGenerator.getPictureArray(rows,cols);
-        MemoryApp.randomizedArray(randomResult);
-        
-        MemoryApp.generateMemoryBoard(rows,cols);
-        //var aTag = document.getElementById(this.imageNumber);
-        
+        var pictureArray = RandomGenerator.getPictureArray(rows,cols);
+        this.generateMemoryBoard(rows,cols, pictureArray);
    },
    
-    randomizedArray : function(randomresult){
-        var pictureArray = randomresult;
-        alert(pictureArray);
-    },
-    memoryBoard : function(rows,cols){
+    generateMemoryBoard : function(rows,cols, pictureArray){
         
-    },
-    generateMemoryBoard : function(rows,cols){
-      var that = this;
         var main = document.getElementById("main");
         var table = document.createElement("table");
         table.style.border = "1px solid";
-      
+        
+        var index = 0; 
+        var that = this; 
+        
         for (var i = 0; i < rows; i++) {
             var tr = document.createElement("tr");
-          
+            
             for (var x = 0; x < cols; x++) {
-                var img = document.createElement("img");
-                img.src= "memory/pics/0.png";
+                // Anropar konstruktor, skickar med mitt element i arrayen med numret.
+                //och that som ju e = this. dvs denna instansieringen.
+                var card = new Card(pictureArray[index], that);
+                // Trycker i mitt kort i aryen
                 
-                var a = document.createElement("a");
-                a.id="backSide"+x;
-                
-                
-                var td = document.createElement("td");
-                a.appendChild(img);
-                td.appendChild(a);
-                tr.appendChild(td);
-                
+                // för att kunna hämta ut td taggen till min tr via konstruktor.
+                tr.appendChild(card.getTd());
+                index+=1; 
             }
             table.appendChild(tr);
-            
         }
         main.appendChild(table);
         
-        document.addEventListener("click", function(imageNumber){
-            MemoryApp.FlipCard();
-        },false);
-         
+         console.log(main);
     },
-    FlipCard : function(){
-        //kod här
-        alert("Who are you gonna call?");
-        alert("kungen" +this.imageNumber);
+    FlipCard : function(card){
+        this.click=+1;
+        if(this.click === 1)
+        {
+            this.prevcard = card;
+            return;
+        }
+        if (this.click === 2){
+            this.curCard = card;
+            if(this.prevcard.getId() === this.curCard.getId()){
+                console.log("fuck you");
+            }
+        }
+        MemoryApp.cardArray.push(card.getId());
+        
+        
+        // När man trycker på musen skickar vi med *vilket kort (thatmemory) och anropar flipcard.
+        if (card.getId() === MemoryApp.cardArray[0])
+        {
+            alert("succes");
+            
+        }
+     
+       
+            
+        
+        
+        
+        
+        
     }
 };
 
-
-
 window.onload = function(){
-  MemoryApp.init(4,5);
+  MemoryApp.init(4,4);
 };
