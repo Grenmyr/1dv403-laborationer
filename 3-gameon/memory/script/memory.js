@@ -49,23 +49,15 @@ var MemoryApp = {
             if(this.prevcard.getId() === this.curCard.getId()){
                 console.log("fuck you");
             }
+            else{
+                this.prevcard.getReset();
+                this.curCard.getReset();
+            }
+           
         }
+        this.click = 0;
         MemoryApp.cardArray.push(card.getId());
-        
-        
-        // När man trycker på musen skickar vi med *vilket kort (thatmemory) och anropar flipcard.
-        if (card.getId() === MemoryApp.cardArray[0])
-        {
-            alert("succes");
-            
-        }
-     
-       
-            
-        
-        
-        
-        
+
         
     }
 };
