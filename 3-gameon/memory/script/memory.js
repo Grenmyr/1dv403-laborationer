@@ -38,31 +38,44 @@ var MemoryApp = {
          console.log(main);
     },
     FlipCard : function(card){
+       if(this.curCard !== null && this.prevcard !== null){
+            return;
+        }
         var that = this;
         this.clicks ++;
         console.log(this.clicks);
         if(this.clicks === 1)
         {
             this.prevcard = card;
-            return;
+            card.flip();
+           return;
         }
         if (this.clicks === 2){
             this.curCard = card;
-            if(this.prevcard.getId() === this.curCard.getId()){
-                console.log("fuck you");
+                card.flip();
+               
+        
+        if(this.prevcard.getId() === this.curCard.getId()){
+                that.clicks = 0;
+                  that.curCard = null;
+                    that.prevcard = null;
             }
-            else{
+        else{
                 setTimeout(function(){
                 that.prevcard.getReset();
                 that.curCard.getReset();
+                that.prevcard = null;
+                that.curCard = null;
                 }, 1000); 
-                
             }
-            this.clicks = 0;
+            console.log(this.clicks);
+            that.clicks = 0;
+            console.log(that.clicks);
+        } 
         }
-        MemoryApp.cardArray.push(card.getId());
-    }
-};
+        
+        };
+
 
 window.onload = function(){
   MemoryApp.init(4,4);

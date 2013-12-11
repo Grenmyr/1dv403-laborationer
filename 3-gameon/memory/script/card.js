@@ -10,9 +10,8 @@ function Card (cardID, thatCard) {
     img.src= "memory/pics/0.png";
     var that = this;
       
-    a.onmousedown = function(){
+    a.onclick = function(){
         // När man trycker på musen skickar vi med *vilket kort (thatmemory) och anropar flipcard.
-        img.src="memory/pics/"+ cardID +".png";  
         thatCard.FlipCard(that); 
     };
     
@@ -22,11 +21,16 @@ function Card (cardID, thatCard) {
         this.getId = function (){
             return cardID;
         };
+       
         this.flip = function (){
+        a.onclick = null;
          return img.src="memory/pics/"+ cardID +".png";  
         };
         this.getReset = function (){
-          return    img.src= "memory/pics/0.png";
+          a.onclick = function () {
+              thatCard.FlipCard(that);
+          };
+           img.src= "memory/pics/0.png";
         };
     
     }
