@@ -1,7 +1,7 @@
 "use strict";
 var MemoryApp = {
-    cardArray : [],
     clicks : 0,
+    tries : 0,
     prevCard :null,
     curCard : null,
     init: function(rows,cols){
@@ -41,6 +41,7 @@ var MemoryApp = {
        if(this.curCard !== null && this.prevcard !== null){
             return;
         }
+        
         var that = this;
         this.clicks ++;
         console.log(this.clicks);
@@ -54,12 +55,11 @@ var MemoryApp = {
             this.curCard = card;
                 card.flip();
                
-        
         if(this.prevcard.getId() === this.curCard.getId()){
                 that.clicks = 0;
                   that.curCard = null;
                     that.prevcard = null;
-            }
+               }
         else{
                 setTimeout(function(){
                 that.prevcard.getReset();
@@ -68,15 +68,24 @@ var MemoryApp = {
                 that.curCard = null;
                 }, 1000); 
             }
-            console.log(this.clicks);
+            this.tries++;
             that.clicks = 0;
-            console.log(that.clicks);
+            this.AmountOfTries(this.tries);
         } 
-        }
+        },
+        AmountOfTries : function(tries){
+        var tryMessage = document.createElement("div");
+        var p = document.getElementById("tryMessage");
+        var main = document.getElementById("main");
         
+        p.innerHTML= "Försök "+ tries;
+        tryMessage.appendChild(p);
+        main.appendChild(tryMessage);
+    }
         };
-
+    
 
 window.onload = function(){
-  MemoryApp.init(4,4);
+ MemoryApp.init(4,4);
+ 
 };

@@ -18,19 +18,21 @@ function Card (cardID, thatCard) {
     this.getTd = function(){
         return td; 
         };
-        this.getId = function (){
+        
+    this.getId = function (){
             return cardID;
         };
        
-        this.flip = function (){
+    this.flip = function (){
         a.onclick = null;
          return img.src="memory/pics/"+ cardID +".png";  
         };
-        this.getReset = function (){
-          a.onclick = function () {
-              thatCard.FlipCard(that);
-          };
-           img.src= "memory/pics/0.png";
+        
+    this.getReset = function (){
+        a.onclick = function () {
+            thatCard.FlipCard(that);
+            };
+            img.src= "memory/pics/0.png";
         };
     
     }
