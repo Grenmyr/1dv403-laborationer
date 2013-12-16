@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title of the document</title>
+ <link rel="stylesheet" href="css/foundation.css">
+ <link rel="stylesheet" href="css/normalize.css">
+ <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main id="main">
+        <section class="large-12 columns">
+        
+          <form data-abide method="post" action="#">
+            <!--<fieldset>-->
+            <!-- first row -->
+            
+            <div class="row">
+            <h1>Fyll i betalningsplan</h1>
+                <div class="name-field large-12 columns">
+                  <label>Förnamn <small>obligatoriskt</small></label>
+                  <input type="text" required pattern="[a-zA-Z]+">
+                  <small class="error">Ange ditt namn, endast bokstäver är tillåtet.</small> 
+                </div>
+                <div class="last-field large-12 columns">
+                  <label>Efternamn <small>obligatoriskt</small></label>
+                  <input type="text" required pattern="[a-zA-Z]+">
+                  <small class="error">Ange ditt efternamn, endast bokstäver är tillåtet.</small> 
+                </div>
+                <div class="phone-field large-12 columns">
+                  <label> Postnummer: </label>
+                  <input type="tel" />
+                </div>
+                <div class="email-field large-12 columns">
+                    <label>e-post: <small>obligatoriskt</small></label>
+                    <input type="email" required pattern="" />
+                    <small class="error">Ange en giltig e-mail adress.</small> 
+                </div>
+                <div class="select-field large-12 columns">
+                <select name="size">
+                    <option value="low">Låg</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">Hög</option>
+                </select>
+                </div>   
+            </div>
+              <!-- third row -->
+            <div class="row">
+             <div class="button-field large-12 columns">
+            <input type="submit" name="submitbutton" value="Skicka" class="button success" />
+            </div>   
+            </div>
+            <!--</fieldset>-->                
+          </form>
+  </section> 
+    </main> 
+        <p id="tryMessage"></p>
+    <script src="script/script.js"></script>
+    
+</body>
+
+</html> 
