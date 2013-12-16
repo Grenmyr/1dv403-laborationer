@@ -11,20 +11,20 @@
     <main id="main">
         <section class="large-12 columns">
         
-          <form id="form" data-abide method="post" action="#">
+          <form id="form" target="_blank" data-abide method="post" action="#">
             <!--<fieldset>-->
             <!-- first row -->
             
             <div class="row">
             <h1>Fyll i betalningsplan</h1>
                 <div class="name-field large-12 columns">
-                  <label>Förnamn <small>obligatoriskt</small></label>
-                  <input type="text" required pattern="[a-zA-Z]+">
+                  <label>Namn <small>obligatoriskt</small></label>
+                  <input type="text" name="firstName" required pattern="[a-zA-Z]+">
                   <small class="error">Ange ditt namn, endast bokstäver är tillåtet.</small> 
                 </div>
-                <div class="last-field large-12 columns">
+                <div class="surname-field large-12 columns">
                   <label>Efternamn <small>obligatoriskt</small></label>
-                  <input type="text" required pattern="[a-zA-Z]+">
+                  <input type="text" name="surName" required pattern="[a-zA-Z]+">
                   <small class="error">Ange ditt efternamn, endast bokstäver är tillåtet.</small> 
                 </div>
                 <div class="phone-field large-12 columns">
@@ -33,8 +33,8 @@
                 </div>
                 <div class="email-field large-12 columns">
                     <label>e-post: <small>obligatoriskt</small></label>
-                    <input type="email" required pattern="" />
-                    <small class="error">Ange en giltig e-mail adress.</small> 
+                    <input type="email"/>
+                     <!--<small class="error">Ange en giltig e-mail adress.</small>-->   
                 </div>
                 <div class="select-field large-12 columns">
                 <select name="size">
