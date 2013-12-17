@@ -1,25 +1,14 @@
 "use strict";
 var FormApp = {
     Init : function(){
-        FormApp.Validator();
         FormApp.Submit();
-        
-       
-      
     },
     
-    olle : null,  
-    OnSubmit : function(){
-         var form = document.getElementById("form");
-        form.onsubmit = function(e) {
-          };
-    },
+    olle : null,
+    
     MsgExist: null,
-     Submit : function (){
-      
-      
-       
-      
+    
+    Submit : function (){
         var button = document.getElementById("button");
         
         button.addEventListener("click", function(){
@@ -29,23 +18,22 @@ var FormApp = {
     },
     
     Validator : function (){
+        
         var fName = document.getElementById("firstName");
-       
-        fName.onblur = function(e){
+        fName.onblur = function(){
                 
               if(fName.value === "" || fName.value === null){
                     
                 if(!this.MsgExist){
-                    FormApp.SetError(2, "fnDiv");
+                    FormApp.SetError(1, "fnDiv");
                     this.MsgExist=true;
               }
-             
             } 
             else{
                 var tag = document.getElementById("id1");
                 tag.parentNode.removeChild(tag);
                 this.MsgExist = null;
-           
+                FormApp.olle++;
             }
          
            
@@ -57,12 +45,14 @@ var FormApp = {
                 if(!this.MsgExist){
                     FormApp.SetError(2, "lnDiv");
                     this.MsgExist=true;
+                    
                 }
             }
              else{
                 var tag = document.getElementById("id2");
                 tag.parentNode.removeChild(tag);
                 this.MsgExist = null;
+                FormApp.olle++;
             
                 
             }
@@ -71,21 +61,25 @@ var FormApp = {
         var eMail = document.getElementById("eMail");
         eMail.onblur = function (){
             
+            
             if(!eMail.value.match(/^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)|| eMail.value === ""){
                 if(!this.MsgExist){
                     FormApp.SetError(3, "eMailDiv");
                     this.MsgExist=true;
+                    
                 } 
             }
             else{
                 var tag = document.getElementById("id3");
                 tag.parentNode.removeChild(tag);
-                
+                FormApp.olle++;
             }
           
         };
         var zipCode = document.getElementById("zipCode");
         zipCode.onblur = function (){
+            
+            
             var zipS = zipCode.value;
             
             if(zipS.match(/^\d{5}$/) || zipS.match(/^\d{3}[- ]\d{2}$/) || zipS.match(/^[SE]+\d{5}$/)|| zipS.match(/^[SE]+\d{3}[- ]\d{2}$/)|| zipS.match(/^[SE ]+(\d{3}[- ]\d{2}|\d{5})$/)){
@@ -96,6 +90,7 @@ var FormApp = {
                 var tag = document.getElementById("id4");
                 tag.parentNode.removeChild(tag);
                 this.MsgExist = null;
+                FormApp.olle++;
                 
                 
             }
@@ -105,8 +100,12 @@ var FormApp = {
                 this.MsgExist=true;
                 } 
             } 
+            
+                
+            
         };
-        return true;
+        console.log("slutet");
+        
     },
     SetError: function(idNumber, divName){
         var div = divName;
@@ -117,33 +116,19 @@ var FormApp = {
         small.setAttribute("class", "error");
         small.appendChild(text);
         div.appendChild(small);
+        FormApp.olle--;  
+        
         
          
     },
     Blur : function (){
-        
-       var errorMsg = document.querySelectorAll(".error");
-       /*if(this.olle === null)
-       {
-       var fn = document.getElementById("firstName"); 
-        fn.focus();
-        return;
-       }*/
-       console.log(errorMsg);
-       
-        console.log(this.olle);
-        console.log(errorMsg.length);
-        console.log("gick hit");
-        
-        if(this.olle === null && errorMsg.length ===0){
-            console.log("ajabaja här ska det bara va om allt e ok");
-            
-        }
-        
-        
+        FormApp.Validator(); 
+        var errorMsg = document.querySelectorAll(".error");
+        console.log(errorMsg);
+        console.log("här loggar jag olle"+this.olle);
+        console.log("här loggar jag errorlength"+errorMsg.length);
     },
     OnReset : function (){
-        
     },
     Reset : function (){/* töm formuläret med denna efter gokänd data*/
     
