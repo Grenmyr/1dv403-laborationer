@@ -83,7 +83,37 @@ var FormApp = {
                 this.MsgExist = null;
             }
         };
-        
+        var zipCode = document.getElementById("zipCode");
+        zipCode.onblur = function (){
+            var zipS = zipCode.value;
+            if(zipS.match(/^\d{5}$/) || zipS.match(/^\d{3}[- ]\d{2}$/) || zipS.match(/^[SE]+\d{5}$/)){
+               
+               zipS=zipS.replace(/-/g,"");
+               zipCode.value=zipS.replace(/ /g,"");
+               zipS=zipS.replace(/SE/g,"");
+               
+               
+            }
+            if(zipS === ""){   
+                var zipDiv = document.getElementById("zipDiv");
+                if(!this.MsgExist){
+                
+                var text = document.createTextNode("Du har glömt fylla i formulärdata");
+                var small = document.createElement("small");
+                small.setAttribute("id", "id4");
+                small.setAttribute("class", "error");
+                small.appendChild(text);   
+                zipDiv.appendChild(small);
+                
+                this.MsgExist=true;
+                } 
+            } 
+            else{
+                var tag = document.getElementById("id4");
+                tag.parentNode.removeChild(tag);
+                this.MsgExist = null;
+            }
+        };
     },
     Blur : function (){},
     OnReset : function (){},
