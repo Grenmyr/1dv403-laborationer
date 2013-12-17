@@ -86,11 +86,11 @@ var FormApp = {
         var zipCode = document.getElementById("zipCode");
         zipCode.onblur = function (){
             var zipS = zipCode.value;
-            if(zipS.match(/^\d{5}$/) || zipS.match(/^\d{3}[- ]\d{2}$/) || zipS.match(/^[SE]+\d{5}$/)){
+            if(zipS.match(/^\d{5}$/) || zipS.match(/^\d{3}[- ]\d{2}$/) || zipS.match(/^[SE]+\d{5}$/)|| zipS.match(/^[SE]+\d{3}[- ]\d{2}$/)|| zipS.match(/^[SE ]+(\d{3}[- ]\d{2}|\d{5})$/)){
                
                zipS=zipS.replace(/-/g,"");
-               zipCode.value=zipS.replace(/ /g,"");
-               zipS=zipS.replace(/SE/g,"");
+               zipS=zipS.replace(/ /g,"");
+               zipCode.value=zipS.replace(/SE/g,"");
                
                
             }
