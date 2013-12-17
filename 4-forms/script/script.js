@@ -91,10 +91,12 @@ var FormApp = {
                zipS=zipS.replace(/-/g,"");
                zipS=zipS.replace(/ /g,"");
                zipCode.value=zipS.replace(/SE/g,"");
-               
+                var tag = document.getElementById("id4");
+                tag.parentNode.removeChild(tag);
+                this.MsgExist = null;
                
             }
-            if(zipS === ""){   
+            else{   
                 var zipDiv = document.getElementById("zipDiv");
                 if(!this.MsgExist){
                 
@@ -108,11 +110,7 @@ var FormApp = {
                 this.MsgExist=true;
                 } 
             } 
-            else{
-                var tag = document.getElementById("id4");
-                tag.parentNode.removeChild(tag);
-                this.MsgExist = null;
-            }
+            
         };
     },
     Blur : function (){},
