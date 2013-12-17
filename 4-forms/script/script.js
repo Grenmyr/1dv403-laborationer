@@ -10,9 +10,21 @@ var FormApp = {
         var form = document.getElementById("form");
         form.onsubmit = function(e) {
           };
-        var fName = document.getElementById("lastName");
+        var fName = document.getElementById("firstName");
         fName.onblur = function(){
               if(fName.value === "" || fName.value === null ){
+              var fnDiv = document.getElementById("fnDiv");
+              var text = document.createTextNode("Du har glömt fylla i formulärdata");
+              var newDiv = document.createElement("div");
+              
+              newDiv.appendChild(text);   
+              fnDiv.appendChild(newDiv);
+            }  
+            
+        };
+        var lName = document.getElementById("lastName");
+        lName.onblur = function(){
+              if( lName.value === "" ||  lName.value === null ){
               var lnDiv = document.getElementById("lnDiv");
               var text = document.createTextNode("Du har glömt fylla i formulärdata");
               var newDiv = document.createElement("div");
@@ -22,17 +34,16 @@ var FormApp = {
             }  
             
         };
-        var lName = document.getElementById("firstName");
-        lName.onblur = function(){
-              if( lName.value === "" ||  lName.value === null ){
-              var fnDiv = document.getElementById("fnDiv");
-              var text = document.createTextNode("Du har glömt fylla i formulärdata");
-              var newDiv = document.createElement("div");
+        var eMail = document.getElementById("eMail");
+        eMail.onblur = function (){
+            if(!eMail.value.match(/^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)|| eMail.value === ""){
+                var mailDiv = document.getElementById("eMailDiv");
+                var text = document.createTextNode("Du har glömt fylla i formulärdata");
+                var newDiv = document.createElement("div");
               
-              newDiv.appendChild(text);   
-              fnDiv.appendChild(newDiv);
-            }  
-            
+                newDiv.appendChild(text);   
+                mailDiv.appendChild(newDiv);
+            }
         };
         
     },
