@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 <head>
+<meta charset="utf-8" />
 <title>Title of the document</title>
  <link rel="stylesheet" href="css/foundation.css">
       <!-- <link rel="stylesheet" href="css/normalize.css"> -->   
@@ -19,7 +20,7 @@
             <h1>Fyll i betalningsplan</h1>
                 <div id="fnDiv" class="large-6 columns">
                   <label>Namn</label>
-                  <input placeholder ="Fyll i namn" id="firstName" type="text" name="firstName">
+                  <input id="firstName" placeholder ="Fyll i namn" id="firstName" type="text" name="firstName">
                 </div>
                 <div  id="lnDiv" class=" large-6 columns">
                   <label>Efternamn <small>obligatoriskt</small></label>
@@ -47,7 +48,8 @@
               <!-- third row -->
             <div class="row">
              <div class="button-field large-12 columns">
-            <input type="submit" name="submitbutton" value="Skicka" class="button success" />
+             <a id="button" href="#" class="button success">Genomför Köp</a>
+             <!--<input type="submit" name="submitbutton" value="Skicka" class="button success" />-->
             </div>   
             </div>
             <!--</fieldset>-->                

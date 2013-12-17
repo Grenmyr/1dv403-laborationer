@@ -1,20 +1,47 @@
 "use strict";
 var FormApp = {
     Init : function(){
-        FormApp.OnSubmit();
-    
-         
+        FormApp.Validator();
+        FormApp.Submit();
+        //var fn = document.getElementById("firstName"); 
+        //fn.focus();
+        
     },
-    MsgExist: null,
-    OnSubmit : function (){
-        // när användaren trycker på skicka knappen trigga denna funktion.
-        // kontrollera då formuläret, att det är godkänt, annars false.
-        var form = document.getElementById("form");
+    errorMsg : 1,
+  
+    
+    OnSubmit : function(){
+         var form = document.getElementById("form");
         form.onsubmit = function(e) {
           };
-        var fName = document.getElementById("firstName");
-        fName.onblur = function(e){
+    },
+    MsgExist: null,
+     Submit : function (){
+       
+      
+       
+       var errorMsg = document.querySelectorAll(".error");
+        var button = document.getElementById("button");
+        button.addEventListener("click", function(){
            
+       
+             
+            if(errorMsg.length === 1)
+            {
+                FormApp.Blur();
+            }
+            
+            
+            
+        },false);
+        
+    },
+    
+    Validator : function (){
+        var fName = document.getElementById("firstName");
+       
+        fName.onblur = function(e){
+                
               if(fName.value === "" || fName.value === null){
                     var fnDiv = document.getElementById("fnDiv");
                 if(!this.MsgExist){
@@ -23,19 +50,20 @@ var FormApp = {
                     var small = document.createElement("small");
                     small.setAttribute("id", "id1");
                     small.setAttribute("class", "error");
-                    
                     small.appendChild(text);   
                     fnDiv.appendChild(small);
-                    
-                    
+                     
                     this.MsgExist=true;
               }
+             
             } 
             else{
                 var tag = document.getElementById("id1");
                 tag.parentNode.removeChild(tag);
                 this.MsgExist = null;
+           
             }
+         
             
         };
         var lName = document.getElementById("lastName");
@@ -58,9 +86,10 @@ var FormApp = {
                 var tag = document.getElementById("id2");
                 tag.parentNode.removeChild(tag);
                 this.MsgExist = null;
+            
                 
             }
-            
+          
         };
         var eMail = document.getElementById("eMail");
         eMail.onblur = function (){
@@ -73,18 +102,21 @@ var FormApp = {
                 small.setAttribute("class", "error");
                 small.appendChild(text);   
                 mailDiv.appendChild(small);
-                
+          
                 this.MsgExist=true;
                 } 
             }
             else{
                 var tag = document.getElementById("id3");
                 tag.parentNode.removeChild(tag);
-                this.MsgExist = null;
+                
             }
+          
         };
         var zipCode = document.getElementById("zipCode");
         zipCode.onblur = function (){
+            FormApp.Setter++;
+            console.log("zipvalidation");
             var zipS = zipCode.value;
             if(zipS.match(/^\d{5}$/) || zipS.match(/^\d{3}[- ]\d{2}$/) || zipS.match(/^[SE]+\d{5}$/)|| zipS.match(/^[SE]+\d{3}[- ]\d{2}$/)|| zipS.match(/^[SE ]+(\d{3}[- ]\d{2}|\d{5})$/)){
                
@@ -94,7 +126,7 @@ var FormApp = {
                 var tag = document.getElementById("id4");
                 tag.parentNode.removeChild(tag);
                 this.MsgExist = null;
-               
+                
             }
             else{   
                 var zipDiv = document.getElementById("zipDiv");
@@ -109,16 +141,23 @@ var FormApp = {
                 
                 this.MsgExist=true;
                 } 
+                
+                
             } 
             
         };
+        return true;
     },
-    Blur : function (){},
+    Blur : function (){
+      
+        alert("ggg");
+        
+    },
     OnReset : function (){},
     Reset : function (){/* töm formuläret med denna efter gokänd data*/
     
-    },
-    Submit : function (){}
+    }
+   
     };
 
 window.onload = function(){
