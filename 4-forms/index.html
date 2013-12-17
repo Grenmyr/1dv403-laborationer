@@ -3,7 +3,7 @@
 <head>
 <title>Title of the document</title>
  <link rel="stylesheet" href="css/foundation.css">
- <link rel="stylesheet" href="css/normalize.css">
+      <!-- <link rel="stylesheet" href="css/normalize.css"> -->   
  <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -11,21 +11,19 @@
     <main id="main">
         <section class="large-12 columns">
         
-          <form id="form" target="_blank" data-abide method="post" action="http://voyager.lnu.se/tekinet/kurser/dtt/wp_webbteknik/process_form.php">
+          <form id="form" method="post" action="http://voyager.lnu.se/tekinet/kurser/dtt/wp_webbteknik/process_form.php">
             <!--<fieldset>-->
             <!-- first row -->
             
             <div class="row">
             <h1>Fyll i betalningsplan</h1>
-                <div id="fnDiv" class="name-field large-12 columns">
-                  <label>Namn <small>obligatoriskt</small></label>
+                <div id="fnDiv" class="large-6 columns">
+                  <label>Namn</label>
                   <input id="firstName" type="text" name="firstName">
-                  <small class="error">Ange ditt namn, endast bokstäver är tillåtet.</small> 
                 </div>
-                <div  id="lnDiv" class="surname-field large-12 columns">
+                <div  id="lnDiv" class=" large-6 columns">
                   <label>Efternamn <small>obligatoriskt</small></label>
                   <input id="lastName" type="text" name="lastName">
-                  <small class="error">Ange ditt efternamn, endast bokstäver är tillåtet.</small> 
                 </div>
                 <div class="phone-field large-12 columns">
                   <label> Postnummer: </label>
