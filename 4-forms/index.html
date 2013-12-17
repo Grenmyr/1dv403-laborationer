@@ -11,20 +11,20 @@
     <main id="main">
         <section class="large-12 columns">
         
-          <form id="form" target="_blank" data-abide method="post" action="#">
+          <form id="form" target="_blank" data-abide method="post" action="http://voyager.lnu.se/tekinet/kurser/dtt/wp_webbteknik/process_form.php">
             <!--<fieldset>-->
             <!-- first row -->
             
             <div class="row">
             <h1>Fyll i betalningsplan</h1>
-                <div class="name-field large-12 columns">
+                <div id="fnDiv" class="name-field large-12 columns">
                   <label>Namn <small>obligatoriskt</small></label>
-                  <input type="text" name="firstName" required pattern="[a-zA-Z]+">
+                  <input id="firstName" type="text" name="firstName">
                   <small class="error">Ange ditt namn, endast bokstäver är tillåtet.</small> 
                 </div>
-                <div class="surname-field large-12 columns">
+                <div  id="lnDiv" class="surname-field large-12 columns">
                   <label>Efternamn <small>obligatoriskt</small></label>
-                  <input type="text" name="surName" required pattern="[a-zA-Z]+">
+                  <input id="lastName" type="text" name="lastName" required pattern="[a-zA-Z]+">
                   <small class="error">Ange ditt efternamn, endast bokstäver är tillåtet.</small> 
                 </div>
                 <div class="phone-field large-12 columns">
