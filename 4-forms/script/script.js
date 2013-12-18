@@ -108,9 +108,25 @@ var FormApp = {
 
         if(FormApp.Trigger1 === true && FormApp.Trigger2 === true && FormApp.Trigger3 === true && FormApp.Trigger4 === true ){
             console.log("vill ej komma in här");
+            FormApp.OnReset();
         }
     },
     OnReset : function (){
+            var popup = document.getElementById('myModal');
+            console.log(popup);
+            popup.style.visibility = "visible"; 
+            popup.style.display = "block";
+            var popupExit = document.getElementById("popupExit");
+            var popupAbort = document.getElementById("popupAbort");
+        popupExit.addEventListener("click", function(){
+                popup.style.visibility = "hidden"; 
+                popup.style.display = "none";
+        },false);
+         popupAbort.addEventListener("click", function(){
+                popup.style.visibility = "hidden"; 
+                popup.style.display = "none";
+        },false);
+            
     },
     Reset : function (){/* töm formuläret med denna efter gokänd data*/
     }
