@@ -106,22 +106,24 @@ var FormApp = {
         console.log(FormApp.Trigger3+"  loggar trigger3");
         console.log(FormApp.Trigger4+"  loggar trigger4");
 
-        if(FormApp.Trigger1 === true && FormApp.Trigger2 === true && FormApp.Trigger3 === false && FormApp.Trigger4 === false ){
+        if(FormApp.Trigger1 === true && FormApp.Trigger2 === true && FormApp.Trigger3 === true && FormApp.Trigger4 === true ){
             console.log("vill ej komma in här");
             FormApp.ConfirmWindow();
         }
     },
     ConfirmWindow : function (){
             var popup = document.getElementById('myModal');
+            var popupExit = document.getElementById("popupExit");
+            var popupAbort = document.getElementById("popupAbort");
             console.log(popup);
             popup.style.visibility = "visible"; 
             popup.style.display = "block";
             FormApp.FieldValue("firstName", "Namn");
             FormApp.FieldValue("lastName", "Efternamn");
+            FormApp.FieldValue("eMail", "Epost");
+            FormApp.FieldValue("zipCode", "Postadress");
+            FormApp.FieldValue("valueBar", "Prismodell");
             
-            
-            var popupExit = document.getElementById("popupExit");
-            var popupAbort = document.getElementById("popupAbort");
         popupExit.addEventListener("click", function(){
                 popup.style.visibility = "hidden"; 
                 popup.style.display = "none";
@@ -142,9 +144,6 @@ var FormApp = {
             console.log(text1);
             popupFn.appendChild(ptag);
             ptag.appendChild(text1);
-            
-        
-        
     }
     };
 
