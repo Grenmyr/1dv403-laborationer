@@ -103,11 +103,6 @@ var FormApp = {
     },
     Blur : function (){
         FormApp.Validator(); 
-        console.log(FormApp.Trigger1+"  loggar trigger1");
-        console.log(FormApp.Trigger2+"  loggar trigger2");
-        console.log(FormApp.Trigger3+"  loggar trigger3");
-        console.log(FormApp.Trigger4+"  loggar trigger4");
-
         if(FormApp.Trigger1 === true && FormApp.Trigger2 === true && FormApp.Trigger3 === true && FormApp.Trigger4 === true ){
             console.log("vill ej komma in här");
             FormApp.ConfirmWindow();
@@ -117,9 +112,15 @@ var FormApp = {
             var popup = document.getElementById('myModal');
             var popupExit = document.getElementById("popupExit");
             var popupAbort = document.getElementById("popupAbort");
-            console.log(popup);
             popup.style.visibility = "visible"; 
             popup.style.display = "block";
+            
+            
+            var div =document.createElement("div");
+            div.setAttribute("id", "skit");
+            div.setAttribute("class", "large-12 columns");
+            popup.appendChild(div);
+            
             FormApp.FieldValue("firstName", "Namn");
             FormApp.FieldValue("lastName", "Efternamn");
             FormApp.FieldValue("eMail", "Epost");
@@ -140,20 +141,19 @@ var FormApp = {
             
     },
     FieldValue : function (divtag, name){
+            var skitdiv = document.getElementById('skit');
             var div =document.createElement("div");
             div.setAttribute("id", "tempDiv");
-            console.log(div);
-            var popupFn =  document.getElementById('popupFn');
+            
             var tagName = document.getElementById(divtag);
             var ptag = document.createElement("p");
             var text1 = document.createTextNode(name +":      " +tagName.value);
-            // måste byta rad här.
-            popupFn.appendChild(div);
+            skitdiv.appendChild(div);
             div.appendChild(ptag);
             ptag.appendChild(text1);
     },
     ClearField : function(){}
-
+        
     };
 
 window.onload = function(){
