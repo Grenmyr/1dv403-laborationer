@@ -1,10 +1,8 @@
 "use strict";
 var FormApp = {
-    
     Init : function(){
         FormApp.Submit();
         FormApp.Validator(); 
-       
     },
     Trigger1 : false,
     Trigger2 : false,
@@ -114,8 +112,6 @@ var FormApp = {
             var popupAbort = document.getElementById("popupAbort");
             popup.style.visibility = "visible"; 
             popup.style.display = "block";
-            
-            
             var div =document.createElement("div");
             div.setAttribute("id", "skit");
             div.setAttribute("class", "large-12 columns");
@@ -128,13 +124,9 @@ var FormApp = {
             FormApp.FieldValue("valueBar", "Prismodell");
             
         popupExit.addEventListener("click", function(){
-                popup.style.visibility = "hidden"; 
-                popup.style.display = "none";
                 FormApp.ClearField();
         },false);
          popupAbort.addEventListener("click", function(){
-                popup.style.visibility = "hidden"; 
-                popup.style.display = "none";
                 FormApp.ClearField();
                
         },false);
@@ -152,7 +144,13 @@ var FormApp = {
             div.appendChild(ptag);
             ptag.appendChild(text1);
     },
-    ClearField : function(){}
+    ClearField : function(){
+        var popup = document.getElementById('myModal');
+        popup.style.visibility = "hidden"; 
+        popup.style.display = "none";
+        var kukDiv = document.getElementById('skit');
+        kukDiv.parentNode.removeChild(kukDiv);
+    }
         
     };
 
