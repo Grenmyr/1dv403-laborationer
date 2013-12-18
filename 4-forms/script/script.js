@@ -1,8 +1,10 @@
 "use strict";
 var FormApp = {
+    
     Init : function(){
         FormApp.Submit();
         FormApp.Validator(); 
+       
     },
     Trigger1 : false,
     Trigger2 : false,
@@ -138,9 +140,10 @@ var FormApp = {
             
     },
     FieldValue : function (divtag, name){
-            var popupFn =  document.getElementById('popupFn');
             var div =document.createElement("div");
             div.setAttribute("id", "tempDiv");
+            console.log(div);
+            var popupFn =  document.getElementById('popupFn');
             var tagName = document.getElementById(divtag);
             var ptag = document.createElement("p");
             var text1 = document.createTextNode(name +":      " +tagName.value);
@@ -148,16 +151,9 @@ var FormApp = {
             popupFn.appendChild(div);
             div.appendChild(ptag);
             ptag.appendChild(text1);
-            
     },
-    ClearField : function(){
-        var popupFn =  document.getElementById("tempDiv");
-            popupFn.parentNode.removeChild(popupFn);
-        
-        
-        console.log(popupFn);
-        return false;
-    }
+    ClearField : function(){}
+
     };
 
 window.onload = function(){
