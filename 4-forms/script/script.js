@@ -106,21 +106,26 @@ var FormApp = {
         console.log(FormApp.Trigger3+"  loggar trigger3");
         console.log(FormApp.Trigger4+"  loggar trigger4");
 
-        if(FormApp.Trigger1 === true && FormApp.Trigger2 === true && FormApp.Trigger3 === true && FormApp.Trigger4 === true ){
+        if(FormApp.Trigger1 === true && FormApp.Trigger2 === true && FormApp.Trigger3 === false && FormApp.Trigger4 === false ){
             console.log("vill ej komma in här");
-            FormApp.OnReset();
+            FormApp.ConfirmWindow();
         }
     },
-    OnReset : function (){
+    ConfirmWindow : function (){
             var popup = document.getElementById('myModal');
             console.log(popup);
             popup.style.visibility = "visible"; 
             popup.style.display = "block";
+            FormApp.FieldValue("firstName", "Namn");
+            FormApp.FieldValue("lastName", "Efternamn");
+            
+            
             var popupExit = document.getElementById("popupExit");
             var popupAbort = document.getElementById("popupAbort");
         popupExit.addEventListener("click", function(){
                 popup.style.visibility = "hidden"; 
                 popup.style.display = "none";
+                // måste lägga till att ta bort allt inehåll i diven här.
         },false);
          popupAbort.addEventListener("click", function(){
                 popup.style.visibility = "hidden"; 
@@ -128,7 +133,18 @@ var FormApp = {
         },false);
             
     },
-    Reset : function (){/* töm formuläret med denna efter gokänd data*/
+    FieldValue : function (divtag, name){
+        var popupFn =  document.getElementById('popupFn');
+            var tagName = document.getElementById(divtag);
+            var ptag = document.createElement("p");
+            var text1 = document.createTextNode(name +":      " +tagName.value);
+            // måste byta rad här.
+            console.log(text1);
+            popupFn.appendChild(ptag);
+            ptag.appendChild(text1);
+            
+        
+        
     }
     };
 
