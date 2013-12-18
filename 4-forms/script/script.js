@@ -127,23 +127,36 @@ var FormApp = {
         popupExit.addEventListener("click", function(){
                 popup.style.visibility = "hidden"; 
                 popup.style.display = "none";
-                // måste lägga till att ta bort allt inehåll i diven här.
+                FormApp.ClearField();
         },false);
          popupAbort.addEventListener("click", function(){
                 popup.style.visibility = "hidden"; 
                 popup.style.display = "none";
+                FormApp.ClearField();
+               
         },false);
             
     },
     FieldValue : function (divtag, name){
-        var popupFn =  document.getElementById('popupFn');
+            var popupFn =  document.getElementById('popupFn');
+            var div =document.createElement("div");
+            div.setAttribute("id", "tempDiv");
             var tagName = document.getElementById(divtag);
             var ptag = document.createElement("p");
             var text1 = document.createTextNode(name +":      " +tagName.value);
             // måste byta rad här.
-            console.log(text1);
-            popupFn.appendChild(ptag);
+            popupFn.appendChild(div);
+            div.appendChild(ptag);
             ptag.appendChild(text1);
+            
+    },
+    ClearField : function(){
+        var popupFn =  document.getElementById("tempDiv");
+            popupFn.parentNode.removeChild(popupFn);
+        
+        
+        console.log(popupFn);
+        return false;
     }
     };
 
