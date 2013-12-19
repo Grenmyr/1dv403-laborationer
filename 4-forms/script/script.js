@@ -1,6 +1,13 @@
 "use strict";
 var FormApp = {
     Init : function(){
+        var form = document.getElementById("form");
+
+        form.onsubmit = function(e){
+            e.preventDefault();
+            };
+        
+        
         FormApp.Submit();
         FormApp.Validator(); 
     },
@@ -10,6 +17,7 @@ var FormApp = {
     Trigger4 : false,
     MsgExist: null,
     Submit : function (){
+        
         var button = document.getElementById("button");
         
         button.addEventListener("click", function(){
@@ -110,11 +118,17 @@ var FormApp = {
             var popup = document.getElementById('myModal');
             var popupExit = document.getElementById("popupExit");
             var popupAbort = document.getElementById("popupAbort");
-            popup.style.visibility = "visible"; 
-            popup.style.display = "block";
+            var sendagain = document.getElementById("KukKnapp");
+            var backGroundWindow = document.createElement("div");
+            var body =document.getElementById("body");
+            var popupclass= popup.className;
+        
+            popup.setAttribute('class', popupclass+' showDiv');
             var div =document.createElement("div");
             div.setAttribute("id", "skit");
             div.setAttribute("class", "large-12 columns");
+            backGroundWindow.setAttribute("id", "backGroundWindow");
+            body.insertBefore(backGroundWindow, body.firstChild);
             popup.appendChild(div);
             
             FormApp.FieldValue("firstName", "Namn");
@@ -122,6 +136,10 @@ var FormApp = {
             FormApp.FieldValue("eMail", "Epost");
             FormApp.FieldValue("zipCode", "Postadress");
             FormApp.FieldValue("valueBar", "Prismodell");
+            
+        sendagain.addEventListener("click", function(){
+                 document.getElementById("form").submit();
+        },false);
             
         popupExit.addEventListener("click", function(){
                 FormApp.ClearField();
@@ -146,10 +164,14 @@ var FormApp = {
     },
     ClearField : function(){
         var popup = document.getElementById('myModal');
-        popup.style.visibility = "hidden"; 
-        popup.style.display = "none";
+        var popupclass= popup.className;
+        popupclass = popupclass.split(' ');
+        popup.setAttribute('class', popupclass[0]+' hiddenDiv');
         var kukDiv = document.getElementById('skit');
         kukDiv.parentNode.removeChild(kukDiv);
+        var removeField = document.getElementById('backGroundWindow');
+        removeField.parentNode.removeChild(removeField);
+        
     }
         
     };
