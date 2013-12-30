@@ -136,6 +136,7 @@ var Messageboard = function(divId){
         // 2 eventlistener, för kolla tid och ta bort meddelanden, läggs i chatten.
         deleteButton.addEventListener("click", function(f){
             that.DeleteFunction(f, messageBox.id);
+            console.log(f);
         },false);
         checkTimeButton.addEventListener("click", function(d){
             that.TimeStamp(d,messageBox.id );

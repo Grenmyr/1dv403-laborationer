@@ -1,7 +1,7 @@
 "use strict";
 var MemoryApp = function (rows, cols, windowID) {
     var that = this;
-    var save = 5;
+    var save = true;
     var arry = null;
     var count = new Counter(null,null);
 
@@ -31,7 +31,7 @@ var MemoryApp = function (rows, cols, windowID) {
                 var card = new Card(pictureArray[index], that, windowID);
                 // Trycker i mitt kort i aryen
 
-                // för att kunna hämta ut td taggen till min tr via konstruktor.
+                // fï¿½r att kunna hï¿½mta ut td taggen till min tr via konstruktor.
                 tr.appendChild(card.getTd());
                 index += 1;
             }
@@ -41,13 +41,15 @@ var MemoryApp = function (rows, cols, windowID) {
       
     }
     this.FlipCard = function (card) {
-        if (count.getClick() === 2 ) { return;}
-       
+        console.log(save);
+        if (save === false) { return;}
+       save = false;
         if (count.getClick() === 0) {
             card.flip();
             count.setClick();
             count.setPrevImg(card.getId())
             count.setPrevObj(card);
+            save = true; 
             return;
         }
         
@@ -58,6 +60,7 @@ var MemoryApp = function (rows, cols, windowID) {
             
         }
         else {
+            save = true; 
             setTimeout(function () {
                 count.getPrevObj();
                 card.getReset();
@@ -65,7 +68,9 @@ var MemoryApp = function (rows, cols, windowID) {
                 
                 
             }, 1000);
+           
         }
+        
         
         
         

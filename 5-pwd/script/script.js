@@ -40,7 +40,7 @@ var Portal = {
             memoryApp.init(4, 4, this.count);
         }
         else {
-            console.log("då går vi hit");
+            console.log("dï¿½ gï¿½r vi hit");
             var messBoard = new Messageboard("kalle");
             messBoard.init(this.count);
         }
