@@ -8,8 +8,7 @@ var Gallery = function (_xhr) {
         //var ddd = new XMLHttpRequest();
         this.setXhr();
         console.log(this.getXhr());
-        this.rState();  
-       
+        this.rState();
         
         this.getXhr().open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         this.getXhr().send(null);
@@ -17,10 +16,16 @@ var Gallery = function (_xhr) {
      
        
         
-        //var json = JSON.parse("get","http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/pics",true);
-       // console.log(json);
+        
+        return false;
        
     };
+    this.getJSONParse = function (object) {
+        var xxx = this.rState()
+        var json = JSON.stringify(xxx);
+        console.log("json" + json);
+        return false;
+    }
     this.rState = function () {
         var xhr = this.getXhr();
         xhr.onreadystatechange = function () {
@@ -28,8 +33,10 @@ var Gallery = function (_xhr) {
             if (xhr.readyState === 4) {
 
                 if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-                    alert(xhr.responseText);
-                    var response = xhr.responseText;
+                          
+                    var jessie = JSON.parse(xhr.responseText);
+                    console.log("jessies" + jessie);
+                    alert(jessie[0].thumbURL);
                     return xhr.responseText;
                 }
                 else {
@@ -37,9 +44,6 @@ var Gallery = function (_xhr) {
                 }
             }
         };
-        
-
-
     }
     this.getXhr = function () {
         return _xhr;
