@@ -8,6 +8,7 @@ var Portal = {
         
         var memoryOnClick = document.getElementById("app1");
         var MsgBoardOnClick = document.getElementById("app2");
+        var galleryOnClick = document.getElementById("app3");
         
         
         memoryOnClick.addEventListener("click", function () {
@@ -19,6 +20,11 @@ var Portal = {
         MsgBoardOnClick.addEventListener("click", function () {
 
             Portal.generateWindow(MsgBoardOnClick.id);
+
+        }, false);
+        galleryOnClick.addEventListener("click", function () {
+
+            Portal.generateWindow(galleryOnClick.id);
 
         }, false);
 
@@ -39,11 +45,17 @@ var Portal = {
             var memoryApp = new MemoryApp();
             memoryApp.init(4, 4, this.count);
         }
-        else {
+        if (currentWindowID === "app2") {
             console.log("d� g�r vi hit");
             var messBoard = new Messageboard("kalle");
             messBoard.init(this.count);
         }
+        if (currentWindowID === "app3") {
+            var gallery = new Gallery();
+            gallery.init(this.count);
+        }
+            
+        
         
     },
     genwin: function () {
