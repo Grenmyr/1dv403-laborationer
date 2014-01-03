@@ -20,7 +20,7 @@ function Window(object, windowId) {
     img.setAttribute("src", "pics/2.png");
     img.setAttribute("class", "exitImage");
     // ta bort sen
-    aside.innerHTML = "här i ska jag lägga mina grejjor det är en responsiv design just nu. både header o footer finns me" + "vilken fönsternummer det 'r:  " + windowId;
+    aside.innerHTML = " HAHAHA denna CSS e priceless " + windowId;
     
     main.appendChild(article);   
     article.appendChild(header);

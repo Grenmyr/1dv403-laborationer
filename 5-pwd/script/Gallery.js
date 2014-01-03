@@ -37,7 +37,7 @@ var Gallery = function (_xhr, _JsonXhr) {
         xhr.onreadystatechange = function () {
             var aside = document.getElementById("aside" + windowID)
             
-            aside.innerHTML = "testar bara att skiten funkar!!!!";
+            
             if (xhr.readyState === 4) {
                 if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
                     _JsonXhr = JSON.parse(xhr.responseText);
