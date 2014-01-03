@@ -14,10 +14,7 @@ var Gallery = function (_xhr, _JsonXhr) {
 
     };
     this.getJSONParse = function (object) {
-        var xxx = this.rState()
-        var json = JSON.stringify(xxx);
-        console.log("json" + json);
-        return false;
+        
     }
     this.rState = function () {
         var xhr = this.getXhr();
