@@ -1,49 +1,65 @@
 "use strict";
 var Gallery = function (_xhr, _JsonXhr) {
-
+    var that = this;
 
     this.init = function (windowID, JsonCall) {
-       ;
-        
-        //var ddd = new XMLHttpRequest();
-        
         this.setXhr();
-        this.rState(windowID);
+
+        this.setJsonxhr(windowID);
         this.getXhr().open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         this.getXhr().send(null);
+        
         return false;
 
     };
-    this.getJSONParse = function (_JsonXhr) {
-        
-        console.log("skit")
+    this.getJson = function () {
+        return _JsonXhr;
     }
-    this.rState = function (windowID) {
-        var xhr = this.getXhr();
-        
-        xhr.onreadystatechange = function () {            
-            var aside = document.getElementById("aside" + windowID)
+    this.getMaxValue = function () {
+        var maxThumbWidth = 0;
+        var maxThumbHeight = 0;
+        for (var i = 0; i < that.getJson().length; i++) {
 
+            if (maxThumbHeight < _JsonXhr[i].thumbHeight) {
+                maxThumbHeight = _JsonXhr[i].thumbHeight;
+            }
+            if (maxThumbWidth < _JsonXhr[i].thumbWidth) {
+                maxThumbWidth = _JsonXhr[i].thumbWidth;
+
+            }
+        }
+        
+        return [maxThumbWidth, maxThumbHeight];
+    }
+    this.setJsonxhr = function (windowID) {
+        var xhr = this.getXhr();
+
+        xhr.onreadystatechange = function () {
+            var aside = document.getElementById("aside" + windowID)
+            
             aside.innerHTML = "testar bara att skiten funkar!!!!";
             if (xhr.readyState === 4) {
                 if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
                     _JsonXhr = JSON.parse(xhr.responseText);
+                    var boxSizeArray = that.getMaxValue();
                     
                     for (var i = 0; i < _JsonXhr.length; i++) {
                         var img = document.createElement("img");
+                        var div = document.createElement("div");
                         
+                        
+                        div.style.width = boxSizeArray[0]+5 + "px";
+                        div.style.height = boxSizeArray[1]+5 + "px";
+                       
                         img.setAttribute("src", _JsonXhr[i].thumbURL);
-                        aside.appendChild(img);
-                        console.log(_JsonXhr[i].thumbURL)
-                        //console.log(eatchJsonObj[i].JsonCall);
-                        
-                        //console.log(_JsonXhr[i]);
+                        aside.appendChild(div);
+                        div.appendChild(img);
                     }
+                   
                     
-                    return JSON.parse(xhr.responseText);
                 }
                 else {
-                    console.log("fell");
+                    console.log("fel");
                 }
             }
         };
@@ -53,6 +69,6 @@ var Gallery = function (_xhr, _JsonXhr) {
     }
     this.setXhr = function () {
         _xhr = new XMLHttpRequest();
-        console.log(_xhr);
+        
     };
 };

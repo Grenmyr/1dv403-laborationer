@@ -103,6 +103,11 @@ nav {
 textarea{ width: 290px; 
           height: 100px;
              }
+div {
+    background-color:darkcyan;
+    text-align:center;
+    
+}
 /*style after class*/
 
 .exitImage {
