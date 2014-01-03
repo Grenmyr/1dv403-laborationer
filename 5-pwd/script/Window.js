@@ -20,7 +20,7 @@ function Window(object, windowId) {
     img.setAttribute("src", "pics/2.png");
     img.setAttribute("class", "exitImage");
     // ta bort sen
-    aside.innerHTML = " HAHAHA denna CSS e priceless " + windowId;
+    aside.innerHTML = " HAHAHAHA denna CSS e priceless " + windowId;
     
     main.appendChild(article);   
     article.appendChild(header);
