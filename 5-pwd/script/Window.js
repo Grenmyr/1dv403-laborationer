@@ -32,8 +32,8 @@ function Window(object, windowId) {
 
 
     exitButton.onclick = function () {
-        console.log(object);
-        object.close(windowId)
+        article.parentElement.removeChild(article);
+        //object.close(windowId)
     }
     this.getIddd = function () {
         return windowId;

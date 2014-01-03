@@ -40,6 +40,7 @@ var Portal = {
         
         var that = this;
         this.count++;
+        console.log(this.count);
         var window = new Window(that, this.count);
         if (currentWindowID === "app1") {
             var memoryApp = new MemoryApp();
@@ -51,8 +52,9 @@ var Portal = {
             messBoard.init(this.count);
         }
         if (currentWindowID === "app3") {
-            var gallery = new Gallery();
+            var gallery = new Gallery();    
             gallery.init(this.count);
+            
         }
             
         
