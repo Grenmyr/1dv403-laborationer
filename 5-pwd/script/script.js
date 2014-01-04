@@ -41,7 +41,7 @@ var Portal = {
         var that = this;
         this.count++;
         console.log(this.count);
-        var window = new Window(that, this.count);
+        var myWindow = new MyWindow(that, this.count);
         if (currentWindowID === "app1") {
             var memoryApp = new MemoryApp();
             memoryApp.init(4, 4, this.count);
@@ -53,7 +53,7 @@ var Portal = {
         }
         if (currentWindowID === "app3") {
             var gallery = new Gallery();    
-            gallery.init(this.count);
+            gallery.init(myWindow, this.count);
             
         }
             

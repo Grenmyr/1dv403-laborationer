@@ -1,10 +1,10 @@
 "use strict";
-var Gallery = function (_xhr, _JsonXhr) {
+var Gallery = function (_windowObject,_xhr, _JsonXhr, _img) {
     var that = this;
 
-    this.init = function (windowID, JsonCall) {
+    this.init = function (windowObject,windowID) {
         this.setXhr();
-
+        this.setObject(windowObject);
         this.setJsonxhr(windowID);
         this.getXhr().open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         this.getXhr().send(null);
@@ -12,6 +12,19 @@ var Gallery = function (_xhr, _JsonXhr) {
         return false;
 
     };
+    this.setBackground = function () {
+        _img.onclick = function (e) {
+
+            // ne får fortsätta här i morgon, 
+            var target = e.target;
+            that.getObject().setBackground(target);
+            
+            
+
+            return false;
+        }
+        
+    }
     this.getJson = function () {
         return _JsonXhr;
     }
@@ -43,6 +56,7 @@ var Gallery = function (_xhr, _JsonXhr) {
                     _JsonXhr = JSON.parse(xhr.responseText);
                     var boxSizeArray = that.getMaxValue();
                     
+                    
                     for (var i = 0; i < _JsonXhr.length; i++) {
                         var img = document.createElement("img");
                         var div = document.createElement("div");
@@ -54,6 +68,8 @@ var Gallery = function (_xhr, _JsonXhr) {
                         img.setAttribute("src", _JsonXhr[i].thumbURL);
                         aside.appendChild(div);
                         div.appendChild(img);
+                        _img = img;
+                        that.setBackground()
                     }
                    
                     
@@ -71,4 +87,10 @@ var Gallery = function (_xhr, _JsonXhr) {
         _xhr = new XMLHttpRequest();
         
     };
+    this.setObject = function (windowObject) {
+        _windowObject = windowObject;
+    }
+    this.getObject = function () {
+        return _windowObject;
+    }
 };

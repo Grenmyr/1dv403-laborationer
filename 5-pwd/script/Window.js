@@ -1,5 +1,5 @@
 "use strict";
-function Window(object, windowId) {
+function MyWindow(object, windowId) {
     var that = this;
     var main = document.getElementById("main");
     var article = document.createElement("article");
@@ -38,7 +38,13 @@ function Window(object, windowId) {
     this.getIddd = function () {
         return windowId;
     };
-
+    this.setBackground = function (target) {
+        console.log(target);
+       document.body.style.backgroundImage = "target"
+        
+        
+        return false;
+    }
 
 
 }
