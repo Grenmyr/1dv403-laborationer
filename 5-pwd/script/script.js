@@ -2,10 +2,10 @@
 var Portal = {
     count: 0,
     init: function () {
-        this.onClick();     
+        this.onClick();
     },
     onClick: function () {
-        
+       
         var memoryOnClick = document.getElementById("app1");
         var MsgBoardOnClick = document.getElementById("app2");
         var galleryOnClick = document.getElementById("app3");
@@ -37,7 +37,7 @@ var Portal = {
     },
     generateWindow: function (currentWindowID) {
         console.log(currentWindowID);
-        
+        console.log("nedskräpning" + Object.keys(window).length)
         var that = this;
         this.count++;
         console.log(this.count);

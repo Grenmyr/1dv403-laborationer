@@ -1,14 +1,14 @@
 "use strict";
 var Gallery = function (_xhr, _JsonXhr, _img) {
     var that = this;
-
+    
     this.init = function (windowID) {
-        this.setXhr();
-       
+        
+        this.setXhr();       
         this.setJsonxhr(windowID);
         this.getXhr().open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         this.getXhr().send(null);
-
+        
         return false;
 
     };
@@ -27,6 +27,7 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
     }
     this.getJson = function () {
         return _JsonXhr;
+        
     }
     this.getMaxValue = function () {
         var maxThumbWidth = 0;
@@ -45,22 +46,28 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
         return [maxThumbWidth, maxThumbHeight];
     }
     this.setJsonxhr = function (windowID) {
+        var starLoad = new Date();
         var xhr = this.getXhr();
         var count = 0;
+      
         xhr.onreadystatechange = function () {
             var aside = document.getElementById("aside" + windowID)
+            
+            var ajaxGif = document.createElement("img");
+            ajaxGif.src = "pics/ajaxLoader.gif";
+            aside.nextElementSibling.appendChild(ajaxGif);
 
+           
 
             if (xhr.readyState === 4) {
                 if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
                     _JsonXhr = JSON.parse(xhr.responseText);
+                    
                     var boxSizeArray = that.getMaxValue();
-
 
                     for (var i = 0; i < _JsonXhr.length; i++) {
                         var img = document.createElement("img");
                         var div = document.createElement("div");
-
 
                         div.style.width = boxSizeArray[0] + 5 + "px";
                         div.style.height = boxSizeArray[1] + 5 + "px";
@@ -74,6 +81,9 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
                         that.setBackground()
                         count++;
                     }
+                    var doneLoading = new Date();
+                    aside.nextElementSibling.innerHTML = count + "bilder laddade på" + ((doneLoading-starLoad)/1000) + "sekunder";
+                   
                 }
                 else {
                     console.log("fel");
