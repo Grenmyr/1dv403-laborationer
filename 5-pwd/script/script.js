@@ -53,7 +53,7 @@ var Portal = {
         }
         if (currentWindowID === "app3") {
             var gallery = new Gallery();    
-            gallery.init(myWindow, this.count);
+            gallery.init( this.count);
             
         }
             

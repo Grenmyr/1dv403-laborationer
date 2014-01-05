@@ -29,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+    background-image:url(http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/pics/1050509.jpg);
 	line-height: 1;
 }
 ol, ul {
@@ -73,7 +74,7 @@ aside :focus {
     margin: 0 auto -142px;*/
 }
 body {
-    background-color:darkgrey;
+    /*background-color:darkgrey;*/
     height:768px;
     width:1024px;
     border: 1px solid;

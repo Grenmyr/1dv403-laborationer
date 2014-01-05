@@ -38,13 +38,10 @@ function MyWindow(object, windowId) {
     this.getIddd = function () {
         return windowId;
     };
-    this.setBackground = function (target) {
-        console.log(target);
-       document.body.style.backgroundImage = "target"
-        
-        
-        return false;
+    this.setArticleBackground = function (Jsonobject, objNR) {
+        article.style.backgroundImage = "url('" + Jsonobject[objNR].URL + "')"
     }
+   
 
 
 }
