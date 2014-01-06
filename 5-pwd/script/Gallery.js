@@ -117,7 +117,7 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
            
         };
         
-        //getXhr().open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt"), true);
+    
         getXhr().open("get", adress, true);
         getXhr().send(null);
     }
