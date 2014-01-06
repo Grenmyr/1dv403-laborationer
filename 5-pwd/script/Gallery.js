@@ -24,11 +24,14 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
 
         _img.onclick = function (e) {
             var objectNR = e.target.id.replace("imgThumb", "");
-            if (e.shiftKey == 1) {              
+            if (e.shiftKey == 1) {
                 document.body.style.backgroundImage = "url('" + _JsonXhr[objectNR].URL + "')"
             }
-            var newWIndow = new MyWindow();
-            newWIndow.setArticleBackground(_JsonXhr, objectNR);
+            else {
+                var newWIndow = new MyWindow();
+                newWIndow.setArticleBackground(_JsonXhr, objectNR);
+            }
+            
         }
     }
     this.getJson = function () {
