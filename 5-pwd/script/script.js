@@ -36,8 +36,7 @@ var Portal = {
 
     },
     generateWindow: function (currentWindowID) {
-        console.log(currentWindowID);
-        console.log("nedskräpning" + Object.keys(window).length)
+        
         var that = this;
         this.count++;
         console.log(this.count);
@@ -53,7 +52,8 @@ var Portal = {
         }
         if (currentWindowID === "app3") {
             var gallery = new Gallery();    
-            gallery.init( this.count);
+            gallery.init(this.count);
+            //gallery.funktionsnamn();
             
         }
             

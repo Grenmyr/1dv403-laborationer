@@ -71,6 +71,7 @@ header {
 }
 
 aside {
+    overflow-y:auto;
     min-height:150px;
     max-height:300px;
     padding-bottom:60px; 

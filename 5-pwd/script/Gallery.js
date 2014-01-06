@@ -2,12 +2,18 @@
 var Gallery = function (_xhr, _JsonXhr, _img) {
     var that = this;
     
+    
     this.init = function (windowID) {
-        
+        var timer = setTimeout(function () {
+            var aside = document.getElementById("aside" + windowID)
+            var ajaxGif = document.createElement("img");
+            ajaxGif.src = "pics/ajaxLoader.gif";
+            aside.nextElementSibling.appendChild(ajaxGif);
+        }, 500);
         this.setXhr();       
         this.setJsonxhr(windowID);
-        this.getXhr().open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
-        this.getXhr().send(null);
+        getXhr().open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
+        getXhr().send(null);
         
         return false;
 
@@ -47,19 +53,17 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
     }
     this.setJsonxhr = function (windowID) {
         var starLoad = new Date();
-        var xhr = this.getXhr();
+        var xhr = getXhr();
         var count = 0;
       
         xhr.onreadystatechange = function () {
             var aside = document.getElementById("aside" + windowID)
-            
-            var ajaxGif = document.createElement("img");
-            ajaxGif.src = "pics/ajaxLoader.gif";
-            aside.nextElementSibling.appendChild(ajaxGif);
-
+            console.log(starLoad);
+           
            
 
             if (xhr.readyState === 4) {
+
                 if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
                     _JsonXhr = JSON.parse(xhr.responseText);
                     
@@ -82,8 +86,11 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
                         count++;
                     }
                     var doneLoading = new Date();
+                    aside.nextSibling.appendChild.removeChild;
+                    clearTimeout(that.timer);
                     aside.nextElementSibling.innerHTML = count + "bilder laddade på" + ((doneLoading-starLoad)/1000) + "sekunder";
-                   
+                    
+       
                 }
                 else {
                     console.log("fel");
@@ -91,7 +98,7 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
             }
         };
     }
-    this.getXhr = function () {
+    function getXhr ()  {
         return _xhr;
     }
     this.setXhr = function () {
@@ -99,4 +106,7 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
 
     };
 
+};
+Gallery.prototype.funktionsnamn = function (arg) {
+    console.log("dsadsa");
 };
