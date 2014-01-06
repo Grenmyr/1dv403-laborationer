@@ -1,27 +1,30 @@
 "use strict";
 var Gallery = function (_xhr, _JsonXhr, _img) {
     var that = this;
-    
-    
-    this.init = function (windowID) {
+
+
+    this.init = function (windowID,adress,gallery) {
+        var starLoad = new Date();
+        console.log(gallery);
+        this.timer(windowID);
+       
+
+        this.setXhr();
+        this.setJsonxhr(windowID, adress, gallery);
+
+
+        
+   
+    };
+    this.timer = function (windowID) {
         var timer = setTimeout(function () {
             var aside = document.getElementById("aside" + windowID)
             var ajaxGif = document.createElement("img");
             ajaxGif.src = "pics/ajaxLoader.gif";
             aside.nextElementSibling.appendChild(ajaxGif);
-        }, 500);
-        this.setXhr();       
-        this.setJsonxhr(windowID);
-        getXhr().open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
-        getXhr().send(null);
-        
-        return false;
-
-    };
+        }, 300);
+    }
     this.setBackground = function () {
-        // Här kollar jag OM enter (13) trycks så kör vi istället send functionen genom den.
-
-
         _img.onclick = function (e) {
             var objectNR = e.target.id.replace("imgThumb", "");
             if (e.shiftKey == 1) {
@@ -31,12 +34,12 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
                 var newWIndow = new MyWindow();
                 newWIndow.setArticleBackground(_JsonXhr, objectNR);
             }
-            
+
         }
     }
     this.getJson = function () {
         return _JsonXhr;
-        
+
     }
     this.getMaxValue = function () {
         var maxThumbWidth = 0;
@@ -54,54 +57,71 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
 
         return [maxThumbWidth, maxThumbHeight];
     }
-    this.setJsonxhr = function (windowID) {
-        var starLoad = new Date();
-        var xhr = getXhr();
-        var count = 0;
-      
-        xhr.onreadystatechange = function () {
-            var aside = document.getElementById("aside" + windowID)
-            console.log(starLoad);
-           
-           
+    this.generateRSS = function () {
+    }
+    this.generateGallery = function (windowID, adress) {
 
+        var count = 0;
+        var aside = document.getElementById("aside" + windowID)
+        var boxSizeArray = that.getMaxValue();
+
+        for (var i = 0; i < _JsonXhr.length; i++) {
+            var img = document.createElement("img");
+            var div = document.createElement("div");
+
+            div.style.width = boxSizeArray[0] + 5 + "px";
+            div.style.height = boxSizeArray[1] + 5 + "px";
+
+            img.setAttribute("src", _JsonXhr[i].thumbURL);
+            img.setAttribute("id", "imgThumb" + count);
+
+            aside.appendChild(div);
+            div.appendChild(img);
+            _img = img;
+            that.setBackground()
+            count++;
+        }
+        var doneLoading = new Date();
+        aside.nextSibling.appendChild.removeChild;
+      
+        aside.nextElementSibling.innerHTML = count + "bilder laddade på" + ((doneLoading - that.starLoad) / 1000) + "sekunder";
+
+    }
+    this.setJsonxhr = function (windowID, adress, gallery) {
+        console.log(gallery);
+        var xhr = _xhr
+        
+        xhr.onreadystatechange = function () {
+            
             if (xhr.readyState === 4) {
 
                 if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-                    _JsonXhr = JSON.parse(xhr.responseText);
-                    
-                    var boxSizeArray = that.getMaxValue();
-
-                    for (var i = 0; i < _JsonXhr.length; i++) {
-                        var img = document.createElement("img");
-                        var div = document.createElement("div");
-
-                        div.style.width = boxSizeArray[0] + 5 + "px";
-                        div.style.height = boxSizeArray[1] + 5 + "px";
-
-                        img.setAttribute("src", _JsonXhr[i].thumbURL);
-                        img.setAttribute("id", "imgThumb" + count);
-
-                        aside.appendChild(div);
-                        div.appendChild(img);
-                        _img = img;
-                        that.setBackground()
-                        count++;
-                    }
-                    var doneLoading = new Date();
-                    aside.nextSibling.appendChild.removeChild;
-                    clearTimeout(that.timer);
-                    aside.nextElementSibling.innerHTML = count + "bilder laddade på" + ((doneLoading-starLoad)/1000) + "sekunder";
-                    
-       
                 }
                 else {
                     console.log("fel");
                 }
+                if (gallery === "gallery") {
+                    _JsonXhr = JSON.parse(xhr.responseText);
+                    that.generateGallery(windowID);
+                    
+                }
+                else {
+                    
+                   
+                   
+                    clearTimeout(that.timer); 
+                 
+                }
+               
             }
+           
         };
+        
+        //getXhr().open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt"), true);
+        getXhr().open("get", adress, true);
+        getXhr().send(null);
     }
-    function getXhr ()  {
+    function getXhr() {
         return _xhr;
     }
     this.setXhr = function () {

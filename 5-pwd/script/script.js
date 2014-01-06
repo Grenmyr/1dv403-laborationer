@@ -9,6 +9,7 @@ var Portal = {
         var memoryOnClick = document.getElementById("app1");
         var MsgBoardOnClick = document.getElementById("app2");
         var galleryOnClick = document.getElementById("app3");
+        var RSSOnClick = document.getElementById("app4");
         
         
         memoryOnClick.addEventListener("click", function () {
@@ -28,6 +29,12 @@ var Portal = {
 
         }, false);
 
+        RSSOnClick.addEventListener("click", function () {
+
+            Portal.generateWindow(RSSOnClick.id);
+
+        }, false);
+
     },
     close: function (windowId) {
         var removeField = document.getElementById("article"+windowId);
@@ -39,7 +46,7 @@ var Portal = {
         
         var that = this;
         this.count++;
-        console.log(this.count);
+        
         var myWindow = new MyWindow(that, this.count);
         if (currentWindowID === "app1") {
             var memoryApp = new MemoryApp();
@@ -51,9 +58,15 @@ var Portal = {
             messBoard.init(this.count);
         }
         if (currentWindowID === "app3") {
+            var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
             var gallery = new Gallery();    
-            gallery.init(this.count);
-            //gallery.funktionsnamn();
+            gallery.init(this.count, adress,"gallery");
+            //gallery.funktionsnamn();          
+        }
+        if (currentWindowID === "app4") {
+            var adressen1 = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
+            var gallery = new Gallery();
+            gallery.init(this.count, adressen1);
             
         }
             
@@ -61,7 +74,7 @@ var Portal = {
         
     },
     genwin: function () {
-
+        console.log();
 
 }
 
