@@ -106,9 +106,9 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
                     
                 }
                 else {
+                    var aside = document.getElementById("aside" + windowID);
+                    aside.innerHTML = xhr.responseText;
                     
-                   
-                   
                     clearTimeout(that.timer); 
                  
                 }

@@ -12,6 +12,7 @@ function MyWindow(object, windowId) {
 
 
     article.setAttribute("id", "article" + windowId);
+    article.setAttribute("class", "article");
 
     aside.setAttribute("id", "aside" + windowId);
     header.setAttribute("class", "winHeader");
@@ -37,12 +38,20 @@ function MyWindow(object, windowId) {
     article.appendChild(aside);
     article.appendChild(footer);
 
-    /*document.body.onclick = function () {
-        console.log("varför behövs denna??????");
+    article.onclick = function () {
+        
+       
+        
+        var all = document.querySelectorAll(".article")
+        console.log(all);
+        for (var i = 0; i < all.length; i++) {
+            all[i].style.zIndex = 1;
+        }
+        console.log(all);
         article.style.zIndex = 999;
         
-
-    }*/
+    }
+    
 
     exitButton.onclick = function () {
         article.parentElement.removeChild(article);
