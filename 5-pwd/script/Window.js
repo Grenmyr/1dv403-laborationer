@@ -13,7 +13,7 @@ function MyWindow(windowId, position) {
 
     
 
-    article.setAttribute("id", "article" + windowId);
+  
     article.setAttribute("class", "article");
 
     aside.setAttribute("id", "aside" + windowId);
@@ -43,39 +43,31 @@ function MyWindow(windowId, position) {
     article.appendChild(footer);
 
     article.onclick = function () {
-        
-       
-        
         var all = document.querySelectorAll(".article")
-       
         for (var i = 0; i < all.length; i++) {
             all[i].style.zIndex = 1;
-        }
-       
-        article.style.zIndex = 999;
-        
+        }       
+        article.style.zIndex = 999;      
     }
     
 
     exitButton.onclick = function () {
+        Portal.onClosedWindow();
         article.parentElement.removeChild(article);
-        //object.close(windowId)
-     
-    }
-    this.setArticleBackground = function (Jsonobject, objNR) {
-        aside.style.backgroundImage = "url('" + Jsonobject[objNR].URL + "')";
-    }
-    this.setwindow = function (whatID, windowSizeArray) {
-        console.log(whatID)
-        console.log(windowSizeArray)
-        console.log(document.getElementById("article" + whatID));
-        document.getElementById("article" + whatID).style.width = windowSizeArray[1] + "px";     
-        document.getElementById("article" + whatID).style.height = windowSizeArray[0] + 50 + "px";
-        document.getElementById("aside" + whatID).style.width = windowSizeArray[1] + "px";
-        document.getElementById("aside" + whatID).style.height = windowSizeArray[0]+ "px";
-        
         
     }
+    this.setWindowForImageView = function (Jsonobject) {
+        aside.style.backgroundImage = "url('" + Jsonobject.URL + "')";
+        var height = Jsonobject.height
+        var width = Jsonobject.width
+        aside.style.width = width + "px";
+        aside.style.height = height + "px";
+        article.style.height = height + "px";
+        article.style.width = width + "px";
+        article.style.top = 75 + position/3+ "px";
+        article.style.left = 500 +position/3+ "px";
+    }
+   
 
 
 

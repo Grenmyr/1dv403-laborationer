@@ -52,6 +52,7 @@ var Portal = {
             this.position = 60;
         }
         
+        
         var myWindow = new MyWindow(this.count, this.position);
         if (currentWindowID === "app1") {
             var memoryApp = new MemoryApp();
@@ -72,12 +73,16 @@ var Portal = {
             var adressen1 = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
             var gallery = new Gallery();
             gallery.init(this.count, adressen1);
-            console.log(this.count * 10 + 20);
-            
+            console.log(this.count * 10 + 20);          
         }
-        return myWindow;
-        
-        
+        if (currentWindowID === "fullSizeImage") {
+            return myWindow;
+        }
+
+    },
+    onClosedWindow: function () {
+   
+        this.position -= 10;
     },
     genwin: function () {
         console.log();

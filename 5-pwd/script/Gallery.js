@@ -34,11 +34,8 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
             
             else {
                 var picSize = [_JsonXhr[objectNR].height, _JsonXhr[objectNR].width];
-                
-                
-                var newWIndow = new MyWindow(windowID+1, 300);
-                newWIndow.setwindow(windowID + 1, picSize);
-                newWIndow.setArticleBackground(_JsonXhr, objectNR);
+                var newWindow = Portal.generateWindow("fullSizeImage")
+                newWindow.setWindowForImageView(_JsonXhr[objectNR]);
             }
 
         }
