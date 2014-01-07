@@ -7,7 +7,7 @@ function Card(cardID, thatCard, _windowID) {
     a.appendChild(img);
     td.appendChild(a);
     // ger vårt spelbräde en baksida.
-    img.src = "pics/0.png";
+    img.src = "pics/0.jpg";
     var that = this;
 
     a.onclick = function () {
@@ -23,13 +23,13 @@ function Card(cardID, thatCard, _windowID) {
     };
     this.flip = function () {
         a.onclick = null;
-        return img.src = "pics/" + cardID + ".png";
+        return img.src = "pics/" + cardID + ".jpg";
     };
     this.getReset = function () {
         a.onclick = function () {
             thatCard.FlipCard(that);
         };
-        img.src = "pics/0.png";
+        img.src = "pics/0.jpg";
     };
     this.getWinID = function () {
         return _windowID;

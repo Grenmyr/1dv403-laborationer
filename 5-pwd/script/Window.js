@@ -10,6 +10,7 @@ function MyWindow(windowId, position) {
     var img = document.createElement("img");
     var aside = document.createElement("aside");
     var footer = document.createElement("footer");
+    var ptag = document.createElement("p");
 
     article.setAttribute("class", "article");
     aside.setAttribute("id", "aside" + windowId);
@@ -30,9 +31,11 @@ function MyWindow(windowId, position) {
     header.appendChild(exitButton);
     exitButton.appendChild(img);
     article.appendChild(aside);
+    footer.appendChild(ptag);
     article.appendChild(footer);
+    
 
-    article.onclick = function () {
+    article.onmousedown = function () {
         var all = document.querySelectorAll(".article")
         for (var i = 0; i < all.length; i++) {
             all[i].style.zIndex = 1;
@@ -52,7 +55,7 @@ function MyWindow(windowId, position) {
         aside.style.height = height + "px";
         //article.style.height = height + "px";
         article.style.width = width + "px";
-        article.style.top = 75  +"px";
+        article.style.top = 25  +"px";
         article.style.left = 500 + "px";
     }
    

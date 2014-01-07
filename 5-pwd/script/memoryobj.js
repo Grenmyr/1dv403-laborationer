@@ -46,7 +46,7 @@ var MemoryApp = function () {
         card.flip();
         count.setClick();
         if (card.getId() === count.getPrevImg(card.getId())) {
-            alert("succe");
+            
         }
         else {
             setTimeout(function () {
@@ -54,8 +54,10 @@ var MemoryApp = function () {
                 card.getReset();
             }, 1000);
         }
-        var pTag = document.getElementById("ClickCount" + card.getWinID())
-        pTag.innerHTML = "antal Försök" + count.getPrevClick()
+        //var pTag = document.getElementById("ClickCount" + card.getWinID())
+        var aside = document.getElementById("aside" + card.getWinID());
+        aside.nextElementSibling.firstChild.innerHTML = "antal Försök" + count.getPrevClick()
+        //pTag.innerHTML = "antal Försök" + count.getPrevClick()
         return count.setClick(true);
     }
 };

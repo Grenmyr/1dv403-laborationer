@@ -1,7 +1,7 @@
 "use strict";
 var Portal = {
     count: 0,
-    position:60,
+    position:40,
     init: function () {
         this.onClick();
     },
@@ -67,13 +67,13 @@ var Portal = {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
             var gallery = new Gallery();    
             gallery.init(this.count, adress,"gallery");
-            //gallery.funktionsnamn();          
+                    
         }
         if (currentWindowID === "app4") {
             var adressen1 = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
             var gallery = new Gallery();
             gallery.init(this.count, adressen1);
-            console.log(this.count * 10 + 20);          
+                  
         }
         if (currentWindowID === "fullSizeImage") {
             return myWindow;
