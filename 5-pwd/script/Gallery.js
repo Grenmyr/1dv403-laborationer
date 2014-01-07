@@ -88,7 +88,7 @@ var Gallery = function (_xhr, _JsonXhr, _img) {
 
     }
     this.setJsonxhr = function (windowID, adress, gallery) {
-        console.log(gallery);
+        
         var xhr = _xhr
         
         xhr.onreadystatechange = function () {
