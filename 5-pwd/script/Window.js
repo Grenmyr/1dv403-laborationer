@@ -1,6 +1,7 @@
 "use strict";
-function MyWindow(object, windowId) {
-    var that = this;
+function MyWindow(windowId, position) {
+    //console.log(object);
+    //var that = this;
     var main = document.getElementById("main");
     var article = document.createElement("article");
     var header = document.createElement("header");
@@ -10,6 +11,7 @@ function MyWindow(object, windowId) {
     var aside = document.createElement("aside");
     var footer = document.createElement("footer");
 
+    
 
     article.setAttribute("id", "article" + windowId);
     article.setAttribute("class", "article");
@@ -23,11 +25,13 @@ function MyWindow(object, windowId) {
     img.setAttribute("class", "exitImage");
     main.appendChild(article);
     // ta bort sen
-    aside.innerHTML = " HAHAHAHA denna CSS e priceless " + windowId;
+    
     
 
-    article.style.top = windowId * 10 + 20 + "px";
-    article.style.left = windowId * 10 + 50 + "px";
+    article.style.top = position+"px";
+    article.style.left = position+"px";
+
+      
 
 
     main.appendChild(article);
@@ -43,11 +47,11 @@ function MyWindow(object, windowId) {
        
         
         var all = document.querySelectorAll(".article")
-        console.log(all);
+       
         for (var i = 0; i < all.length; i++) {
             all[i].style.zIndex = 1;
         }
-        console.log(all);
+       
         article.style.zIndex = 999;
         
     }
@@ -59,9 +63,19 @@ function MyWindow(object, windowId) {
      
     }
     this.setArticleBackground = function (Jsonobject, objNR) {
-        article.style.backgroundImage = "url('" + Jsonobject[objNR].URL + "')"
+        aside.style.backgroundImage = "url('" + Jsonobject[objNR].URL + "')";
     }
-
+    this.setwindow = function (whatID, windowSizeArray) {
+        console.log(whatID)
+        console.log(windowSizeArray)
+        console.log(document.getElementById("article" + whatID));
+        document.getElementById("article" + whatID).style.width = windowSizeArray[1] + "px";     
+        document.getElementById("article" + whatID).style.height = windowSizeArray[0] + 50 + "px";
+        document.getElementById("aside" + whatID).style.width = windowSizeArray[1] + "px";
+        document.getElementById("aside" + whatID).style.height = windowSizeArray[0]+ "px";
+        
+        
+    }
 
 
 

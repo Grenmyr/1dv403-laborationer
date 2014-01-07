@@ -1,6 +1,7 @@
 "use strict";
 var Portal = {
     count: 0,
+    position:60,
     init: function () {
         this.onClick();
     },
@@ -46,8 +47,12 @@ var Portal = {
         
         var that = this;
         this.count++;
+        this.position += 10;
+        if (this.position > 400) {
+            this.position = 60;
+        }
         
-        var myWindow = new MyWindow(that, this.count);
+        var myWindow = new MyWindow(this.count, this.position);
         if (currentWindowID === "app1") {
             var memoryApp = new MemoryApp();
             memoryApp.init(4, 4, this.count);
@@ -67,9 +72,10 @@ var Portal = {
             var adressen1 = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
             var gallery = new Gallery();
             gallery.init(this.count, adressen1);
+            console.log(this.count * 10 + 20);
             
         }
-            
+        return myWindow;
         
         
     },

@@ -58,11 +58,17 @@ body {
     
 }
 article {
+    /*min-width:300px;  
+    min-height:300px; 
+    max-height:2000px;
+    max-width:2000px;*/
     width:300px;  
     height:300px; 
     z-index:1;
     background-color:aqua;
     position:absolute;
+    
+    
     
     
     
@@ -80,7 +86,7 @@ aside {
     overflow-y:auto;
     min-height:150px;
     max-height:300px;
-    padding-bottom:60px; 
+    
 }
 footer {
   
