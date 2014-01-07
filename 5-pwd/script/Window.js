@@ -11,11 +11,7 @@ function MyWindow(windowId, position) {
     var aside = document.createElement("aside");
     var footer = document.createElement("footer");
 
-    
-
-  
     article.setAttribute("class", "article");
-
     aside.setAttribute("id", "aside" + windowId);
     header.setAttribute("class", "winHeader");
     icon.setAttribute("class", "windowThumb");
@@ -24,15 +20,9 @@ function MyWindow(windowId, position) {
     img.setAttribute("src", "pics/2.png");
     img.setAttribute("class", "exitImage");
     main.appendChild(article);
-    // ta bort sen
-    
-    
 
     article.style.top = position+"px";
     article.style.left = position+"px";
-
-      
-
 
     main.appendChild(article);
     article.appendChild(header);
@@ -49,12 +39,10 @@ function MyWindow(windowId, position) {
         }       
         article.style.zIndex = 999;      
     }
-    
 
     exitButton.onclick = function () {
         Portal.onClosedWindow();
-        article.parentElement.removeChild(article);
-        
+        article.parentElement.removeChild(article); 
     }
     this.setWindowForImageView = function (Jsonobject) {
         aside.style.backgroundImage = "url('" + Jsonobject.URL + "')";
@@ -62,10 +50,10 @@ function MyWindow(windowId, position) {
         var width = Jsonobject.width
         aside.style.width = width + "px";
         aside.style.height = height + "px";
-        article.style.height = height + "px";
+        //article.style.height = height + "px";
         article.style.width = width + "px";
-        article.style.top = 75 + position/3+ "px";
-        article.style.left = 500 +position/3+ "px";
+        article.style.top = 75  +"px";
+        article.style.left = 500 + "px";
     }
    
 
