@@ -73,38 +73,29 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
         }
         var doneLoading = new Date();
         console.log(document.getElementById("cpGif" + windowID));
-        //document.getElementById("cpGif" + windowID).remove();
         aside.nextElementSibling.firstChild.innerHTML = count + "bilder laddade på" + ((doneLoading - _startLoad) / 1000) + "sekunder";
 
     }
-    this.setJsonxhr = function (windowID, adress, gallery) {
-
+    Gallery.prototype.setJsonxhr = function (windowID, adress, gallery) {
         var xhr = _xhr
-
         xhr.onreadystatechange = function () {
-
-
             if (xhr.readyState === 4) {
-
                 if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
                 }
                 else {
-                    console.log("fel");
+                    alert("fel i Ajaxanrop");
                 }
                 if (gallery === "gallery") {
                     _JsonXhr = JSON.parse(xhr.responseText);
                     that.generateGallery(windowID);
-
                 }
                 else {
                     var aside = document.getElementById("aside" + windowID);
                     aside.innerHTML = xhr.responseText;
                     aside.nextElementSibling.firstChild.innerHTML = "Senast uppdaterad " + _startLoad.getHours() + ":" + _startLoad.getMinutes() + ":" + _startLoad.getSeconds();
-
                 }
                 document.getElementById("cpGif" + windowID).remove();
             }
-
         };
 
 
