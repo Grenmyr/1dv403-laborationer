@@ -46,7 +46,8 @@ var Portal = {
         }
         if (currentWindowID === "app3") {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
-            var gallery = new Gallery();    
+            var gallery = new Gallery();
+            
             gallery.init(this.count, adress,"gallery");                  
         }
         if (currentWindowID === "app4") {

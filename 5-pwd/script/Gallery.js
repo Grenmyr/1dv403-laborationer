@@ -76,7 +76,7 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
         aside.nextElementSibling.firstChild.innerHTML = count + "bilder laddade på" + ((doneLoading - _startLoad) / 1000) + "sekunder";
 
     }
-    Gallery.prototype.setJsonxhr = function (windowID, adress, gallery) {
+    this.setJsonxhr = function (windowID, adress, gallery) {
         var xhr = _xhr
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
