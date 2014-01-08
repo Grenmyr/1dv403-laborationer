@@ -2,7 +2,6 @@
 var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
     var that = this;
 
-
     this.init = function (windowID, adress, gallery) {
         _startLoad = new Date();
         that.timer(windowID);
@@ -35,16 +34,12 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
             }
 
         }
-    }
-    this.getJson = function () {
-        return _JsonXhr;
-
-    }
+    }  
     this.getMaxValue = function (json) {
         var maxThumbWidth = 0;
         var maxThumbHeight = 0;
 
-        for (var i = 0; i < that.getJson().length; i++) {
+        for (var i = 0; i < _JsonXhr.length; i++) {
 
             if (maxThumbHeight < json[i].thumbHeight) {
                 maxThumbHeight = json[i].thumbHeight;
@@ -55,10 +50,7 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
         }
         return [maxThumbWidth, maxThumbHeight];
     }
-    this.generateRSS = function () {
-    }
     this.generateGallery = function (windowID, adress) {
-
         var count = 0;
         var aside = document.getElementById("aside" + windowID)
         var boxSizeArray = that.getMaxValue(_JsonXhr);
