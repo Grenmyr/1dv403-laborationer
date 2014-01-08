@@ -33,6 +33,5 @@ function Card(cardID, thatCard, _windowID) {
     };
     this.getWinID = function () {
         return _windowID;
-    }
-
+    };
 }
