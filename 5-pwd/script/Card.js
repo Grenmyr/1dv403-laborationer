@@ -6,13 +6,13 @@ function Card(cardID, thatCard, _windowID) {
     var img = document.createElement("img");
     a.appendChild(img);
     td.appendChild(a);
-    // ger vårt spelbräde en baksida.
+    // ger vï¿½rt spelbrï¿½de en baksida.
     img.src = "pics/0.jpg";
     var that = this;
 
     a.onclick = function () {
-        // När man trycker på musen skickar vi med *vilket kort (thatmemory) och anropar flipcard.
-        thatCard.FlipCard(that)
+        // Nï¿½r man trycker pï¿½ musen skickar vi med *vilket kort (thatmemory) och anropar flipcard.
+        thatCard.FlipCard(that);
     };
 
     this.getTd = function () {

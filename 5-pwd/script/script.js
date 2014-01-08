@@ -41,7 +41,6 @@ var Portal = {
             memoryApp.init(4, 4, this.count);
         }
         if (currentWindowID === "app2") {
-            console.log("d� g�r vi hit");
             var messBoard = new Messageboard("kalle");
             messBoard.init(this.count);
         }
