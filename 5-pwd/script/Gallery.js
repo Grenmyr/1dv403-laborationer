@@ -14,12 +14,9 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
         var ajaxGif = document.createElement("img");
         ajaxGif.setAttribute("id", "cpGif" + windowID);
         aside.nextElementSibling.appendChild(ajaxGif);
+
         var timer = setTimeout(function () {
-
-
-
             ajaxGif.src = "pics/ajaxLoader.gif";
-
         }, 300);
         return timer;
     }

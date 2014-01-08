@@ -24,7 +24,7 @@ function MyWindow(windowId, position) {
 
     article.style.top = position + "px";
     article.style.left = position + "px";
-
+    
     main.appendChild(article);
     article.appendChild(header);
     header.appendChild(icon);
@@ -34,20 +34,17 @@ function MyWindow(windowId, position) {
     footer.appendChild(ptag);
     article.appendChild(footer);
     // public interface
-    var drag = new DragDrop(); 
-
+    var drag = new DragDrop(position); 
+   
 
     
-     article.onmousedown = function (t) {
+     article.onmousedown = function () {
             var all = document.querySelectorAll(".article")
          for (var i = 0; i < all.length; i++) {
               all[i].style.zIndex = 1;
             }
            article.style.zIndex = 999;
-
        };
-
-
         exitButton.onclick = function () {
             Portal.onClosedWindow();
             article.parentElement.removeChild(article);
@@ -58,71 +55,53 @@ function MyWindow(windowId, position) {
             var height = Jsonobject.height
             var width = Jsonobject.width
             aside.style.width = width + "px";
-            aside.style.height = height + "px";
-            //article.style.height = height + "px";
+            aside.style.height = height + "px";      
             article.style.width = width + "px";
             article.style.top = 25 + "px";
             article.style.left = 500 + "px";
         };
 
-
+        
 };
 
 function DragDrop() {
-    var dragging = null;
-    console.log("drag");
+    var dragging = null,
+        //
+        diffX = 0,
+        diffY =0;
+    
     document.addEventListener("mousedown", handleEvent, false);
     document.addEventListener("mousemove", handleEvent, false);
     document.addEventListener("mouseup", handleEvent, false);
-    //return {
-    //    enable: function (){
-    //        document.addEventListener("mousedown", handleEvent, false);
-    //        //eventUntil.addHandler(document, "mouseDown", handleEvent);
-    //        //eventUntil.addHandler(document, "mouseMove", handleEvent);
-    //        //eventUntil.addHandler(document, "mouseUp", handleEvent);
-    //    },
-
-    //    disable: function (){
-    //        eventUtil.removeHandler(document, "mouseDown", handleEvent);
-    //        eventUtil.removeHandler(document, "mouseMove", handleEvent);
-    //        eventUtil.removeHandler(document, "mouseUp", handleEvent);
-    //    }
-    //}
-
 
     function handleEvent(event) {
         //get event and target
-        //event = eventUtil.getEvent(event);
+        
+        
         var target = event.target;
-        var mouseStartX = 0; 
-        var mouseStartY = 0;
-
         //determine the type of event
         switch (event.type) {
             case "mousedown":
                 if (target.className.indexOf("winHeader") > -1) {
-                    console.log("hit");
+                    
                     dragging = target;
-                    mouseStartX = event.clientX;
-                    mouseStartY = event.clientY;
-
-                }
-                console.log(event.target);
+                    diffX = event.clientX - dragging.parentNode.offsetLeft;
+                    diffY = event.clientY - dragging.parentNode.offsetTop;
+                }            
                 break;
 
             case "mousemove":
                 if (dragging !== null) {
                     //assign location
-                    dragging.parentNode.style.left = event.clientX + "px";
-                    dragging.parentNode.style.top = event.clientY + "px";
-                    console.log(+dragging.parentNode.style.top.replace(/[^0-9]/g, ''));
-                    
+                    dragging.parentNode.style.left = (event.clientX - diffX) + "px";
+                    dragging.parentNode.style.top =  (event.clientY  -  diffY)+ "px";
+                   
                 }
                 break;
 
             case "mouseup":
                 dragging = null;
-                console.log("mouseup");
+                
                 break;
         }
     }
