@@ -19,12 +19,14 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
         }, 300);
         return timer;
     }
-    this.setBackground = function (windowID) {
+    this.setBackground = function (windowID, main) {
         _img.onclick = function (e) {
 
             var objectNR = e.target.id.replace("imgThumb", "");
             if (e.shiftKey == 1) {
-                document.body.style.backgroundImage = "url('" + _JsonXhr[objectNR].URL + "')"
+                
+                
+                main.style.backgroundImage = "url('" + _JsonXhr[objectNR].URL + "')"
             }
 
             else {
@@ -54,6 +56,7 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
         var count = 0;
         var aside = document.getElementById("aside" + windowID)
         var boxSizeArray = that.getMaxValue(_JsonXhr);
+        var main = document.querySelector('main');
 
         for (var i = 0; i < _JsonXhr.length; i++) {
             var img = document.createElement("img");
@@ -68,11 +71,12 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
             aside.appendChild(div);
             div.appendChild(img);
             _img = img;
-            that.setBackground(windowID)
+            that.setBackground(windowID, main)
             count++;
         }
+        
         var doneLoading = new Date();
-        console.log(document.getElementById("cpGif" + windowID));
+        
         aside.nextElementSibling.firstChild.innerHTML = count + "bilder laddade på" + ((doneLoading - _startLoad) / 1000) + "sekunder";
 
     }
@@ -97,8 +101,6 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
                 document.getElementById("cpGif" + windowID).remove();
             }
         };
-
-
         getXhr().open("get", adress, true);
         getXhr().send(null);
     }
