@@ -1,9 +1,11 @@
 "use strict";
+
 var MemoryApp = function () {
     var that = this;
     var count = new Counter();
 
     this.init = function (rows, cols, windowID) {
+
         var pictureArray = RandomGenerator.getPictureArray(rows, cols);
         generateMemoryBoard(rows, cols, pictureArray, windowID);
     };

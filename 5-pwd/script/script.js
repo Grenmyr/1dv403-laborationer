@@ -1,4 +1,27 @@
-"use strict";
+'use strict';
+
+var PWD = PWD || {};
+
+PWD.namespace = function (ns_string) {
+    var parts = ns_string.split('.'),
+    parent = PWD,
+    i;
+    // strip redundant leading global
+    if (parts[0] === "PWD") {
+        parts = parts.slice(1);
+    }
+    for (i = 0; i < parts.length; i += 1) {
+        // create a property if it doesn't exist
+        if (typeof parent[parts[i]] === "undefined") {
+            parent[parts[i]] = {};
+        }
+
+        parent = parent[parts[i]];
+    }
+    return parent;
+};
+PWD.namespace('Classes');
+PWD.namespace('WinHandler');
 var Portal = {
     count: 0,
     position: 40,
@@ -42,22 +65,26 @@ var Portal = {
         
         var myWindow = new MyWindow(this.count, this.position, this.positionx);
         if (currentWindowID === "app1") {
+            console.log(PWD);
             var memoryApp = new MemoryApp();
             memoryApp.init(4, 4, this.count);
         }
         if (currentWindowID === "app2") {
-            var messBoard = new Messageboard("kalle");
+            var messBoardConstructor = PWD.Classes.MessBoard;
+            var messBoard = new messBoardConstructor();
             messBoard.init(this.count);
         }
         if (currentWindowID === "app3") {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
-            var gallery = new Gallery();
+            var galleryConstructor = PWD.Classes.Gallery;
+            var gallery = new galleryConstructor();
             
             gallery.init(this.count, adress,"gallery");                  
         }
         if (currentWindowID === "app4") {
             var adressen1 = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
-            var gallery = new Gallery();
+            var galleryConstructor = PWD.Classes.Gallery;
+            var gallery = new galleryConstructor();
             gallery.init(this.count, adressen1);          
         }
         if (currentWindowID === "fullSizeImage") {

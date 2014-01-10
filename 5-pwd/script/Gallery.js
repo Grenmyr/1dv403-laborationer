@@ -1,5 +1,6 @@
 "use strict";
-var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
+
+PWD.Classes.Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
     var that = this;
 
     this.init = function (windowID, adress, gallery) {
@@ -112,7 +113,4 @@ var Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
 
     };
 
-};
-Gallery.prototype.funktionsnamn = function (arg) {
-    console.log("dsadsa");
 };

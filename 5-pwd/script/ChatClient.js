@@ -1,5 +1,5 @@
-
-var Messageboard = function(divId){
+"use strict";
+PWD.Classes.MessBoard = function (divId) {
     var messagesArray  = [];
     var that = this;
     
@@ -14,7 +14,7 @@ var Messageboard = function(divId){
     this.init  = function(windowId){
         // dunkar ut taggarnma i vilken ordning jag vill ha dem för varje unik chat.
         // Sätter även lite html klasser och texter till dem.
-
+        
         var aside = document.getElementById("aside" + windowId);
         aside.appendChild(divMainWindow);  
         divMainWindow.id="mainWindow";
@@ -146,9 +146,3 @@ var Messageboard = function(divId){
     };
 };
 
-window.onload = function(){
-    var messBoard = new Messageboard("kalle");
-    messBoard.init();
-    var messBoard2 = new Messageboard("olle");
-    messBoard2.init();
-};

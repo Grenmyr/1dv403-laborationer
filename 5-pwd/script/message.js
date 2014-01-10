@@ -1,4 +1,7 @@
-function Message(_message, _date){
+"use strict";
+
+
+function Message(_message, _date) {
     
     this.getText = function(){
         return _message;
