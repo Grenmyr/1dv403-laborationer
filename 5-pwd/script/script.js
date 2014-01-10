@@ -89,9 +89,6 @@ var Portal = {
             var galleryConstructor = PWD.Gallery.Test;
             
             var gallery = new galleryConstructor();
-
-            console.log(gallery);
-            
             gallery.init(this.count, adress, "POST");
             gallery.methodName();
         }
