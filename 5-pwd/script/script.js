@@ -92,14 +92,14 @@ var Portal = {
 
             console.log(gallery);
             
-            gallery.init(this.count, adress, "gallery", "POST");
+            gallery.init(this.count, adress, "POST");
             gallery.methodName();
         }
         if (currentWindowID === "app4") {
             var adressen1 = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
             var galleryConstructor = PWD.Gallery.Test;
             var gallery = new galleryConstructor();
-            gallery.init(this.count, adressen1,"olle","GET");          
+            gallery.init(this.count, adressen1,"GET");          
         }
         if (currentWindowID === "fullSizeImage") {
             return WinHandler;

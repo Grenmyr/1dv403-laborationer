@@ -85,7 +85,7 @@ PWD.Gallery.Test = (function () {
             aside.nextElementSibling.firstChild.innerHTML = count + "bilder laddade på" + ((doneLoading - _startLoad) / 1000) + "sekunder";
 
         }
-        this.setJsonxhr = function (windowID, adress, gallery, callType) {
+        this.setJsonxhr = function (windowID, adress,  callType) {
             var xhr = _xhr
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
@@ -94,7 +94,7 @@ PWD.Gallery.Test = (function () {
                     else {
                         alert("fel i Ajaxanrop");
                     }
-                    if (gallery === "gallery") {
+                    if (callType === "POST") {
                         _JsonXhr = JSON.parse(xhr.responseText);
                         that.generateGallery(windowID);
                     }
