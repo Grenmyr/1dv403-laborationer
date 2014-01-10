@@ -1,5 +1,5 @@
 "use strict";
-var MemoryApp = {
+PWD.Classes.Memory() = {
     clicks: 0,
     tries: 0,
     prevCard: null,

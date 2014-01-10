@@ -1,6 +1,6 @@
 "use strict";
 
-var MemoryApp = function () {
+PWD.Classes.Memory = function () {
     var that = this;
     var count = new Counter();
 
@@ -22,8 +22,11 @@ var MemoryApp = function () {
         for (var i = 0; i < rows; i++) {
             var tr = document.createElement("tr");
             for (var x = 0; x < cols; x++) {
+                var CardConstructor = PWD.Classes.SubClasses.Card;
+                var card = new CardConstructor(pictureArray[index], that, windowID);
+                
                 // Anropar konstruktor, skickar med mitt element i arrayen med numret.
-                var card = new Card(pictureArray[index], that, windowID);
+                //var card = new Card(pictureArray[index], that, windowID);
                 // f�r att kunna h�mta ut td taggen till min tr via konstruktor.
                 tr.appendChild(card.getTd());
                 index += 1;

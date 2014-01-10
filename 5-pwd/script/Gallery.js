@@ -10,6 +10,7 @@ PWD.Classes.Gallery = function (_xhr, _JsonXhr, _img, _startLoad) {
         this.setJsonxhr(windowID, adress, gallery);
     };
     this.timer = function (windowID) {
+        console.log(windowID)
         var aside = document.getElementById("aside" + windowID)
         var ajaxGif = document.createElement("img");
         ajaxGif.setAttribute("id", "cpGif" + windowID);

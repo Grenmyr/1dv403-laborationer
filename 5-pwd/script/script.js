@@ -22,6 +22,7 @@ PWD.namespace = function (ns_string) {
 };
 PWD.namespace('Classes');
 PWD.namespace('WinHandler');
+PWD.namespace('Classes.SubClasses')
 var Portal = {
     count: 0,
     position: 40,
@@ -51,9 +52,13 @@ var Portal = {
 
     },
     generateWindow: function (currentWindowID) {
-        
-        var that = this;
         this.count++;
+        var myWindow = new MyWindow(this.count, this.position, this.positionx);
+        var article =myWindow.show();
+        
+        console.log(article.offsetHeight);
+        var that = this;
+        
         this.position += 10;
         this.positionx+= 10;
         if (this.positionx > 1400) {
@@ -62,12 +67,12 @@ var Portal = {
         if (this.position > 400) {
             this.position = 60;
         }
-        
-        var myWindow = new MyWindow(this.count, this.position, this.positionx);
+
         if (currentWindowID === "app1") {
             console.log(PWD);
-            var memoryApp = new MemoryApp();
-            memoryApp.init(4, 4, this.count);
+            var memoryConstructor = PWD.Classes.Memory;
+            var Memory = new memoryConstructor()
+            Memory.init(4, 4, this.count);
         }
         if (currentWindowID === "app2") {
             var messBoardConstructor = PWD.Classes.MessBoard;

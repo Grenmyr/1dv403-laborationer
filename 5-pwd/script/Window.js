@@ -52,7 +52,9 @@ function MyWindow(windowId, position,positionx) {
         Portal.onClosedWindow();
         article.parentElement.removeChild(article);
     };
-
+    this.show = function () {
+        return article;
+    }
     this.setWindowForImageView = function (Jsonobject) {
         
         

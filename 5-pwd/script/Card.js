@@ -1,5 +1,5 @@
 "use strict";
-function Card(cardID, thatCard, _windowID) {
+PWD.Classes.SubClasses.Card = function(cardID, thatCard, _windowID) {
     // skapar all struktur.
     var td = document.createElement("td");
     var a = document.createElement("a");
