@@ -19,13 +19,15 @@ PWD.namespace = function (ns_string) {
     }
     return parent;
 };
+PWD.namespace('Gallery');
 PWD.namespace('Classes');
 PWD.namespace('WinHandler');
 PWD.namespace('Classes.SubClasses')
 var Portal = {
     count: 0,
-    position: 40,
-    positionx:50,
+    positionY: 50,
+    positionX: 50,
+
     init: function () {
         this.onClick();
     },
@@ -57,21 +59,19 @@ var Portal = {
         var WinHandler = new winHandlerConstructor(this.count, this.position, this.positionx);
         //var myWindow = new MyWindow(this.count, this.position, this.positionx);
 
-
-
-        //var article =myWindow.show();
-        
-        
-        var that = this;
-        
-        this.position += 10;
-        this.positionx+= 10;
-        if (this.positionx > 1400) {
-            this.positionx = 60;
+        var article = WinHandler.getArticle();
+ 
+        this.positionY += 50;
+        this.positionX += 50;
+        if (this.positionX > window.innerWidth-article.offsetWidth) {
+            this.positionX = 50;
         }
-        if (this.position > 400) {
-            this.position = 60;
+        if (this.positionY > window.innerHeight-article.offsetHeight) {
+            this.positionY = 50;
         }
+        article.style.top = this.positionY + "px";
+        article.style.left = this.positionX + "px";
+
 
         if (currentWindowID === "app1") {
             console.log(PWD);
@@ -86,16 +86,20 @@ var Portal = {
         }
         if (currentWindowID === "app3") {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
-            var galleryConstructor = PWD.Classes.Gallery;
-            var gallery = new galleryConstructor();
+            var galleryConstructor = PWD.Gallery.Test;
             
-            gallery.init(this.count, adress,"gallery");                  
+            var gallery = new galleryConstructor();
+
+            console.log(gallery);
+            
+            gallery.init(this.count, adress, "gallery", "POST");
+            gallery.methodName();
         }
         if (currentWindowID === "app4") {
             var adressen1 = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
-            var galleryConstructor = PWD.Classes.Gallery;
+            var galleryConstructor = PWD.Gallery.Test;
             var gallery = new galleryConstructor();
-            gallery.init(this.count, adressen1);          
+            gallery.init(this.count, adressen1,"olle","GET");          
         }
         if (currentWindowID === "fullSizeImage") {
             return WinHandler;

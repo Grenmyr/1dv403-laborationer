@@ -1,5 +1,5 @@
 "use strict";
-PWD.WinHandler.WinHandler = function(windowId, position,positionx) {
+PWD.WinHandler.WinHandler = function(windowId) {
     var that = this;
     var main = document.getElementById("main");
     var article = document.createElement("article");
@@ -16,15 +16,13 @@ PWD.WinHandler.WinHandler = function(windowId, position,positionx) {
     aside.setAttribute("id", "aside" + windowId);
     header.setAttribute("class", "winHeader");
     icon.setAttribute("class", "windowThumb");
-    icon.setAttribute("src", "pics/1.png");
+    icon.setAttribute("src", "pics/2.png");
     exitButton.setAttribute("class", "exitButton");
-    img.setAttribute("src", "pics/2.png");
+    img.setAttribute("src", "pics/1.png");
     img.setAttribute("class", "exitImage");
     main.appendChild(article);
 
-    article.style.top = position + "px";
-    article.style.left = positionx + "px";
-
+    
     main.appendChild(article);
     article.appendChild(header);
     header.appendChild(icon);
@@ -52,9 +50,10 @@ PWD.WinHandler.WinHandler = function(windowId, position,positionx) {
         Portal.onClosedWindow();
         article.parentElement.removeChild(article);
     };
-    this.show = function () {
+    this.getArticle = function () {
         return article;
     }
+    
     this.setWindowForImageView = function (Jsonobject) {
         
         
