@@ -111,5 +111,4 @@ var Portal = {
 };
 window.onload = function () {
     Portal.init();
-
 };
