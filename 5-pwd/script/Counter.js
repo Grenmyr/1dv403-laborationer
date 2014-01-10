@@ -13,10 +13,6 @@ function Counter(_prevObject, _prevImg, _click, _prevClick) {
     this.setPrevObj = function (object) {
         _prevObject = object;
     };
-    /*this.getPrevObj = function () {
-                
-        return _prevObject;
-    }; tror det funkar utan*/
     this.getPrevObjReset = function () {
         _prevObject.getReset();
     };

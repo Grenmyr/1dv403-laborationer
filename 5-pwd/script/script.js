@@ -74,10 +74,10 @@ var Portal = {
 
 
         if (currentWindowID === "app1") {
-            console.log(PWD);
+           
             var memoryConstructor = PWD.Classes.Memory;
-            var Memory = new memoryConstructor()
-            Memory.init(4, 4, this.count);
+            var Memory = new memoryConstructor(WinHandler)
+            Memory.init(4, 4);
         }
         if (currentWindowID === "app2") {
             var messBoardConstructor = PWD.Classes.MessBoard;
@@ -86,17 +86,17 @@ var Portal = {
         }
         if (currentWindowID === "app3") {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
-            var galleryConstructor = PWD.Gallery.Test;
+            var galleryConstructor = PWD.Gallery.Gallery;
             
-            var gallery = new galleryConstructor();
-            gallery.init(this.count, adress, "POST");
-            gallery.methodName();
+            var gallery = new galleryConstructor(WinHandler);
+            gallery.init( adress, "POST");
+            //gallery.methodName();
         }
         if (currentWindowID === "app4") {
             var adressen1 = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
-            var galleryConstructor = PWD.Gallery.Test;
-            var gallery = new galleryConstructor();
-            gallery.init(this.count, adressen1,"GET");          
+            var galleryConstructor = PWD.Gallery.Gallery;
+            var gallery = new galleryConstructor(WinHandler);
+            gallery.init( adressen1,"GET");          
         }
         if (currentWindowID === "fullSizeImage") {
             return WinHandler;

@@ -1,5 +1,5 @@
 "use strict";
-PWD.Classes.SubClasses.Card = function(cardID, thatCard, _windowID) {
+PWD.Classes.SubClasses.Card = function(cardID, thatCard) {
     // skapar all struktur.
     var td = document.createElement("td");
     var a = document.createElement("a");
@@ -9,12 +9,10 @@ PWD.Classes.SubClasses.Card = function(cardID, thatCard, _windowID) {
     // ger v�rt spelbr�de en baksida.
     img.src = "pics/0.jpg";
     var that = this;
-
     a.onclick = function () {
         // N�r man trycker p� musen skickar vi med *vilket kort (thatmemory) och anropar flipcard.
         thatCard.FlipCard(that);
     };
-
     this.getTd = function () {
         return td;
     };
@@ -31,7 +29,5 @@ PWD.Classes.SubClasses.Card = function(cardID, thatCard, _windowID) {
         };
         img.src = "pics/0.jpg";
     };
-    this.getWinID = function () {
-        return _windowID;
-    };
+    
 }

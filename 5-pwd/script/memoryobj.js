@@ -1,10 +1,37 @@
 "use strict";
 
-PWD.Classes.Memory = function () {
+PWD.Classes.Memory = function (WinHandler,_prevObject, _prevImg, _click, _prevClick) {
     var that = this;
-    var count = new Counter();
+    _prevClick = 1;
+    _click = 0;
+    var setPrevImg = function (number) {
+        _prevImg = number;
+    };
+    var getPrevImg = function (number) {
+        return _prevImg;
+    };
+    var setPrevObj = function (object) {
+        _prevObject = object;
+    };
+    var getPrevObjReset = function () {
+        _prevObject.getReset();
+    };
+    var setClick = function (reset) {
+        _click++;
+        if (reset === true) {
+            _prevClick++;
+            setTimeout(function () {
+                _click = 0;
+            }, 1000);
+        }
+    };
+    var getClick = function () {
+        return _click;
+    };
+    var getPrevClick = function () {
+        return _prevClick;
+    };
     var shuffleMemory = function (rows, cols) {
-
         var numberOfImages = rows * cols;
         var maxImageNumber = numberOfImages / 2;
 
@@ -27,7 +54,6 @@ PWD.Classes.Memory = function () {
                         imageOneOK = true;
                     }
                 }
-
                 if (imageTwoOK == false) {
                     var randomTwo = Math.floor((Math.random() * (rows * cols - 0) + 0));
 
@@ -39,30 +65,29 @@ PWD.Classes.Memory = function () {
             }
             while (imageOneOK == false || imageTwoOK == false);
         }
-
         return imgPlace;
     }
-    this.init = function (rows, cols, windowID) {
-      
+    // Här börjar koden för memoryspelet.
+    this.init = function (rows, cols) {
+
         var pictureArray = shuffleMemory(rows, cols);
-        generateMemoryBoard(rows, cols, pictureArray, windowID);
+        generateMemoryBoard(rows, cols, pictureArray);
     };
-
-      function generateMemoryBoard (rows, cols, pictureArray, windowID) {
-
-        var aside = document.getElementById("aside" + windowID);
+    function generateMemoryBoard(rows, cols, pictureArray) {
+        
+        WinHandler.getAside();
+        var aside = WinHandler.getAside();
         var table = document.createElement("table");
-        var pTag = document.createElement("p");
+        var pTagFooter = document.createElement("p");
         var index = 0;
 
-        pTag.setAttribute("id", "ClickCount" + windowID);
+        pTagFooter.setAttribute("id", "ClickCount");
 
         for (var i = 0; i < rows; i++) {
             var tr = document.createElement("tr");
             for (var x = 0; x < cols; x++) {
                 var CardConstructor = PWD.Classes.SubClasses.Card;
-                var card = new CardConstructor(pictureArray[index], that, windowID);
-                
+                var card = new CardConstructor(pictureArray[index], that);
                 // Anropar konstruktor, skickar med mitt element i arrayen med numret.
                 //var card = new Card(pictureArray[index], that, windowID);
                 // f�r att kunna h�mta ut td taggen till min tr via konstruktor.
@@ -72,31 +97,31 @@ PWD.Classes.Memory = function () {
             table.appendChild(tr);
         }
         aside.appendChild(table);
-        aside.appendChild(pTag);
+        aside.appendChild(pTagFooter);       
     }
     this.FlipCard = function (card) {
 
-        if (count.getClick() > 2) { return; }
-        if (count.getClick() === 0) {
+        if (getClick() > 2) { return; }
+        if (getClick() === 0) {
             card.flip();
-            count.setClick();
-            count.setPrevImg(card.getId());
-            count.setPrevObj(card);
+            setClick();
+            setPrevImg(card.getId());
+            setPrevObj(card);
             return;
         }
         card.flip();
-        count.setClick();
-        if (card.getId() === count.getPrevImg(card.getId())) {
+        setClick();
+        if (card.getId() === getPrevImg(card.getId())) {
             
         }
         else {
             setTimeout(function () {
-                count.getPrevObjReset();
+                getPrevObjReset();
                 card.getReset();
             }, 1000);
         }
-        var aside = document.getElementById("aside" + card.getWinID());
-        aside.nextElementSibling.firstChild.innerHTML = "antal Försök" + count.getPrevClick();
-        return count.setClick(true);
+        var aside = WinHandler.getAside();
+        aside.nextElementSibling.firstChild.innerHTML = "antal Försök" + getPrevClick();
+        return setClick(true);
     };
 };

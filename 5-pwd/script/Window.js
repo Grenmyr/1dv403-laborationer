@@ -9,7 +9,8 @@ PWD.WinHandler.WinHandler = function(windowId) {
     var img = document.createElement("img");
     var aside = document.createElement("aside");
     var footer = document.createElement("footer");
-    var ptag = document.createElement("p");
+    var pTag = document.createElement("p");
+    var pTagHeader = document.createElement("p");
     
 
     article.setAttribute("class", "article");
@@ -25,11 +26,12 @@ PWD.WinHandler.WinHandler = function(windowId) {
     
     main.appendChild(article);
     article.appendChild(header);
-    header.appendChild(icon);
+    header.appendChild(icon);   
     header.appendChild(exitButton);
+    header.appendChild(pTagHeader);
     exitButton.appendChild(img);
     article.appendChild(aside);
-    footer.appendChild(ptag);
+    footer.appendChild(pTag);
     article.appendChild(footer);
     
     article.onmousedown = function () {
@@ -53,6 +55,11 @@ PWD.WinHandler.WinHandler = function(windowId) {
     this.getArticle = function () {
         return article;
     }
+    this.getAside = function () {
+        
+        return aside;
+    }
+    
     
     this.setWindowForImageView = function (Jsonobject) {
         
