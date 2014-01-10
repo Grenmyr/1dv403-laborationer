@@ -68,12 +68,15 @@ article {
     z-index:1;
     background-color:#E1E1E3;
     position:absolute;
-    
+    max-height:500px; 
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 aside {
     overflow-y:auto;
     min-height:150px;
-    height:300px;   
+    height:300px;  
+    
 }
 footer {
      background-color:#493D3D;

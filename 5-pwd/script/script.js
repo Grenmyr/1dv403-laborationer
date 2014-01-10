@@ -1,7 +1,8 @@
 "use strict";
 var Portal = {
     count: 0,
-    position:40,
+    position: 40,
+    positionx:50,
     init: function () {
         this.onClick();
     },
@@ -31,11 +32,15 @@ var Portal = {
         var that = this;
         this.count++;
         this.position += 10;
+        this.positionx+= 10;
+        if (this.positionx > 1400) {
+            this.positionx = 60;
+        }
         if (this.position > 400) {
             this.position = 60;
         }
         
-        var myWindow = new MyWindow(this.count, this.position);
+        var myWindow = new MyWindow(this.count, this.position, this.positionx);
         if (currentWindowID === "app1") {
             var memoryApp = new MemoryApp();
             memoryApp.init(4, 4, this.count);

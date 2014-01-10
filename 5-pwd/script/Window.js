@@ -1,5 +1,5 @@
 "use strict";
-function MyWindow(windowId, position) {
+function MyWindow(windowId, position,positionx) {
     var that = this;
     var main = document.getElementById("main");
     var article = document.createElement("article");
@@ -23,7 +23,7 @@ function MyWindow(windowId, position) {
     main.appendChild(article);
 
     article.style.top = position + "px";
-    article.style.left = position + "px";
+    article.style.left = positionx + "px";
 
     main.appendChild(article);
     article.appendChild(header);
@@ -57,13 +57,9 @@ function MyWindow(windowId, position) {
         
         
         aside.style.backgroundImage = "url('" + Jsonobject.URL + "')";
-        if (Jsonobject.height > 500) {
-            Jsonobject.height = 500;
-        }
-        var height = Jsonobject.height;
-        
-        
       
+
+        var height = Jsonobject.height;            
         var width = Jsonobject.width
         aside.style.width = width + "px";
         aside.style.height = height + "px";
@@ -81,72 +77,43 @@ function MyWindow(windowId, position) {
             diffY = 0;
         
         function handleEvent(event, test) {
-            
-            
-        
             var target = event.target;
             //determine the type of event
             switch (event.type) {
                 case "mousedown":
-                    if (target.className.indexOf("winHeader") > -1) {
-                        console.log(event.clientX)
+                    if (target.className.indexOf("winHeader") > -1) {                       
                         dragging = target;
                         diffX = event.clientX - article.offsetLeft;
-                        diffY = event.clientY - article.offsetTop;
-
-                        
+                        diffY = event.clientY - article.offsetTop;  
                     }
                     break;
-
                 case "mousemove":
                     if (dragging !== null) {
                         //assign location (window.innerwidth)
                         //console.log(window.innerWidth)
                         
-                        if ((event.clientY - diffY) < (840 - article.offsetHeight) && (event.clientY - diffY) > 25) {
-
+                        if ((event.clientY - diffY) < (window.innerHeight - article.offsetHeight) && (event.clientY - diffY) > 25) {
                             dragging.parentNode.style.top = (event.clientY - diffY) + "px";
-
                         }
-                        if ((event.clientX - diffX < 1600 - article.offsetWidth) && (event.clientX - diffX) > 0) {
+                        if ((event.clientX - diffX < window.innerWidth - article.offsetWidth) && (event.clientX - diffX) > 0) {
                             dragging.parentNode.style.left = (event.clientX - diffX) + "px";
-
                         }
-
                         if ((event.clientY -diffY) < 25) {
-                            dragging.parentNode.style.top = 25 + "px";
-                           
+                            dragging.parentNode.style.top = 25 + "px";                          
                         }
                         if ((event.clientX - diffX) < 0) {
-
-                            dragging.parentNode.style.left = 0 + "px";
-                            
+                            dragging.parentNode.style.left = 0 + "px";                            
                         }
-                        if (event.clientY - diffY > 840 - article.offsetHeight) {
-                           
-                            dragging.parentNode.style.top = 840- article.offsetHeight+"px";
-                          
+                        if (event.clientY - diffY > window.innerHeight - article.offsetHeight) {
+                            dragging.parentNode.style.top = window.innerHeight - article.offsetHeight + "px";
+                        }                                              
+                        if (dragging.parentNode.style.left > window.innerWidth - article.offsetWidth) {
+                            dragging.parentNode.style.left = window.innerWidth - article.offsetWidth + "px";
                         }
-                        
-                        
-                        if (event.clientX - diffX > 1600 - article.offsetWidth) {
-                            dragging.parentNode.style.left = 1600 - article.offsetWidth + "px";
-                           
-                        }
-
-                        
-                        
-
-                        
-
-
                     }
-
                     break;
-
                 case "mouseup":
                     dragging = null;
-
                     break;
             }
         };
