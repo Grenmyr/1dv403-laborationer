@@ -79,7 +79,7 @@ function MyWindow(windowId, position) {
             // initialize variables used later for checking difference in mouse and target position.
             diffX = 0,
             diffY = 0;
-    
+        
         function handleEvent(event, test) {
             
             
@@ -102,34 +102,38 @@ function MyWindow(windowId, position) {
                     if (dragging !== null) {
                         //assign location (window.innerwidth)
                         //console.log(window.innerWidth)
-                        /*if ((event.clientY -diffY) < 25) {
-                            dragging.parentNode.style.top = 25 + "px";
-                            break;
-                        }
-                        if ((event.clientX - diffX) < 2) {
+                        
+                        if ((event.clientY - diffY) < (840 - article.offsetHeight) && (event.clientY - diffY) > 25) {
 
-                            dragging.parentNode.style.left = 2 + "px";
-                            break;
+                            dragging.parentNode.style.top = (event.clientY - diffY) + "px";
+
+                        }
+                        if ((event.clientX - diffX < 1600 - article.offsetWidth) && (event.clientX - diffX) > 0) {
+                            dragging.parentNode.style.left = (event.clientX - diffX) + "px";
+
+                        }
+
+                        if ((event.clientY -diffY) < 25) {
+                            dragging.parentNode.style.top = 25 + "px";
+                           
+                        }
+                        if ((event.clientX - diffX) < 0) {
+
+                            dragging.parentNode.style.left = 0 + "px";
+                            
                         }
                         if (event.clientY - diffY > 840 - article.offsetHeight) {
                            
                             dragging.parentNode.style.top = 840- article.offsetHeight+"px";
-                            break;
+                          
                         }
                         
                         
                         if (event.clientX - diffX > 1600 - article.offsetWidth) {
                             dragging.parentNode.style.left = 1600 - article.offsetWidth + "px";
-                            break;
-                        }*/
+                           
+                        }
 
-                        if ((event.clientY - diffY) < (840 - article.offsetHeight) && (event.clientY - diffY) > 25) {
-                            
-                            dragging.parentNode.style.top = (event.clientY - diffY) + "px";
-                        }
-                        if ((event.clientX - diffX < 1600 - article.offsetWidth) && (event.clientX - diffX) > 2) {
-                            dragging.parentNode.style.left = (event.clientX - diffX) + "px";
-                        }
                         
                         
 
