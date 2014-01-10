@@ -71,7 +71,7 @@ var Portal = {
         }
         article.style.top = this.positionY + "px";
         article.style.left = this.positionX + "px";
-
+        alert();
 
         if (currentWindowID === "app1") {
            
