@@ -1,5 +1,5 @@
 "use strict";
-function MyWindow(windowId, position,positionx) {
+PWD.WinHandler.WinHandler = function(windowId, position,positionx) {
     var that = this;
     var main = document.getElementById("main");
     var article = document.createElement("article");

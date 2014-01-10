@@ -1,5 +1,4 @@
 'use strict';
-
 var PWD = PWD || {};
 
 PWD.namespace = function (ns_string) {
@@ -53,10 +52,16 @@ var Portal = {
     },
     generateWindow: function (currentWindowID) {
         this.count++;
-        var myWindow = new MyWindow(this.count, this.position, this.positionx);
-        var article =myWindow.show();
         
-        console.log(article.offsetHeight);
+        var winHandlerConstructor = PWD.WinHandler.WinHandler;
+        var WinHandler = new winHandlerConstructor(this.count, this.position, this.positionx);
+        //var myWindow = new MyWindow(this.count, this.position, this.positionx);
+
+
+
+        //var article =myWindow.show();
+        
+        
         var that = this;
         
         this.position += 10;
@@ -93,7 +98,7 @@ var Portal = {
             gallery.init(this.count, adressen1);          
         }
         if (currentWindowID === "fullSizeImage") {
-            return myWindow;
+            return WinHandler;
         }
     },
     onClosedWindow: function () {
