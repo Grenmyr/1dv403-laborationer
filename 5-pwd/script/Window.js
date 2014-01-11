@@ -1,16 +1,18 @@
 "use strict";
-PWD.WinHandler.WinHandler = function(windowId) {
+PWD.WinHandler.WinHandler = function (windowId, _interval) {
     var that = this;
     var main = document.getElementById("main");
     var article = document.createElement("article");
     var header = document.createElement("header");
+    var aIcon = document.createElement("a");
     var icon = document.createElement("img");
     var exitButton = document.createElement("a");
     var img = document.createElement("img");
     var aside = document.createElement("aside");
     var footer = document.createElement("footer");
-    var pTag = document.createElement("p");
+    var pTagFooter = document.createElement("p");
     var pTagHeader = document.createElement("p");
+    var ajaxGif = document.createElement("img");
     
 
     article.setAttribute("class", "article");
@@ -21,18 +23,31 @@ PWD.WinHandler.WinHandler = function(windowId) {
     exitButton.setAttribute("class", "exitButton");
     img.setAttribute("src", "pics/1.png");
     img.setAttribute("class", "exitImage");
+    pTagHeader.setAttribute("class", "ptagHeader");
     main.appendChild(article);
 
-    
+    footer.appendChild(ajaxGif);
     main.appendChild(article);
     article.appendChild(header);
-    header.appendChild(icon);   
+    aIcon.appendChild(icon);
+    header.appendChild(aIcon);
     header.appendChild(exitButton);
-    header.appendChild(pTagHeader);
+    header.appendChild(pTagHeader);    
     exitButton.appendChild(img);
     article.appendChild(aside);
-    footer.appendChild(pTag);
+    footer.appendChild(pTagFooter);
     article.appendChild(footer);
+
+    this.setWindowForImageView = function (Jsonobject) {
+        var div = document.createElement("div");
+        var height = Jsonobject.height;
+        var width = Jsonobject.width
+        aside.appendChild(div);
+        div.style.width = width + "px";
+        div.style.height = height + "px";
+        article.style.width = width  + "px";
+        div.style.backgroundImage = "url('" + Jsonobject.URL + "')";
+    };
     
     article.onmousedown = function () {
         var all = document.querySelectorAll(".article")
@@ -41,55 +56,70 @@ PWD.WinHandler.WinHandler = function(windowId) {
         }
         article.style.zIndex = 999;
        
-        var dragDrop = DragDrop();
+        var dragDrop = DragDrop(article);
         dragDrop.enable();
     };
     article.onmouseup = function () {
         var dragDrop = DragDrop();
         dragDrop.disable();
+        
+        
     }
     exitButton.onclick = function () {
         Portal.onClosedWindow();
-        article.parentElement.removeChild(article);
+        article.parentElement.removeChild(article);       
+        clearInterval(_interval);
+    
+        
     };
     this.getArticle = function () {
         return article;
     }
-    this.getAside = function () {
-        
+    this.getAside = function () {       
         return aside;
     }
-    
-    
-    this.setWindowForImageView = function (Jsonobject) {
+    this.loadingGif = function (alreadyLoaded) {
+        var uppdateTime = new Date();
+        if (alreadyLoaded === null) { 
+        this.timer = setTimeout(function () {
+            ajaxGif.src = "pics/ajaxLoader.gif";
+            console.log("här")
+            
+        }, 300);
+        }
         
+    }
+    this.setUppdateInterval = function (aftonbladet, WinHandler) {
+        var interval =setInterval(function () {
+            var rssConstructor = PWD.Classes.RssXHR;
+            var rss = new rssConstructor(aftonbladet, WinHandler);
+        }, 5000);
+        _interval = interval;
         
-        aside.style.backgroundImage = "url('" + Jsonobject.URL + "')";
-      
+    }
+    this.getFooterPtag = function () {
+        return pTagFooter;
+    }
+    this.setWindowName = function (name) {
+        pTagHeader.innerHTML = name;
+    }
 
-        var height = Jsonobject.height;            
-        var width = Jsonobject.width
-        aside.style.width = width + "px";
-        aside.style.height = height + "px";
-        article.style.width = width + "px";
-        article.style.top = 25 + "px";
-        article.style.left = 500 + "px";
-        
-    };
 
     var DragDrop = function () {
-    
+       
         var dragging = null,
             // initialize variables used later for checking difference in mouse and target position.
             diffX = 0,
             diffY = 0;
         
         function handleEvent(event, test) {
+            
             var target = event.target;
             //determine the type of event
             switch (event.type) {
                 case "mousedown":
-                    if (target.className.indexOf("winHeader") > -1) {                       
+                    
+                    if (target.className.indexOf("winHeader") > -1 ) {
                         dragging = target;
                         diffX = event.clientX - article.offsetLeft;
                         diffY = event.clientY - article.offsetTop;  

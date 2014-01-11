@@ -1,7 +1,7 @@
 "use strict";
 
-PWD.Gallery.Gallery = function (WinHandler, _startLoad, _xhr, _JsonXhr, _img, _ID) {
-    console.log(WinHandler)
+PWD.Classes.Gallery = function (WinHandler, _startLoad, _xhr, _JsonXhr, _img, _ID) {
+    WinHandler.setWindowName("RSS Gallery");
     var setID = function () {       
         _ID++;
     }
@@ -9,43 +9,41 @@ PWD.Gallery.Gallery = function (WinHandler, _startLoad, _xhr, _JsonXhr, _img, _I
         return _ID;
     }
         var that = this;
-
-        this.init = function ( adress, callType) {
-            
+        this.init = function ( adress, callType) {          
             _startLoad = new Date();
-            that.timer();
+            this.timer();
             this.setXhr();
-            this.setJsonxhr (adress,  callType);
-        };
+                this.setJsonxhr(adress, callType);
+        };       
         this.timer = function () {
             setID()
             var aside = WinHandler.getAside();
             var ajaxGif = document.createElement("img");
             ajaxGif.setAttribute("id", "cpGif" + getID());
             aside.nextElementSibling.appendChild(ajaxGif);
-
             var timer = setTimeout(function () {
                 ajaxGif.src = "pics/ajaxLoader.gif";
             }, 300);
             return timer;
         }
-        this.setBackground = function (main) {
+        this.setBackground = function () {
             _img.onclick = function (e) {
-                var objectNR = e.target.id.replace("imgThumb", "");
+                var objectNR = e.target.id.replace("imgThumb", "");              
                 if (e.shiftKey == 1) {
+                    var main = document.querySelector('main');
                     main.style.backgroundImage = "url('" + _JsonXhr[objectNR].URL + "')"
                 }
                 else {
-                    var picSize = [_JsonXhr[objectNR].height, _JsonXhr[objectNR].width];
-                    var newWindow = Portal.generateWindow("fullSizeImage")
-                    newWindow.setWindowForImageView(_JsonXhr[objectNR]);
+                    var picSize = [_JsonXhr[objectNR].height, _JsonXhr[objectNR].width];                   
+                    var WinHandler = Portal.generateWindow("fullSizeImage")
+                    WinHandler.setWindowForImageView(_JsonXhr[objectNR]);
+                    WinHandler.setWindowName("Picture" + [objectNR])
                 }
             }
         }
         this.getMaxValue = function (json) {
             var maxThumbWidth = 0;
             var maxThumbHeight = 0;
-
             for (var i = 0; i < _JsonXhr.length; i++) {
 
                 if (maxThumbHeight < json[i].thumbHeight) {
@@ -61,7 +59,7 @@ PWD.Gallery.Gallery = function (WinHandler, _startLoad, _xhr, _JsonXhr, _img, _I
             var count = 0;
             var aside = WinHandler.getAside();
             var boxSizeArray = that.getMaxValue(_JsonXhr);
-            var main = document.querySelector('main');
+            
 
             for (var i = 0; i < _JsonXhr.length; i++) {
                 var img = document.createElement("img");
@@ -76,17 +74,14 @@ PWD.Gallery.Gallery = function (WinHandler, _startLoad, _xhr, _JsonXhr, _img, _I
                 aside.appendChild(div);
                 div.appendChild(img);
                 _img = img;
-                that.setBackground(main)
+                that.setBackground()
                 count++;
             }
-
             var doneLoading = new Date();
-
             aside.nextElementSibling.firstChild.innerHTML = count + "bilder laddade på" + ((doneLoading - _startLoad) / 1000) + "sekunder";
-
-        }
+        }     
         this.setJsonxhr = function (adress, callType) {
-            var xhr = _xhr
+            var xhr = _xhr;
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
@@ -99,11 +94,15 @@ PWD.Gallery.Gallery = function (WinHandler, _startLoad, _xhr, _JsonXhr, _img, _I
                         that.generateGallery();
                     }
                     else {
+                        console.log('här')
                         var aside = WinHandler.getAside();
                         aside.innerHTML = xhr.responseText;
+                        aside.scrollTop = aside.scrollHeight;
                         aside.nextElementSibling.firstChild.innerHTML = "Senast uppdaterad " + _startLoad.getHours() + ":" + _startLoad.getMinutes() + ":" + _startLoad.getSeconds();
                     }
-                    document.getElementById("cpGif" + getID()).remove();
+                    if( document.getElementById("cpGif" + getID()) !== null){
+                        document.getElementById("cpGif" + getID()).remove();
+                    }
                 }
             };
             getXhr().open(callType, adress, true);

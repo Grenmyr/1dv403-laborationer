@@ -61,6 +61,7 @@ body {
 }
 header {
     height:25px;
+    
 }
 article {
     width:320px;
@@ -69,13 +70,14 @@ article {
     background-color:#E1E1E3;
     position:absolute;
     max-height:500px; 
-    overflow-y:auto;
+    
     overflow-x:hidden;
 }
 aside {
     overflow-y:auto;
     min-height:150px;
     height:300px;  
+    overflow-x:hidden;
     
 }
 footer {
@@ -100,15 +102,19 @@ div {
     background-color:aquamarine;
     float:left;
     text-align:center;
+    
 }
 p {
      color:#E1E1E3;
 }
 /*style after class*/
-
+.ptagHeader {
+    float:none;
+    width:150px;
+}
 .exitImage {
-    height:30px;
-    float:right;
+    width:30px;
+    float:right 
 }
 
 .winHeader{
@@ -118,12 +124,14 @@ p {
 }
 
 .windowThumb {
+    float:left;
     width:30px;
 }
 .startThumb {
     width:50px;
     height:auto;
 }
+
 
 /* style after id*/
 #example {

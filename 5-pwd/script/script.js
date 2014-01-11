@@ -19,7 +19,7 @@ PWD.namespace = function (ns_string) {
     }
     return parent;
 };
-PWD.namespace('Gallery');
+
 PWD.namespace('Classes');
 PWD.namespace('WinHandler');
 PWD.namespace('Classes.SubClasses')
@@ -36,7 +36,7 @@ var Portal = {
         var MsgBoardOnClick = document.getElementById("app2");
         var galleryOnClick = document.getElementById("app3");
         var RSSOnClick = document.getElementById("app4");
-        
+        var RSSAftonbladetOnClick = document.getElementById("app5");
         memoryOnClick.addEventListener("click", function () {
             Portal.generateWindow(memoryOnClick.id);
         }, false);
@@ -50,13 +50,16 @@ var Portal = {
         RSSOnClick.addEventListener("click", function () {
             Portal.generateWindow(RSSOnClick.id);
         }, false);
+        RSSAftonbladetOnClick.addEventListener("click", function () {
+            Portal.generateWindow(RSSAftonbladetOnClick.id);
+        }, false);
 
     },
     generateWindow: function (currentWindowID) {
         this.count++;
         
         var winHandlerConstructor = PWD.WinHandler.WinHandler;
-        var WinHandler = new winHandlerConstructor(this.count, this.position, this.positionx);
+        var WinHandler = new winHandlerConstructor( this.position, this.positionx);
         //var myWindow = new MyWindow(this.count, this.position, this.positionx);
 
         var article = WinHandler.getArticle();
@@ -71,7 +74,7 @@ var Portal = {
         }
         article.style.top = this.positionY + "px";
         article.style.left = this.positionX + "px";
-        alert();
+      
 
         if (currentWindowID === "app1") {
            
@@ -86,17 +89,24 @@ var Portal = {
         }
         if (currentWindowID === "app3") {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
-            var galleryConstructor = PWD.Gallery.Gallery;
+            var galleryConstructor = PWD.Classes.Gallery;
             
             var gallery = new galleryConstructor(WinHandler);
             gallery.init( adress, "POST");
             //gallery.methodName();
         }
         if (currentWindowID === "app4") {
-            var adressen1 = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
-            var galleryConstructor = PWD.Gallery.Gallery;
-            var gallery = new galleryConstructor(WinHandler);
-            gallery.init( adressen1,"GET");          
+            var dn = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
+            var rssConstructor = PWD.Classes.RssXHR;
+            var rss = new rssConstructor(dn, WinHandler);
+            WinHandler.setUppdateInterval(dn, WinHandler)
+        }
+        if (currentWindowID === "app5") {           
+            var aftonbladet = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url=" + escape("http://www.aftonbladet.se/rss.xml");
+            var rssConstructor = PWD.Classes.RssXHR;
+            var rss = new rssConstructor(aftonbladet, WinHandler);
+            WinHandler.setUppdateInterval(aftonbladet, WinHandler)
+            
         }
         if (currentWindowID === "fullSizeImage") {
             return WinHandler;
