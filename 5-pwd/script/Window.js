@@ -62,7 +62,7 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
     article.onmouseup = function () {
         var dragDrop = DragDrop();
         dragDrop.disable();
-        
+        //var här
         
     }
     exitButton.onclick = function () {
