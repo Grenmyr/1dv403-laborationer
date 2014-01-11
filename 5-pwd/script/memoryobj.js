@@ -69,7 +69,7 @@ PWD.Classes.Memory = function (WinHandler,_prevObject, _prevImg, _click, _prevCl
     }
     // Här börjar koden för memoryspelet.
     this.init = function (rows, cols) {
-
+        WinHandler.setWindowName("Memory","pics/2.png");
         var pictureArray = shuffleMemory(rows, cols);
         generateMemoryBoard(rows, cols, pictureArray);
     };
@@ -120,8 +120,8 @@ PWD.Classes.Memory = function (WinHandler,_prevObject, _prevImg, _click, _prevCl
                 card.getReset();
             }, 1000);
         }
-        var aside = WinHandler.getAside();
-        aside.nextElementSibling.firstChild.innerHTML = "antal Försök" + getPrevClick();
+        var p = WinHandler.getFooterPtag();
+        p.innerHTML = "antal Försök" + getPrevClick();
         return setClick(true);
     };
 };

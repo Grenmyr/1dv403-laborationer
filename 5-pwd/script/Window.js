@@ -1,5 +1,5 @@
 "use strict";
-PWD.WinHandler.WinHandler = function (windowId, _interval) {
+PWD.WinHandler.WinHandler = function ( _interval) {
     var that = this;
     var main = document.getElementById("main");
     var article = document.createElement("article");
@@ -16,10 +16,10 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
 
 
     article.setAttribute("class", "article");
-    aside.setAttribute("id", "aside" + windowId);
+    //aside.setAttribute("id", "aside" + windowId);
     header.setAttribute("class", "winHeader");
     icon.setAttribute("class", "windowThumb");
-    icon.setAttribute("src", "pics/2.png");
+    //icon.setAttribute("src", "pics/2.png");
     exitButton.setAttribute("class", "exitButton");
     img.setAttribute("src", "pics/1.png");
     img.setAttribute("class", "exitImage");
@@ -39,6 +39,7 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
     article.appendChild(footer);
 
     this.setWindowForImageView = function (Jsonobject) {
+        console.log(Jsonobject)
         var div = document.createElement("div");
         var height = Jsonobject.height;
         var width = Jsonobject.width
@@ -79,12 +80,19 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
     this.getAside = function () {
         return aside;
     }
+    this.getFooterPtag = function () {
+        return pTagFooter;
+    }
+    this.setWindowName = function (name,iconSrc) {
+        pTagHeader.innerHTML = name;
+        icon.setAttribute("src", iconSrc);
+    }
     this.loadingGif = function (alreadyLoaded) {
-        console.log(alreadyLoaded)
+     
         if (alreadyLoaded === null) {
             this.timer = setTimeout(function () {
                 ajaxGif.src = "pics/ajaxLoader.gif";
-            }, 2000);
+            }, 300);
         }
         else {
             clearTimeout(this.timer);
@@ -101,12 +109,7 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
         _interval = interval;
 
     }
-    this.getFooterPtag = function () {
-        return pTagFooter;
-    }
-    this.setWindowName = function (name) {
-        pTagHeader.innerHTML = name;
-    }
+    
 
 
     var DragDrop = function () {

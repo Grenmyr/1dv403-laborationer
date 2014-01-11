@@ -1,35 +1,63 @@
 "use strict";
 
-PWD.Classes.Gallery = function (WinHandler, startLoad, _xhr, _JsonXhr, _img, _ID) {
-    WinHandler.setWindowName("RSS Gallery");
-
-
-    var setID = function () {
-        _ID++;
-    }
-    var getID = function () {
-        return _ID;
-    }
+PWD.Classes.Gallery = function (WinHandler, startLoad, xhr, _JsonXhr, _img) {
+    WinHandler.setWindowName("Gallery", "pics/3.png");
+   
     var that = this;
     this.init = function (adress, callType) {
         startLoad = new Date();
 
         WinHandler.loadingGif(null);
-        this.setXhr();
-        this.setJsonxhr(adress, callType);
+        setXhr();
+        setJsonxhr(adress, callType);
     };
-    /*this.timer = function () {
-        setID()
+    function setXhr() {
+        xhr = new XMLHttpRequest();
+
+    };
+    function setJsonxhr(adress, callType) {
+        
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
+                    _JsonXhr = JSON.parse(xhr.responseText);
+                    generateGallery();
+                    WinHandler.loadingGif("doneloading");
+                }
+                else {
+                    alert("fel i Ajaxanrop");
+                }               
+            }
+        };
+        xhr.open(callType, adress, true);
+        xhr.send(null);
+    }
+    function generateGallery() {
+        var count = 0;
+        var doneLoading = new Date();
+
         var aside = WinHandler.getAside();
-        var ajaxGif = document.createElement("img");
-        ajaxGif.setAttribute("id", "cpGif" + getID());
-        aside.nextElementSibling.appendChild(ajaxGif);
-        var timer = setTimeout(function () {
-            ajaxGif.src = "pics/ajaxLoader.gif";
-        }, 300);
-        return timer;
-    }*/
-    this.setBackground = function () {
+        var boxSizeArray = that.getMaxValue(_JsonXhr);
+        var p = WinHandler.getFooterPtag();
+
+        for (var i = 0; i < _JsonXhr.length; i++) {
+            var img = document.createElement("img");
+            var div = document.createElement("div");
+
+            div.style.width = boxSizeArray[0] + 5 + "px";
+            div.style.height = boxSizeArray[1] + 5 + "px";
+            img.setAttribute("src", _JsonXhr[i].thumbURL);
+            img.setAttribute("id", "imgThumb" + count);
+            aside.appendChild(div);
+            div.appendChild(img);
+            _img = img;
+            setBackground()
+            count++;
+        }
+        p.innerHTML = count + "bilder laddade på" + ((doneLoading - startLoad) / 1000) + "sekunder";
+    }
+   
+    function setBackground() {
         _img.onclick = function (e) {
             var objectNR = e.target.id.replace("imgThumb", "");
             if (e.shiftKey == 1) {
@@ -58,60 +86,5 @@ PWD.Classes.Gallery = function (WinHandler, startLoad, _xhr, _JsonXhr, _img, _ID
         }
         return [maxThumbWidth, maxThumbHeight];
     }
-    this.generateGallery = function () {
-        var count = 0;
-        var aside = WinHandler.getAside();
-        var boxSizeArray = that.getMaxValue(_JsonXhr);
-
-
-        for (var i = 0; i < _JsonXhr.length; i++) {
-            var img = document.createElement("img");
-            var div = document.createElement("div");
-
-            div.style.width = boxSizeArray[0] + 5 + "px";
-            div.style.height = boxSizeArray[1] + 5 + "px";
-            img.setAttribute("src", _JsonXhr[i].thumbURL);
-            img.setAttribute("id", "imgThumb" + count);
-            aside.appendChild(div);
-            div.appendChild(img);
-            _img = img;
-            that.setBackground()
-            count++;
-        }
-        var doneLoading = new Date();
-        var p = WinHandler.getFooterPtag();
-        p.innerHTML = count + "bilder laddade på" + ((doneLoading - startLoad) / 1000) + "sekunder";
-    }
-    this.setJsonxhr = function (adress, callType) {
-        var xhr = _xhr;
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-                }
-                else {
-                    alert("fel i Ajaxanrop");
-                }
-                if (callType === "POST") {
-                    _JsonXhr = JSON.parse(xhr.responseText);
-                    that.generateGallery();
-                    WinHandler.loadingGif("doneloading");
-                    
-                    
-                }
-
-                
-
-
-            }
-        };
-        getXhr().open(callType, adress, true);
-        getXhr().send(null);
-    }
-    function getXhr() {
-        return _xhr;
-    }
-    this.setXhr = function () {
-        _xhr = new XMLHttpRequest();
-
-    };
+   
 };

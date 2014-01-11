@@ -1,5 +1,5 @@
 "use strict";
-PWD.Classes.MessBoard = function (divId) {
+PWD.Classes.MessBoard = function () {
     var messagesArray  = [];
     var that = this;
     
@@ -11,11 +11,12 @@ PWD.Classes.MessBoard = function (divId) {
     var textArea = document.createElement("textarea");
     var sendButton = document.createElement("button");
     
-    this.init  = function(windowId){
+    this.init = function (WinHandler) {
         // dunkar ut taggarnma i vilken ordning jag vill ha dem för varje unik chat.
         // Sätter även lite html klasser och texter till dem.
-        
-        var aside = document.getElementById("aside" + windowId);
+        var aside = WinHandler.getAside()
+        WinHandler.setWindowName("Chat", "pics/5.png");
+
         aside.appendChild(divMainWindow);  
         divMainWindow.id="mainWindow";
         h1.innerHTML= "Labby Message!";

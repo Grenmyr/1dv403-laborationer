@@ -24,7 +24,6 @@ PWD.namespace('Classes');
 PWD.namespace('WinHandler');
 PWD.namespace('Classes.SubClasses')
 var Portal = {
-    count: 0,
     positionY: 50,
     positionX: 50,
 
@@ -37,6 +36,13 @@ var Portal = {
         var galleryOnClick = document.getElementById("app3");
         var RSSOnClick = document.getElementById("app4");
         var RSSAftonbladetOnClick = document.getElementById("app5");
+        var navOnclick = document.getElementById("nav");
+
+        navOnclick.addEventListener("click", function (e) {
+            console.log(e)
+        }, false);
+
+
         memoryOnClick.addEventListener("click", function () {
             Portal.generateWindow(memoryOnClick.id);
         }, false);
@@ -56,25 +62,25 @@ var Portal = {
 
     },
     generateWindow: function (currentWindowID) {
-        this.count++;
-        
         var winHandlerConstructor = PWD.WinHandler.WinHandler;
-        var WinHandler = new winHandlerConstructor( this.position, this.positionx);
-        //var myWindow = new MyWindow(this.count, this.position, this.positionx);
-
+        var WinHandler = new winHandlerConstructor();
         var article = WinHandler.getArticle();
- 
+
         this.positionY += 50;
         this.positionX += 50;
-        if (this.positionX > window.innerWidth-article.offsetWidth) {
+        if (this.positionX > window.innerWidth - article.offsetWidth) {
             this.positionX = 50;
         }
-        if (this.positionY > window.innerHeight-article.offsetHeight) {
+        if (this.positionY > window.innerHeight - article.offsetHeight) {
             this.positionY = 50;
         }
         article.style.top = this.positionY + "px";
         article.style.left = this.positionX + "px";
-      
+
+        
+
+        
+        
 
         if (currentWindowID === "app1") {
            
@@ -85,7 +91,7 @@ var Portal = {
         if (currentWindowID === "app2") {
             var messBoardConstructor = PWD.Classes.MessBoard;
             var messBoard = new messBoardConstructor();
-            messBoard.init(this.count);
+            messBoard.init(WinHandler);
         }
         if (currentWindowID === "app3") {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
