@@ -65,11 +65,11 @@ header {
 }
 article {
     width:320px;
-    min-height:300px; 
+    min-height:350px; 
     z-index:1;
     background-color:#E1E1E3;
     position:absolute;
-    max-height:500px; 
+    max-height:550px; 
     
     overflow-x:hidden;
 }

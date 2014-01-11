@@ -2,8 +2,6 @@
 
 
 PWD.Classes.RssXHR = function (adress, WinHandler) {
-    
-    
     if (WinHandler !== undefined) { 
         WinHandler.loadingGif();
         WinHandler.setWindowName("RSS Reader");

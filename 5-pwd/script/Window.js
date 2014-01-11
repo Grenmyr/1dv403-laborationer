@@ -13,7 +13,7 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
     var pTagFooter = document.createElement("p");
     var pTagHeader = document.createElement("p");
     var ajaxGif = document.createElement("img");
-    
+
 
     article.setAttribute("class", "article");
     aside.setAttribute("id", "aside" + windowId);
@@ -32,7 +32,7 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
     aIcon.appendChild(icon);
     header.appendChild(aIcon);
     header.appendChild(exitButton);
-    header.appendChild(pTagHeader);    
+    header.appendChild(pTagHeader);
     exitButton.appendChild(img);
     article.appendChild(aside);
     footer.appendChild(pTagFooter);
@@ -42,20 +42,21 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
         var div = document.createElement("div");
         var height = Jsonobject.height;
         var width = Jsonobject.width
-        aside.appendChild(div);
-        div.style.width = width + "px";
-        div.style.height = height + "px";
-        article.style.width = width  + "px";
-        div.style.backgroundImage = "url('" + Jsonobject.URL + "')";
+        //aside.appendChild(div);
+        aside.style.width = width + "px";
+        aside.style.height = height + "px";
+
+        article.style.width = width + "px";
+        aside.style.backgroundImage = "url('" + Jsonobject.URL + "')";
     };
-    
+
     article.onmousedown = function () {
         var all = document.querySelectorAll(".article")
         for (var i = 0; i < all.length; i++) {
             all[i].style.zIndex = 1;
         }
         article.style.zIndex = 999;
-       
+
         var dragDrop = DragDrop(article);
         dragDrop.enable();
     };
@@ -63,39 +64,42 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
         var dragDrop = DragDrop();
         dragDrop.disable();
         //var här
-        
+
     }
     exitButton.onclick = function () {
         Portal.onClosedWindow();
-        article.parentElement.removeChild(article);       
+        article.parentElement.removeChild(article);
         clearInterval(_interval);
-    
-        
+
+
     };
     this.getArticle = function () {
         return article;
     }
-    this.getAside = function () {       
+    this.getAside = function () {
         return aside;
     }
     this.loadingGif = function (alreadyLoaded) {
-        var uppdateTime = new Date();
-        if (alreadyLoaded === null) { 
-        this.timer = setTimeout(function () {
-            ajaxGif.src = "pics/ajaxLoader.gif";
-            console.log("här")
-            
-        }, 300);
+        console.log(alreadyLoaded)
+        if (alreadyLoaded === null) {
+            this.timer = setTimeout(function () {
+                ajaxGif.src = "pics/ajaxLoader.gif";
+            }, 2000);
         }
-        
+        else {
+            clearTimeout(this.timer);
+            ajaxGif.src = "";
+        }
+
+
     }
     this.setUppdateInterval = function (aftonbladet, WinHandler) {
-        var interval =setInterval(function () {
+        var interval = setInterval(function () {
             var rssConstructor = PWD.Classes.RssXHR;
             var rss = new rssConstructor(aftonbladet, WinHandler);
         }, 5000);
         _interval = interval;
-        
+
     }
     this.getFooterPtag = function () {
         return pTagFooter;
@@ -106,45 +110,45 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
 
 
     var DragDrop = function () {
-       
+
         var dragging = null,
             // initialize variables used later for checking difference in mouse and target position.
             diffX = 0,
             diffY = 0;
-        
+
         function handleEvent(event, test) {
-            
+
             var target = event.target;
             //determine the type of event
             switch (event.type) {
                 case "mousedown":
-                    
-                    if (target.className.indexOf("winHeader") > -1 ) {
+
+                    if (target.className.indexOf("winHeader") > -1) {
                         dragging = target;
                         diffX = event.clientX - article.offsetLeft;
-                        diffY = event.clientY - article.offsetTop;  
+                        diffY = event.clientY - article.offsetTop;
                     }
                     break;
                 case "mousemove":
                     if (dragging !== null) {
                         //assign location (window.innerwidth)
                         //console.log(window.innerWidth)
-                        
+
                         if ((event.clientY - diffY) < (window.innerHeight - article.offsetHeight) && (event.clientY - diffY) > 25) {
                             dragging.parentNode.style.top = (event.clientY - diffY) + "px";
                         }
                         if ((event.clientX - diffX < window.innerWidth - article.offsetWidth) && (event.clientX - diffX) > 0) {
                             dragging.parentNode.style.left = (event.clientX - diffX) + "px";
                         }
-                        if ((event.clientY -diffY) < 25) {
-                            dragging.parentNode.style.top = 25 + "px";                          
+                        if ((event.clientY - diffY) < 25) {
+                            dragging.parentNode.style.top = 25 + "px";
                         }
                         if ((event.clientX - diffX) < 0) {
-                            dragging.parentNode.style.left = 0 + "px";                            
+                            dragging.parentNode.style.left = 0 + "px";
                         }
                         if (event.clientY - diffY > window.innerHeight - article.offsetHeight) {
                             dragging.parentNode.style.top = window.innerHeight - article.offsetHeight + "px";
-                        }                                              
+                        }
                         if (dragging.parentNode.style.left > window.innerWidth - article.offsetWidth) {
                             dragging.parentNode.style.left = window.innerWidth - article.offsetWidth + "px";
                         }
@@ -179,21 +183,21 @@ PWD.WinHandler.WinHandler = function (windowId, _interval) {
 
 
 //var DragDrop = function () {
-    
+
 //    var dragging = null,
 //        // initialize variables used later for checking difference in mouse and target position.
 //        diffX = 0,
 //        diffY = 0;
-    
+
 //    function handleEvent(event,test) {
 //        console.log(test)
-        
+
 //        var target = event.target;
 //        //determine the type of event
 //        switch (event.type) {
 //            case "mousedown":
 //                if (target.className.indexOf("winHeader") > -1) {
-                    
+
 //                    dragging = target;
 //                    diffX = event.clientX - dragging.parentNode.offsetLeft;
 //                    diffY = event.clientY - dragging.parentNode.offsetTop;
