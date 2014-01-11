@@ -39,7 +39,8 @@ var Portal = {
         var navOnclick = document.getElementById("nav");
 
         navOnclick.addEventListener("click", function (e) {
-            console.log(e)
+            console.log(e.target)
+            console.log("här skriver jag")
         }, false);
 
 
