@@ -31,34 +31,12 @@ var Portal = {
         this.onClick();
     },
     onClick: function () {
-        var memoryOnClick = document.getElementById("app1");
-        var MsgBoardOnClick = document.getElementById("app2");
-        var galleryOnClick = document.getElementById("app3");
-        var RSSOnClick = document.getElementById("app4");
-        var RSSAftonbladetOnClick = document.getElementById("app5");
+
         var navOnclick = document.getElementById("nav");
 
         navOnclick.addEventListener("click", function (e) {
-            console.log(e.target)
-            console.log("här skriver jag")
-        }, false);
-
-
-        memoryOnClick.addEventListener("click", function () {
-            Portal.generateWindow(memoryOnClick.id);
-        }, false);
-        MsgBoardOnClick.addEventListener("click", function () {
-            Portal.generateWindow(MsgBoardOnClick.id);
-        }, false);
-        galleryOnClick.addEventListener("click", function () {
-            Portal.generateWindow(galleryOnClick.id);
-        }, false);
-
-        RSSOnClick.addEventListener("click", function () {
-            Portal.generateWindow(RSSOnClick.id);
-        }, false);
-        RSSAftonbladetOnClick.addEventListener("click", function () {
-            Portal.generateWindow(RSSAftonbladetOnClick.id);
+            var currentWindowID = e.target.parentNode.id;
+            Portal.generateWindow(currentWindowID);
         }, false);
 
     },
@@ -78,11 +56,6 @@ var Portal = {
         article.style.top = this.positionY + "px";
         article.style.left = this.positionX + "px";
 
-        
-
-        
-        
-
         if (currentWindowID === "app1") {
            
             var memoryConstructor = PWD.Classes.Memory;
@@ -96,11 +69,9 @@ var Portal = {
         }
         if (currentWindowID === "app3") {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
-            var galleryConstructor = PWD.Classes.Gallery;
-            
+            var galleryConstructor = PWD.Classes.Gallery;          
             var gallery = new galleryConstructor(WinHandler);
             gallery.init( adress, "POST");
-            //gallery.methodName();
         }
         if (currentWindowID === "app4") {
             var dn = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");
@@ -122,10 +93,7 @@ var Portal = {
     onClosedWindow: function () {
         this.position -= 10;
     },
-    // ta bort sen
-    genwin: function () {
-        console.log();
-}
+    
 };
 window.onload = function () {
     Portal.init();
