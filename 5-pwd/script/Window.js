@@ -105,7 +105,7 @@ PWD.WinHandler.WinHandler = function ( _interval) {
         var interval = setInterval(function () {
             var rssConstructor = PWD.Classes.RssXHR;
             var rss = new rssConstructor(aftonbladet, WinHandler);
-        }, 5000);
+        }, 300000);
         _interval = interval;
 
     }

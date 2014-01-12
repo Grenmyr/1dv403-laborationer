@@ -1,10 +1,8 @@
 "use strict";
-
-
 PWD.Classes.RssXHR = function (adress, WinHandler) {
     if (WinHandler !== undefined) { 
         WinHandler.loadingGif();
-        WinHandler.setWindowName("RSS Reader", "pics/4.png");
+        WinHandler.setWindowName("RSS" , "pics/4.png");
     }
     var request = (function () {
         var xhr = new XMLHttpRequest();
@@ -29,10 +27,8 @@ PWD.Classes.RssXHR = function (adress, WinHandler) {
             }
         };
         xhr.open("GET", adress, true);
-        xhr.send(null);
-        
-    }());
-    
+        xhr.send(null);       
+    }());   
 };
 
 

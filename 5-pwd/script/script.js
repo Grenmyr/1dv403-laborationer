@@ -28,7 +28,7 @@ var Portal = {
     positionX: 50,
 
     init: function () {
-        this.onClick();
+        Portal.onClick();
     },
     onClick: function () {
 
@@ -62,11 +62,11 @@ var Portal = {
             var Memory = new memoryConstructor(WinHandler)
             Memory.init(4, 4);
         }
-        if (currentWindowID === "app2") {
+        /*if (currentWindowID === "app2") {
             var messBoardConstructor = PWD.Classes.MessBoard;
             var messBoard = new messBoardConstructor();
             messBoard.init(WinHandler);
-        }
+        }*/
         if (currentWindowID === "app3") {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
             var galleryConstructor = PWD.Classes.Gallery;          
@@ -80,10 +80,10 @@ var Portal = {
             WinHandler.setUppdateInterval(dn, WinHandler)
         }
         if (currentWindowID === "app5") {           
-            var aftonbladet = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url=" + escape("http://www.aftonbladet.se/rss.xml");
+            var aftonbladetSport = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url=" + escape("http://www.aftonbladet.se/sportbladet/rss.xml");
             var rssConstructor = PWD.Classes.RssXHR;
-            var rss = new rssConstructor(aftonbladet, WinHandler);
-            WinHandler.setUppdateInterval(aftonbladet, WinHandler)
+            var rss = new rssConstructor(aftonbladetSport, WinHandler);
+            WinHandler.setUppdateInterval(aftonbladetSport, WinHandler)
             
         }
         if (currentWindowID === "fullSizeImage") {
