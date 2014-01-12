@@ -1,7 +1,7 @@
 "use strict";
 
 PWD.Classes.Gallery = function (WinHandler, startLoad, xhr, _JsonXhr, _img) {
-    WinHandler.setWindowName("Gallery", "pics/3.png");
+    WinHandler.setWindowName("Gallery", "pics/gallery.png");
    
     var that = this;
     this.init = function (adress, callType) {
@@ -54,7 +54,7 @@ PWD.Classes.Gallery = function (WinHandler, startLoad, xhr, _JsonXhr, _img) {
             setBackground()
             count++;
         }
-        p.innerHTML = count + "bilder laddade på" + ((doneLoading - startLoad) / 1000) + "sekunder";
+        p.innerHTML = count + "Pictures was loaded in " + ((doneLoading - startLoad) / 1000) + "seconds";
     }
    
     function setBackground() {
@@ -62,13 +62,16 @@ PWD.Classes.Gallery = function (WinHandler, startLoad, xhr, _JsonXhr, _img) {
             var objectNR = e.target.id.replace("imgThumb", "");
             if (e.shiftKey == 1) {
                 var main = document.querySelector('main');
-                main.style.backgroundImage = "url('" + _JsonXhr[objectNR].URL + "')"
+                document.body.style.backgroundImage = "url('" + _JsonXhr[objectNR].URL + "')"
             }
             else {
-                var picSize = [_JsonXhr[objectNR].height, _JsonXhr[objectNR].width];
-                var WinHandler = Portal.generateWindow("fullSizeImage")
+                var winHandlerConstructor = PWD.WinHandler.WinHandler;
+                var WinHandler = new winHandlerConstructor();
+                
+                //var WinHandler = Portal.generateWindow(_JsonXhr[objectNR])
                 WinHandler.setWindowForImageView(_JsonXhr[objectNR]);
-                WinHandler.setWindowName("Picture" + [objectNR])
+                WinHandler.setWindowName("Picture"+[objectNR],  "pics/6.png")
+
             }
         }
     }

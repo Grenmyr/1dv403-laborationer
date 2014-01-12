@@ -2,7 +2,7 @@
 PWD.Classes.RssXHR = function (adress, WinHandler) {
     if (WinHandler !== undefined) { 
         WinHandler.loadingGif();
-        WinHandler.setWindowName("RSS" , "pics/4.png");
+        WinHandler.setWindowName("RSS" , "pics/expressen.png");
     }
     var request = (function () {
         var xhr = new XMLHttpRequest();
