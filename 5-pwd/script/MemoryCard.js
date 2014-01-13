@@ -30,4 +30,4 @@ PWD.Classes.SubClasses.MemoryCard = function(cardID, thatReference) {
         img.src = "pics/0.jpg";
     };
     
-}
+};

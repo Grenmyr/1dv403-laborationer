@@ -98,5 +98,5 @@ PWD.Classes.MemoryGame = function (winHandler, prevCard, prevCardID) {
             while (imageOneOK == false || imageTwoOK == false);
         }
         return imgPlace;
-    }
+    };
 };

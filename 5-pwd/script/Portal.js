@@ -19,12 +19,12 @@ PWD.namespace = function (ns_string) {
     }
     return parent;
 };
-// Namnrymd kopierad av någon av zakas kompisar glömde namn
+// Namnrymd kopierad av nï¿½gon av zakas kompisar glï¿½mde namn
 PWD.namespace('Classes');
 PWD.namespace('WinHandler');
-PWD.namespace('Classes.SubClasses')
+PWD.namespace('Classes.SubClasses');
 PWD.Portal = {
-    // hanterar fönsterposition, och objectArray lagrar alla mina windowobjekt.
+    // hanterar fï¿½nsterposition, och objectArray lagrar alla mina windowobjekt.
     positionY: 50,
     positionX: 50,
     ObjectArray: [],
@@ -43,7 +43,7 @@ PWD.Portal = {
     },
     
     CloseWindow: function (winRemove) {
-        // FUnktion som jämför windowobject som ska dödas med min array, sendan tas domstruktur bort o sist objctet.
+        // FUnktion som jï¿½mfï¿½r windowobject som ska dï¿½das med min array, sendan tas domstruktur bort o sist objctet.
         for (var i = 0; i < this.ObjectArray.length; i++) {
             if (winRemove == this.ObjectArray[i]) {
                 clearInterval(winRemove.ajaxInterval);
@@ -58,7 +58,7 @@ PWD.Portal = {
 
     generateWindow: function (currentWindowID) {
  
-       // här initieras mina klasser alla "små"klasser lägga i mitt winHandler som är mitt fönster.
+       // hï¿½r initieras mina klasser alla "smï¿½"klasser lï¿½gga i mitt winHandler som ï¿½r mitt fï¿½nster.
         var winHandlerConstructor = PWD.WinHandler.WinHandler;
         var winHandler = new winHandlerConstructor();
         var article = winHandler.getArticle();
@@ -76,7 +76,7 @@ PWD.Portal = {
 
         article.style.top = this.positionY + "px";
         article.style.left = this.positionX + "px";
-        // dessa klasser läggs i fönstret, även små förändringar av windowobjktet som olika fönster vill ha kallas på från windowobjktet härifrån.
+        // dessa klasser lï¿½ggs i fï¿½nstret, ï¿½ven smï¿½ fï¿½rï¿½ndringar av windowobjktet som olika fï¿½nster vill ha kallas pï¿½ frï¿½n windowobjktet hï¿½rifrï¿½n.
         if (currentWindowID === "app1") {
             var memoryConstructor = PWD.Classes.MemoryGame;
             var memory = new memoryConstructor(winHandler);
@@ -95,14 +95,14 @@ PWD.Portal = {
             var expressen = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url=" + escape("http://expressen.se/rss/nyheter");
             var rssConstructor = PWD.Classes.RSSConstructor;
             var rss = new rssConstructor(expressen, winHandler);
-            winHandler.setUppdateInterval(expressen, winHandler)
+            winHandler.setUppdateInterval(expressen, winHandler);
             winHandler.setWindowName("Expressen", "pics/expressen.png");
         }
         if (currentWindowID === "app5") {
             var aftonbladetSport = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url=" + escape("http://www.aftonbladet.se/sportbladet/rss.xml");
             var rssConstructor = PWD.Classes.RSSConstructor;
             var rss = new rssConstructor(aftonbladetSport, winHandler);
-            winHandler.setUppdateInterval(aftonbladetSport, winHandler)
+            winHandler.setUppdateInterval(aftonbladetSport, winHandler);
             winHandler.setWindowName("Sportbladet", "pics/sportbladet.png");
             winHandler.loadingGif();
         }

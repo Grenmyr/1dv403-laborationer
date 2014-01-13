@@ -1,7 +1,7 @@
 "use strict";
 PWD.Classes.Gallery = function (winHandler, xhr ,jsonXhr, _img) {
     this.init = function (adress) {
-        // Init funktion, hela denna klassen är mer eller mindre ett händelseflöde, så satt funktionerna efter den ordning de vanligtvis körs.
+        // Init funktion, hela denna klassen ï¿½r mer eller mindre ett hï¿½ndelseflï¿½de, sï¿½ satt funktionerna efter den ordning de vanligtvis kï¿½rs.
         var startLoad = new Date();      
         xhr = new XMLHttpRequest();
         setJsonxhr(adress, startLoad);
@@ -24,8 +24,8 @@ PWD.Classes.Gallery = function (winHandler, xhr ,jsonXhr, _img) {
         xhr.send(null);
     }
     function generateGallery(startLoad) {
-        // Hämtar maxvärde på Thumbs från getMaxValue genom skicka mitt object och loopar igenom för hitta största värde.
-        // Sen en anropas mitt windowobject, och slutligen en loop till där jag trycker i galleriet i windowobjectet.
+        // Hï¿½mtar maxvï¿½rde pï¿½ Thumbs frï¿½n getMaxValue genom skicka mitt object och loopar igenom fï¿½r hitta stï¿½rsta vï¿½rde.
+        // Sen en anropas mitt windowobject, och slutligen en loop till dï¿½r jag trycker i galleriet i windowobjectet.
         var count = 0;
         var doneLoading = new Date();
         var boxSizeArray = getMaxValue(jsonXhr);
@@ -43,7 +43,7 @@ PWD.Classes.Gallery = function (winHandler, xhr ,jsonXhr, _img) {
             aside.appendChild(div);
             div.appendChild(img);
             _img = img;
-            setBackground()
+            setBackground();
             count++;
         }
         p.innerHTML = count + "Pictures was loaded in " + ((doneLoading - startLoad) / 1000) + "seconds";
@@ -64,24 +64,24 @@ PWD.Classes.Gallery = function (winHandler, xhr ,jsonXhr, _img) {
     }
    
     function setBackground() {
-        // Sätter bakgrund och Öppnar bilder i nytt fönster hämtas genom onclick och ID nummer som tidigare genererats i generateGallery funktionen.
+        // Sï¿½tter bakgrund och ï¿½ppnar bilder i nytt fï¿½nster hï¿½mtas genom onclick och ID nummer som tidigare genererats i generateGallery funktionen.
         
         _img.onclick = function (e) {
             var objectNR = e.target.id.replace("imgThumb", "");
             if (e.shiftKey == 1) {
-                var main = document.querySelector('main');
-                document.body.style.backgroundImage = "url('" + jsonXhr[objectNR].URL + "')"
+             
+                document.body.style.backgroundImage = "url('" + jsonXhr[objectNR].URL + "')";
             }
             else {
-                // Om ny bild ska öppnas i nytt fönster så skapar jag ett nytt fönsterobjekt och lägger in bilden i fönster sendan trycks  
-                //objektet in i min array på Portal
+                // Om ny bild ska ï¿½ppnas i nytt fï¿½nster sï¿½ skapar jag ett nytt fï¿½nsterobjekt och lï¿½gger in bilden i fï¿½nster sendan trycks  
+                //objektet in i min array pï¿½ Portal
                 var winHandlerConstructor = PWD.WinHandler.WinHandler;
                 var winHandler = new winHandlerConstructor();
                 PWD.Portal.ObjectArray.push(winHandler);
 
                 winHandler.setWindowForImageView(jsonXhr[objectNR]);
-                winHandler.setWindowName("Picture" + [objectNR], "" + jsonXhr[objectNR].URL + "")
+                winHandler.setWindowName("Picture" + [objectNR], "" + jsonXhr[objectNR].URL + "");
             }
-        }
+        };
     }
 };

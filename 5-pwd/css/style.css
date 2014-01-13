@@ -62,9 +62,6 @@ body {
     background-image: url("../pics/backGround.jpg");
 }
 
-header {
-}
-
 article {
     border-radius: 10px;
     width: 320px;
@@ -177,7 +174,6 @@ p {
     margin-top:5px;
     margin-right:10px;
     float:right;
-   
 }
 
 

@@ -1,7 +1,6 @@
 "use strict";
 PWD.WinHandler.WinHandler = function () {
     var that = this;
-    var main = document.getElementById("main");
     var article = document.createElement("article");
     var header = document.createElement("header");
     var aIcon = document.createElement("a");
@@ -38,11 +37,11 @@ PWD.WinHandler.WinHandler = function () {
     footer.appendChild(pTagFooter);
     article.appendChild(footer);
 
-    // funktionerna setWindowName, loadingGif, setUppdateInterval & setWindowForImageView används för modifiera gallery och RSS läsare 
+    // funktionerna setWindowName, loadingGif, setUppdateInterval & setWindowForImageView anvï¿½nds fï¿½r modifiera gallery och RSS lï¿½sare 
     this.setWindowName = function (name, iconSrc) {
         pTagHeader.innerHTML = name;
         icon.setAttribute("src", iconSrc);
-    }
+    };
     this.loadingGif = function (alreadyLoaded) {
 
         if (alreadyLoaded === null) {
@@ -54,17 +53,17 @@ PWD.WinHandler.WinHandler = function () {
             clearTimeout(this.timer);
             ajaxGif.src = "";
         }
-    }
+    };
     this.setUppdateInterval = function (aftonbladet, WinHandler) {
         this.ajaxInterval = setInterval(function () {
             var rssConstructor = PWD.Classes.RSSConstructor;
             var rss = new rssConstructor(aftonbladet, WinHandler);
         }, 10000);   
-    }
+    };
 
     this.setWindowForImageView = function (Jsonobject) {
         var height = Jsonobject.height;
-        var width = Jsonobject.width
+        var width = Jsonobject.width;
         
         aside.style.width = width + "px";
         aside.style.height = height + "px";       
@@ -72,23 +71,23 @@ PWD.WinHandler.WinHandler = function () {
         aside.style.backgroundImage = "url('" + Jsonobject.URL + "')";
     };
 
-   // Bara öppna funktioner för i andra classer kunna trycka in grejjor i 
+   // Bara ï¿½ppna funktioner fï¿½r i andra classer kunna trycka in grejjor i 
     this.getArticle = function () {
         return article;
-    }
+    };
     this.getAside = function () {
         return aside;
-    }
+    };
     this.getFooterPtag = function () {
         return pTagFooter;
-    }
-   // Anropar funktion i startscript för stänga alla referenser.
+    };
+   // Anropar funktion i startscript fï¿½r stï¿½nga alla referenser.
     exitButton.onclick = function () {
         PWD.Portal.CloseWindow(that);
     };
-    // Sätter Focus, och skapar och initierar dragFunktion. 
+    // Sï¿½tter Focus, och skapar och initierar dragFunktion. 
     article.onmousedown = function () {
-        var all = document.querySelectorAll(".article")
+        var all = document.querySelectorAll(".article");
         for (var i = 0; i < all.length; i++) {
             all[i].style.zIndex = 1;
         }
@@ -99,11 +98,11 @@ PWD.WinHandler.WinHandler = function () {
     article.onmouseup = function () {
         var dragDrop = DragDrop();
         dragDrop.disable();
-    }
+    };
 
     var DragDrop = function () {
         var dragging = null,
-            // Detta är skamlöst kopierat från boken och sedan lite modifierat. Jag lyssnar onclick på Target, och om det är winHeader så går det vidare till moemove. I mouseclick sätts även kompensation för var musen befinner sig på "winheader" classen. 
+            // Detta ï¿½r skamlï¿½st kopierat frï¿½n boken och sedan lite modifierat. Jag lyssnar onclick pï¿½ Target, och om det ï¿½r winHeader sï¿½ gï¿½r det vidare till moemove. I mouseclick sï¿½tts ï¿½ven kompensation fï¿½r var musen befinner sig pï¿½ "winheader" classen. 
             diffX = 0,
             diffY = 0;
 
@@ -119,9 +118,9 @@ PWD.WinHandler.WinHandler = function () {
                     }
                     break;
                 case "mousemove":
-                    // Ett gäng ifsatser, de två första tillåter drag inom min skärms bredd - lite marginal för border o så.
-                    // de andra fyra fixar bug om musen rörs snabbt, och sätter positionen till gränsvärde om värde över gränsvärde registrerats av mus.
-                    // Min target att dra sätter jag till min parentnode som är min section.
+                    // Ett gï¿½ng ifsatser, de tvï¿½ fï¿½rsta tillï¿½ter drag inom min skï¿½rms bredd - lite marginal fï¿½r border o sï¿½.
+                    // de andra fyra fixar bug om musen rï¿½rs snabbt, och sï¿½tter positionen till grï¿½nsvï¿½rde om vï¿½rde ï¿½ver grï¿½nsvï¿½rde registrerats av mus.
+                    // Min target att dra sï¿½tter jag till min parentnode som ï¿½r min section.
                     if (dragging !== null) {
 
                         if ((event.clientY - diffY) < (window.innerHeight - article.offsetHeight) && (event.clientY - diffY) > 25) {
@@ -148,8 +147,8 @@ PWD.WinHandler.WinHandler = function () {
                     dragging = null;
                     break;
             }
-        };
-            // Fattar knappt dessa, men Zakas gjorde så så jag kopierade.
+        }
+            // Fattar knappt dessa, men Zakas gjorde sï¿½ sï¿½ jag kopierade.
         return {
             enable: function () {
                 document.addEventListener("mousedown", handleEvent, false);
@@ -162,6 +161,6 @@ PWD.WinHandler.WinHandler = function () {
                 document.removeEventListener("mousemove", handleEvent, false);
                 document.removeEventListener("mouseup", handleEvent, false);
             }
-        }
+        };
     };
 };
