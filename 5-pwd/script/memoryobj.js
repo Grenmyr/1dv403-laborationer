@@ -69,7 +69,7 @@ PWD.Classes.Memory = function (WinHandler,_prevObject, _prevImg, _click, _prevCl
     }
     // Här börjar koden för memoryspelet.
     this.init = function (rows, cols) {
-        WinHandler.setWindowName("Memory","pics/memory.png");
+        
         var pictureArray = shuffleMemory(rows, cols);
         generateMemoryBoard(rows, cols, pictureArray);
     };

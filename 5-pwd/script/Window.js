@@ -1,5 +1,5 @@
 "use strict";
-PWD.WinHandler.WinHandler = function ( _interval) {
+PWD.WinHandler.WinHandler = function () {
     var that = this;
     var main = document.getElementById("main");
     var article = document.createElement("article");
@@ -13,7 +13,7 @@ PWD.WinHandler.WinHandler = function ( _interval) {
     var pTagFooter = document.createElement("p");
     var pTagHeader = document.createElement("p");
     var ajaxGif = document.createElement("img");
-
+    this.interval = null;
 
     article.setAttribute("class", "article");
     
@@ -44,10 +44,10 @@ PWD.WinHandler.WinHandler = function ( _interval) {
         var div = document.createElement("div");
         var height = Jsonobject.height;
         var width = Jsonobject.width
-        //aside.appendChild(div);
+        
         aside.style.width = width + "px";
         aside.style.height = height + "px";
-        //article.style.height = height + "px";
+        
         article.style.width = width + "px";
         aside.style.backgroundImage = "url('" + Jsonobject.URL + "')";
     };
@@ -59,7 +59,7 @@ PWD.WinHandler.WinHandler = function ( _interval) {
         }
         article.style.zIndex = 999;
 
-        var dragDrop = DragDrop(article);
+        var dragDrop = DragDrop();
         dragDrop.enable();
     };
     article.onmouseup = function () {
@@ -69,11 +69,11 @@ PWD.WinHandler.WinHandler = function ( _interval) {
 
     }
     exitButton.onclick = function () {
-        Portal.onClosedWindow();
-        article.parentElement.removeChild(article);
-        clearInterval(_interval);
+        //PWD.Portal.onClosedWindow();
+        //article.parentElement.removeChild(article);
+        //clearInterval(_interval);
 
-
+        PWD.Portal.CloseWindow(that);
     };
     this.getArticle = function () {
         return article;
@@ -103,18 +103,18 @@ PWD.WinHandler.WinHandler = function ( _interval) {
 
     }
     this.setUppdateInterval = function (aftonbladet, WinHandler) {
-        var interval = setInterval(function () {
+        //var interval = setInterval(function () {
+        this.interval = setInterval(function () {
             var rssConstructor = PWD.Classes.RssXHR;
             var rss = new rssConstructor(aftonbladet, WinHandler);
-        }, 300000);
-        _interval = interval;
+        }, 50000);
+        //interval = interval;
 
     }
     
 
 
     var DragDrop = function () {
-        console.log(article.offsetWidth)
         var dragging = null,
             // initialize variables used later for checking difference in mouse and target position.
             diffX = 0,
@@ -126,7 +126,6 @@ PWD.WinHandler.WinHandler = function ( _interval) {
             //determine the type of event
             switch (event.type) {
                 case "mousedown":
-
                     if (target.className.indexOf("winHeader") > -1) {
                         dragging = target;
                         diffX = event.clientX - article.offsetLeft;
@@ -135,13 +134,11 @@ PWD.WinHandler.WinHandler = function ( _interval) {
                     break;
                 case "mousemove":
                     if (dragging !== null) {
-                        //assign location (window.innerwidth)
-                        //console.log(window.innerWidth)
 
                         if ((event.clientY - diffY) < (window.innerHeight - article.offsetHeight) && (event.clientY - diffY) > 25) {
                             dragging.parentNode.style.top = (event.clientY - diffY) + "px";
                         }
-                        if ((event.clientX - diffX < window.innerWidth - article.offsetWidth) && (event.clientX - diffX) > 0) {
+                        if ((event.clientX - diffX < window.innerWidth - article.offsetWidth) && (event.clientX - diffX) > 25) {
                             dragging.parentNode.style.left = (event.clientX - diffX) + "px";
                         }
                         if ((event.clientY - diffY) < 25) {
@@ -150,11 +147,11 @@ PWD.WinHandler.WinHandler = function ( _interval) {
                         if ((event.clientX - diffX) < 0) {
                             dragging.parentNode.style.left = 0 + "px";
                         }
-                        if (event.clientY - diffY > window.innerHeight - article.offsetHeight) {
-                            dragging.parentNode.style.top = window.innerHeight - article.offsetHeight + "px";
+                        if (event.clientY - diffY > (window.innerHeight - article.offsetHeight - 25)) {
+                            dragging.parentNode.style.top = (window.innerHeight - article.offsetHeight - 25) + "px";
                         }
-                        if (dragging.parentNode.style.left > window.innerWidth - article.offsetWidth) {
-                            dragging.parentNode.style.left = window.innerWidth - article.offsetWidth + "px";
+                        if (event.clientX - diffX > window.innerWidth - article.offsetWidth) {
+                            dragging.parentNode.style.left = (window.innerWidth - article.offsetWidth) + "px";
                         }
                     }
                     break;

@@ -1,8 +1,6 @@
 "use strict";
 
 PWD.Classes.Gallery = function (WinHandler, startLoad, xhr, _JsonXhr, _img) {
-    WinHandler.setWindowName("Gallery", "pics/gallery.png");
-   
     var that = this;
     this.init = function (adress, callType) {
         startLoad = new Date();
@@ -67,10 +65,11 @@ PWD.Classes.Gallery = function (WinHandler, startLoad, xhr, _JsonXhr, _img) {
             else {
                 var winHandlerConstructor = PWD.WinHandler.WinHandler;
                 var WinHandler = new winHandlerConstructor();
+                PWD.Portal.array.push(WinHandler);
                 
                 //var WinHandler = Portal.generateWindow(_JsonXhr[objectNR])
                 WinHandler.setWindowForImageView(_JsonXhr[objectNR]);
-                WinHandler.setWindowName("Picture"+[objectNR],  "pics/6.png")
+                WinHandler.setWindowName("Picture" + [objectNR], "" + _JsonXhr[objectNR].URL + "")
 
             }
         }

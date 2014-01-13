@@ -23,12 +23,12 @@ PWD.namespace = function (ns_string) {
 PWD.namespace('Classes');
 PWD.namespace('WinHandler');
 PWD.namespace('Classes.SubClasses')
-var Portal = {
+PWD.Portal = {
     positionY: 50,
     positionX: 50,
-
+    array:[],
     init: function () {
-        Portal.onClick();
+        PWD.Portal.onClick();
     },
     onClick: function () {
 
@@ -38,10 +38,23 @@ var Portal = {
             
             var currentWindowID = e.target.parentNode.id;
             
-            Portal.generateWindow(currentWindowID);
+            PWD.Portal.generateWindow(currentWindowID);
         }, false);
 
     },
+
+    CloseWindow : function(win){
+        for (var i = 0; i < this.array.length; i++) {
+            if (win == this.array[i]) {
+                clearInterval(win.interval);
+                var article = win.getArticle();
+                article.parentElement.removeChild(article);
+                this.array.splice(i, 1);
+            }
+        }
+        PWD.Portal.onClosedWindow();
+    },
+
     generateWindow: function (currentWindowID) {
         if (currentWindowID == 0) { return; }
 
@@ -49,12 +62,14 @@ var Portal = {
         var WinHandler = new winHandlerConstructor();
         var article = WinHandler.getArticle();
         
+        this.array.push(WinHandler);
+
         this.positionY += 50;
         this.positionX += 50;
-        if (this.positionX > window.innerWidth - article.offsetWidth) {
+        if (this.positionX > window.innerWidth - article.offsetWidth -25) {
             this.positionX = 50;
         }
-        if (this.positionY > window.innerHeight - article.offsetHeight) {
+        if (this.positionY > window.innerHeight - article.offsetHeight-25) {
             this.positionY = 50;
         }
         article.style.top = this.positionY + "px";
@@ -63,8 +78,9 @@ var Portal = {
         if (currentWindowID === "app1") {
            
             var memoryConstructor = PWD.Classes.Memory;
-            var Memory = new memoryConstructor(WinHandler)
+            var Memory = new memoryConstructor(WinHandler);
             Memory.init(4, 4);
+            WinHandler.setWindowName("Memory", "pics/memory.png");
         }
         /*if (currentWindowID === "app2") {
             var messBoardConstructor = PWD.Classes.MessBoard;
@@ -75,20 +91,22 @@ var Portal = {
             var adress = 'http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/';
             var galleryConstructor = PWD.Classes.Gallery;          
             var gallery = new galleryConstructor(WinHandler);
-            gallery.init( adress, "POST");
+            gallery.init(adress, "POST");
+            WinHandler.setWindowName("Gallery", "pics/gallery.png");
         }
         if (currentWindowID === "app4") {
-            var dn = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://expressen.se/rss/nyheter");
+            var expressen = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://expressen.se/rss/nyheter");
             var rssConstructor = PWD.Classes.RssXHR;
-            var rss = new rssConstructor(dn, WinHandler);
-            WinHandler.setUppdateInterval(dn, WinHandler)
+            var rss = new rssConstructor(expressen, WinHandler);
+            WinHandler.setUppdateInterval(expressen, WinHandler)
+            WinHandler.setWindowName("Expressen", "pics/expressen.png");
         }
         if (currentWindowID === "app5") {           
             var aftonbladetSport = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url=" + escape("http://www.aftonbladet.se/sportbladet/rss.xml");
             var rssConstructor = PWD.Classes.RssXHR;
             var rss = new rssConstructor(aftonbladetSport, WinHandler);
             WinHandler.setUppdateInterval(aftonbladetSport, WinHandler)
-            
+            WinHandler.setWindowName("Sportbladet", "pics/sportbladet.png");
         }
     },
     onClosedWindow: function () {
@@ -97,5 +115,5 @@ var Portal = {
     
 };
 window.onload = function () {
-    Portal.init();
+    PWD.Portal.init();
 };
