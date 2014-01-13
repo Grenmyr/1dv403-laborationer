@@ -19,12 +19,12 @@ PWD.namespace = function (ns_string) {
     }
     return parent;
 };
-
+// Namnrymd kopierad av någon av zakas kompisar glömde namn
 PWD.namespace('Classes');
 PWD.namespace('WinHandler');
 PWD.namespace('Classes.SubClasses')
 PWD.Portal = {
-    
+    // hanterar fönsterposition, och objectArray lagrar alla mina windowobjekt.
     positionY: 50,
     positionX: 50,
     ObjectArray: [],
@@ -34,7 +34,6 @@ PWD.Portal = {
     },
    
     onClick: function () {
-       
         var navOnclick = document.getElementById("nav");
         navOnclick.addEventListener("click", function (e) {
             var currentWindowID = e.target.parentNode.id;
@@ -43,11 +42,12 @@ PWD.Portal = {
 
     },
     
-    CloseWindow: function (win) {
+    CloseWindow: function (winRemove) {
+        // FUnktion som jämför windowobject som ska dödas med min array, sendan tas domstruktur bort o sist objctet.
         for (var i = 0; i < this.ObjectArray.length; i++) {
-            if (win == this.ObjectArray[i]) {
-                clearInterval(win.ajaxInterval);
-                var article = win.getArticle();
+            if (winRemove == this.ObjectArray[i]) {
+                clearInterval(winRemove.ajaxInterval);
+                var article = winRemove.getArticle();
                 article.parentElement.removeChild(article);
                 this.ObjectArray.splice(i, 1);
                 PWD.Portal.position -= 10;
@@ -58,7 +58,7 @@ PWD.Portal = {
 
     generateWindow: function (currentWindowID) {
  
-       
+       // här initieras mina klasser alla "små"klasser lägga i mitt winHandler som är mitt fönster.
         var winHandlerConstructor = PWD.WinHandler.WinHandler;
         var winHandler = new winHandlerConstructor();
         var article = winHandler.getArticle();
@@ -76,9 +76,8 @@ PWD.Portal = {
 
         article.style.top = this.positionY + "px";
         article.style.left = this.positionX + "px";
-
+        // dessa klasser läggs i fönstret, även små förändringar av windowobjktet som olika fönster vill ha kallas på från windowobjktet härifrån.
         if (currentWindowID === "app1") {
-
             var memoryConstructor = PWD.Classes.MemoryGame;
             var memory = new memoryConstructor(winHandler);
             memory.init(4, 4);

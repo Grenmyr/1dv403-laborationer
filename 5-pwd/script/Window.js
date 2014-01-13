@@ -59,7 +59,7 @@ PWD.WinHandler.WinHandler = function () {
         this.ajaxInterval = setInterval(function () {
             var rssConstructor = PWD.Classes.RSSConstructor;
             var rss = new rssConstructor(aftonbladet, WinHandler);
-        }, 1000);   
+        }, 10000);   
     }
 
     this.setWindowForImageView = function (Jsonobject) {

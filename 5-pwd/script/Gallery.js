@@ -73,7 +73,8 @@ PWD.Classes.Gallery = function (winHandler, xhr ,jsonXhr, _img) {
                 document.body.style.backgroundImage = "url('" + jsonXhr[objectNR].URL + "')"
             }
             else {
-                // Om ny bild ska öppnas i nytt fönster så skapar jag ett nytt fönsterobjekt och lägger in bilden i fönster sendan trycks  objektet in i min array på Portal
+                // Om ny bild ska öppnas i nytt fönster så skapar jag ett nytt fönsterobjekt och lägger in bilden i fönster sendan trycks  
+                //objektet in i min array på Portal
                 var winHandlerConstructor = PWD.WinHandler.WinHandler;
                 var winHandler = new winHandlerConstructor();
                 PWD.Portal.ObjectArray.push(winHandler);
