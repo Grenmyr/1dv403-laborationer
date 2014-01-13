@@ -13,10 +13,10 @@ PWD.WinHandler.WinHandler = function () {
     var pTagFooter = document.createElement("p");
     var pTagHeader = document.createElement("p");
     var ajaxGif = document.createElement("img");
-    this.interval = null;
+    this.ajaxInterval = null;
+    
 
     article.setAttribute("class", "article");
-    
     header.setAttribute("class", "winHeader");
     icon.setAttribute("class", "windowThumb");
     ajaxGif.setAttribute("class", "loadingGif");
@@ -26,7 +26,6 @@ PWD.WinHandler.WinHandler = function () {
     pTagHeader.setAttribute("class", "ptagHeader");
     pTagFooter.setAttribute("class", "ptagFooter");
    
-
     footer.appendChild(ajaxGif);
     document.body.appendChild(article);
     article.appendChild(header);
@@ -39,57 +38,13 @@ PWD.WinHandler.WinHandler = function () {
     footer.appendChild(pTagFooter);
     article.appendChild(footer);
 
-    this.setWindowForImageView = function (Jsonobject) {
-        
-        var div = document.createElement("div");
-        var height = Jsonobject.height;
-        var width = Jsonobject.width
-        
-        aside.style.width = width + "px";
-        aside.style.height = height + "px";
-        
-        article.style.width = width + "px";
-        aside.style.backgroundImage = "url('" + Jsonobject.URL + "')";
-    };
-
-    article.onmousedown = function () {
-        var all = document.querySelectorAll(".article")
-        for (var i = 0; i < all.length; i++) {
-            all[i].style.zIndex = 1;
-        }
-        article.style.zIndex = 999;
-
-        var dragDrop = DragDrop();
-        dragDrop.enable();
-    };
-    article.onmouseup = function () {
-        var dragDrop = DragDrop();
-        dragDrop.disable();
-        //var här
-
-    }
-    exitButton.onclick = function () {
-        //PWD.Portal.onClosedWindow();
-        //article.parentElement.removeChild(article);
-        //clearInterval(_interval);
-
-        PWD.Portal.CloseWindow(that);
-    };
-    this.getArticle = function () {
-        return article;
-    }
-    this.getAside = function () {
-        return aside;
-    }
-    this.getFooterPtag = function () {
-        return pTagFooter;
-    }
-    this.setWindowName = function (name,iconSrc) {
+    // funktionerna setWindowName, loadingGif, setUppdateInterval & setWindowForImageView används för modifiera gallery och RSS läsare 
+    this.setWindowName = function (name, iconSrc) {
         pTagHeader.innerHTML = name;
         icon.setAttribute("src", iconSrc);
     }
     this.loadingGif = function (alreadyLoaded) {
-     
+
         if (alreadyLoaded === null) {
             this.timer = setTimeout(function () {
                 ajaxGif.src = "pics/ajaxLoader.gif";
@@ -99,31 +54,62 @@ PWD.WinHandler.WinHandler = function () {
             clearTimeout(this.timer);
             ajaxGif.src = "";
         }
-
-
     }
     this.setUppdateInterval = function (aftonbladet, WinHandler) {
-        //var interval = setInterval(function () {
-        this.interval = setInterval(function () {
-            var rssConstructor = PWD.Classes.RssXHR;
+        this.ajaxInterval = setInterval(function () {
+            var rssConstructor = PWD.Classes.RSSConstructor;
             var rss = new rssConstructor(aftonbladet, WinHandler);
-        }, 50000);
-        //interval = interval;
-
+        }, 1000);   
     }
-    
 
+    this.setWindowForImageView = function (Jsonobject) {
+        var height = Jsonobject.height;
+        var width = Jsonobject.width
+        
+        aside.style.width = width + "px";
+        aside.style.height = height + "px";       
+        article.style.width = width + "px";
+        aside.style.backgroundImage = "url('" + Jsonobject.URL + "')";
+    };
+
+   // Bara öppna funktioner för i andra classer kunna trycka in grejjor i 
+    this.getArticle = function () {
+        return article;
+    }
+    this.getAside = function () {
+        return aside;
+    }
+    this.getFooterPtag = function () {
+        return pTagFooter;
+    }
+   // Anropar funktion i startscript för stänga alla referenser.
+    exitButton.onclick = function () {
+        PWD.Portal.CloseWindow(that);
+    };
+    // Sätter Focus, och skapar och initierar dragFunktion. 
+    article.onmousedown = function () {
+        var all = document.querySelectorAll(".article")
+        for (var i = 0; i < all.length; i++) {
+            all[i].style.zIndex = 1;
+        }
+        article.style.zIndex = 999;
+        var dragDrop = DragDrop();
+        dragDrop.enable();
+    };
+    article.onmouseup = function () {
+        var dragDrop = DragDrop();
+        dragDrop.disable();
+    }
 
     var DragDrop = function () {
         var dragging = null,
-            // initialize variables used later for checking difference in mouse and target position.
+            // Detta är skamlöst kopierat från boken och sedan lite modifierat. Jag lyssnar onclick på Target, och om det är winHeader så går det vidare till moemove. I mouseclick sätts även kompensation för var musen befinner sig på "winheader" classen. 
             diffX = 0,
             diffY = 0;
 
         function handleEvent(event, test) {
 
             var target = event.target;
-            //determine the type of event
             switch (event.type) {
                 case "mousedown":
                     if (target.className.indexOf("winHeader") > -1) {
@@ -133,6 +119,9 @@ PWD.WinHandler.WinHandler = function () {
                     }
                     break;
                 case "mousemove":
+                    // Ett gäng ifsatser, de två första tillåter drag inom min skärms bredd - lite marginal för border o så.
+                    // de andra fyra fixar bug om musen rörs snabbt, och sätter positionen till gränsvärde om värde över gränsvärde registrerats av mus.
+                    // Min target att dra sätter jag till min parentnode som är min section.
                     if (dragging !== null) {
 
                         if ((event.clientY - diffY) < (window.innerHeight - article.offsetHeight) && (event.clientY - diffY) > 25) {
@@ -160,7 +149,7 @@ PWD.WinHandler.WinHandler = function () {
                     break;
             }
         };
-
+            // Fattar knappt dessa, men Zakas gjorde så så jag kopierade.
         return {
             enable: function () {
                 document.addEventListener("mousedown", handleEvent, false);

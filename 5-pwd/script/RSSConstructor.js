@@ -1,24 +1,21 @@
 "use strict";
-PWD.Classes.RssXHR = function (adress, WinHandler) {
-    if (WinHandler !== undefined) { 
-        WinHandler.loadingGif();
-        
-    }
+PWD.Classes.RSSConstructor = function (adress, winHandler) {
+    // Funktion som körs automatiskt vid anrop och anropar feed efter adress, sen hämtar vi aside och footer från fönsterclassen och placerar vårt RSS anrop där.
     var request = (function () {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-                    // skriv kod här
-
-                    var aside = WinHandler.getAside();
+                    var footerPtag = winHandler.getFooterPtag();
+                    var aside = winHandler.getAside();
+                    var uppdateTime = new Date();
+                    
                     aside.innerHTML = "";
                     aside.innerHTML = xhr.responseText;
                     aside.scrollTop = aside.scrollHeight;
-                    WinHandler.loadingGif("doneloading");
-                    var uppdateTime = new Date();
-                    var footerPtag = WinHandler.getFooterPtag();
-                    
+
+                    winHandler.loadingGif("doneloading");
+
                     footerPtag.innerHTML = footerPtag.innerHTML = "Senast uppdaterad " + uppdateTime.getHours() + ":" + uppdateTime.getMinutes() + ":" + uppdateTime.getSeconds();
                 }
                 else {
