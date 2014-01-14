@@ -75,7 +75,7 @@ article {
 }
 
 aside {
-
+    
     overflow-y: auto;
     min-height: 150px;
     height: 300px;
@@ -111,6 +111,7 @@ textarea {
 }
 
 div {
+    max-width:320px;
     margin: 0 auto;
     margin-top: 20px;
     background-color: #E1E1E3;
