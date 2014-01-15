@@ -1,5 +1,6 @@
-"use strict";
+
 PWD.WinHandler.WinHandler = function () {
+    "use strict";
     var that = this;
     var article = document.createElement("article");
     var header = document.createElement("header");

@@ -1,5 +1,6 @@
-"use strict";
+
 PWD.Classes.RSSConstructor = function (adress, winHandler) {
+    "use strict";
     // Funktion som körs automatiskt vid anrop och anropar feed efter adress, sen hämtar vi aside och footer från fönsterclassen och placerar vårt RSS anrop där.
     var request = (function () {
         var xhr = new XMLHttpRequest();

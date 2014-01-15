@@ -1,5 +1,6 @@
-"use strict";
-PWD.Classes.Gallery = function (winHandler, xhr ,jsonXhr, _img) {
+
+PWD.Classes.Gallery = function (winHandler, xhr, jsonXhr, _img) {
+    "use strict";
     this.init = function (adress) {
         // Init funktion, hela denna klassen �r mer eller mindre ett h�ndelsefl�de, s� satt funktionerna efter den ordning de vanligtvis k�rs.
         var startLoad = new Date();      

@@ -1,5 +1,6 @@
-"use strict";
-PWD.Classes.SubClasses.MemoryCard = function(cardID, thatReference) {
+
+PWD.Classes.SubClasses.MemoryCard = function (cardID, thatReference) {
+    "use strict";
     var td = document.createElement("td");
     var a = document.createElement("a");
     var img = document.createElement("img");
