@@ -1,5 +1,4 @@
 
-
 PWD.Classes.MemoryGame = function (winHandler, prevCard, prevCardID) {
     "use strict";
     var that = this;
