@@ -8,6 +8,7 @@ PWD.Classes.SubClasses.MemoryCard = function (cardID, thatReference) {
     td.appendChild(a);
     img.src = "pics/0.jpg";
     var that = this;
+    
     a.onclick = function () {
         // vid klick på atag, skickar vi med that som referens, som ju är alla publika (this) funktioner.
         thatReference.FlipCard(that);

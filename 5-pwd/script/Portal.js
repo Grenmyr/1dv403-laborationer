@@ -45,7 +45,7 @@ PWD.Portal = {
     CloseWindow: function (winRemove) {
         // FUnktion som j�mf�r windowobject som ska d�das med min array, sendan tas domstruktur bort o sist objctet.
         for (var i = 0; i < this.ObjectArray.length; i++) {
-            if (winRemove == this.ObjectArray[i]) {
+            if (winRemove === this.ObjectArray[i]) {
                 clearInterval(winRemove.ajaxInterval);
                 var article = winRemove.getArticle();
                 article.parentElement.removeChild(article);

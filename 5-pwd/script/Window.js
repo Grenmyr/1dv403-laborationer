@@ -46,12 +46,12 @@ PWD.WinHandler.WinHandler = function () {
     this.loadingGif = function (alreadyLoaded) {
 
         if (alreadyLoaded === null) {
-            this.timer = setTimeout(function () {
+            var timer = setTimeout(function () {
                 ajaxGif.src = "pics/ajaxLoader.gif";
             }, 300);
         }
         else {
-            clearTimeout(this.timer);
+            clearTimeout(timer);
             ajaxGif.src = "";
         }
     };
@@ -59,7 +59,8 @@ PWD.WinHandler.WinHandler = function () {
         this.ajaxInterval = setInterval(function () {
             var rssConstructor = PWD.Classes.RSSConstructor;
             var rss = new rssConstructor(aftonbladet, WinHandler);
-        }, 10000);   
+        }, 10000);
+        
     };
 
     this.setWindowForImageView = function (Jsonobject) {
